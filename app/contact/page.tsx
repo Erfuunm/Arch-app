@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, Phone, MapPin, Instagram, ArrowRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -20,14 +21,21 @@ export default function ContactPage() {
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
         <div className="flex items-center gap-2 md:gap-4">
-          <div className="text-xl md:text-2xl font-bold">KH</div>
+          <div className="relative w-8 h-8 md:w-10 md:h-10">
+            <Image
+              src="/images/Logo.png"
+              alt="Company Icon"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
 
         {/* Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="w-8 h-8 md:w-10 md:h-10" // Removed lg:hidden to make it always visible
+          className="w-8 h-8 md:w-10 md:h-10"
           onClick={() => setIsMenuOpen(true)}
         >
           <Menu className="w-5 h-5 md:w-6 h-6" />

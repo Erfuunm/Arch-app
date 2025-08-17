@@ -1,15 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link" // Import Link
-import { ChevronLeft, ChevronRight, Menu, ArrowLeft, ArrowRight, X } from "lucide-react"
+import Link from "next/link"
+import { ChevronLeft, ChevronRight, Menu, ArrowLeft, ArrowRight, X, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { motion, AnimatePresence } from "framer-motion" // Import framer-motion
+import { motion, AnimatePresence } from "framer-motion"
 
 const projects = [
-  // Page 1 Projects (1-17) - Now 17 projects on the first page
   {
     id: 1,
     name: "Armaghan Residential Complex",
@@ -162,7 +161,7 @@ const projects = [
   },
   {
     id: 11,
-    name: "Tabriz Convention Center", // This project will now be col-span-1
+    name: "Tabriz Convention Center",
     year: "2024",
     location: "TABRIZ",
     image: "/images/jawaher.jpg",
@@ -177,7 +176,7 @@ const projects = [
   },
   {
     id: 13,
-    name: "Kerman Solar Complex", // This project was at index 11, now shifted
+    name: "Kerman Solar Complex",
     year: "2023",
     location: "KERMAN",
     image: "/images/armaghan.jpg",
@@ -250,7 +249,6 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
   },
-  // Page 2 Projects (18-33) - Adjusted IDs
   {
     id: 18,
     name: "Bandar Abbas Port Complex",
@@ -496,7 +494,7 @@ const projects = [
 // Remove project with id: 12
 const projectsWithoutId12 = projects.filter((project) => project.id !== 12)
 
-const PROJECTS_PER_PAGE = 16 // Updated to 17 for the first page
+const PROJECTS_PER_PAGE = 16
 
 // Animation variants for smooth transitions
 const pageVariants = {
@@ -506,9 +504,29 @@ const pageVariants = {
 }
 
 const projectDetailVariants = {
-  initial: { opacity: 0, scale: 0.95 }, // Removed x, added scale
+  initial: { opacity: 0, scale: 0.95 },
   animate: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 0.95 },
+}
+
+// Animation variants for the loading screen
+const loadingContainerVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { staggerChildren: 0.05 } },
+  exit: { opacity: 0, y: -50, transition: { duration: 0.5 } },
+}
+
+const letterVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+  exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
+}
+
+// Animation variants for mobile filter dropdown
+const filterVariants = {
+  initial: { opacity: 0, y: -10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
 }
 
 export default function ProjectsPage() {
@@ -517,12 +535,21 @@ export default function ProjectsPage() {
   const [yearFilter, setYearFilter] = useState("ALL YEARS")
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
-  const [isMenuOpen, setIsMenuOpen] = useState(false) // State for menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
 
-  // Calculate total pages based on the new PROJECTS_PER_PAGE for the first page
-  // and then 16 for subsequent pages (if applicable, though we only have 33 projects total)
+  // Handle loading screen timing
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 3000) // 0.5s entrance + 2s display + 0.5s exit
+    return () => clearTimeout(timer)
+  }, [])
+
+  // Calculate total pages
   const totalProjects = projectsWithoutId12.length
-  const totalPages = Math.ceil(totalProjects / PROJECTS_PER_PAGE) // This will be 2 pages (17 + 16)
+  const totalPages = Math.ceil(totalProjects / PROJECTS_PER_PAGE)
 
   const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE
   const currentProjects = projectsWithoutId12.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
@@ -565,296 +592,41 @@ export default function ProjectsPage() {
 
   const selectedProjectData = projectsWithoutId12.find((p) => p.id === selectedProject)
 
-  // Create extended projects array for side columns in detail view
   const otherProjects = projectsWithoutId12.filter((p) => p.id !== selectedProject)
+
+  // Text for the loading screen
+  const loadingText = "KHAYYATZADEH- AND- ASSOCIATES"
+  const letters = loadingText.split("")
 
   return (
     <AnimatePresence mode="wait">
-      {selectedProject && selectedProjectData ? (
+      {isLoading ? (
         <motion.div
-          key="project-detail-view"
+          key="loading-screen"
           initial="initial"
           animate="animate"
           exit="exit"
-          variants={pageVariants}
-          transition={{ duration: 0.5 }} // Slower transition
-          className="min-h-screen bg-white"
+          variants={loadingContainerVariants}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 bg-black flex items-center justify-center z-50"
         >
-          {/* Header */}
-          <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
-            <div className="flex items-center gap-2 md:gap-4">
-              <div className="text-xl md:text-2xl font-bold">KH</div>
-            </div>
-
-            {/* Filters in Header for Desktop */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                  <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                  <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                  <SelectItem value="MIXED USE">MIXED USE</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={locationFilter} onValueChange={setLocationFilter}>
-                <SelectTrigger className="w-[160px] rounded-full border-gray-300">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                  <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                  <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                  <SelectItem value="ISFAHAN">ISFAFAN</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={yearFilter} onValueChange={setYearFilter}>
-                <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                  <SelectItem value="2025">2025</SelectItem>
-                  <SelectItem value="2024">2024</SelectItem>
-                  <SelectItem value="2023">2023</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <Button
-                variant="outline"
-                onClick={handleBackToGrid}
-                className="flex items-center gap-2 bg-gray-900 text-white hover:bg-gray-800 hover:text-white"
+          <motion.h1
+            className="text-white text-2xl md:text-4xl font-bold tracking-wider flex"
+            variants={loadingContainerVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            {letters.map((letter, index) => (
+              <motion.span
+                key={index}
+                variants={letterVariants}
+                className="inline-block"
               >
-              
-                Back 
-              </Button>
-
-              <Button
-                variant="ghost"
-                size="icon"
-                className="w-8 h-8 md:w-10 md:h-10"
-                onClick={() => setIsMenuOpen(true)}
-              >
-               
-              </Button>
-            </div>
-          </header>
-
-          {/* Filters (hidden on desktop, visible on mobile/tablet) */}
-          {/* Removed the "Back to Grid" button from here */}
-          <div className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 lg:hidden">
-            <Select value={typeFilter} onValueChange={setTypeFilter}>
-              <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                <SelectItem value="MIXED USE">MIXED USE</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={locationFilter} onValueChange={setLocationFilter}>
-              <SelectTrigger className="w-full sm:w-[160px] rounded-full border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                <SelectItem value="ISFAHAN">ISFAFAN</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={yearFilter} onValueChange={setYearFilter}>
-              <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                <SelectItem value="2025">2025</SelectItem>
-                <SelectItem value="2024">2024</SelectItem>
-                <SelectItem value="2023">2023</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Project Detail View */}
-          <div className="px-3 md:px-6 mt-[3%]">
-            <div className="max-w-7xl mx-auto">
-              {/* Main Grid with Featured Project */}
-              <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
-                {/* Left Column (hidden on mobile/tablet, visible on desktop) */}
-                <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
-                  {otherProjects.slice(0, 6).map((project, index) => (
-                    <div
-                      key={`left-${project.id}-${index}`}
-                      className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-white shadow-sm border border-gray-100 h-24"
-                      onClick={() => handleProjectClick(project.id)}
-                    >
-                      <div className="relative h-[calc(100%-42px)]">
-                        <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.name}
-                          fill
-                          className="object-cover grayscale transition-all"
-                        />
-                      </div>
-                      <div className="h-[42px] bg-gray-50 py-4 p-2 flex flex-col justify-center">
-                        <h3 className="font-medium text-xs text-gray-900 leading-tight mb-0.5">{project.name}</h3>
-                        <p className="text-xs text-gray-600">
-                          {project.year} {project.location}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Center Featured Project (takes full width on mobile/tablet) */}
-                <motion.div
-                  key={selectedProjectData.id} // Key changes to trigger animation
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  variants={projectDetailVariants}
-                  transition={{ duration: 0.3 }} // Slower transition for project detail
-                  className="col-span-full lg:col-span-3 order-1 lg:order-2"
-                >
-                  <div className="relative overflow-hidden rounded-lg bg-white shadow-lg border border-gray-200">
-                    {/* Main Image */}
-                    <div className="relative h-60 md:h-80">
-                      <Image
-                        src={selectedProjectData.image || "/placeholder.svg"}
-                        alt={selectedProjectData.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-
-                    {/* Project Header */}
-                    <div className="p-4 bg-white border-b border-gray-100">
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-                        <div>
-                          <h2 className="font-semibold text-lg text-gray-900 mb-1">{selectedProjectData.name}</h2>
-                          <p className="text-sm text-gray-600">
-                            {selectedProjectData.year} {selectedProjectData.location}
-                          </p>
-                        </div>
-                        <Link href={`/projects/${selectedProjectData.id}`} passHref>
-                          <Button variant="outline" size="sm" className="text-sm bg-transparent mt-2 sm:mt-0">
-                            MORE INFO <ArrowRight className="w-4 h-4 ml-1" />
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Content Section */}
-                    <div className="p-4 bg-white">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {/* Left Column - Key Info */}
-                        <div>
-                          <h3 className="font-semibold text-sm mb-4 text-gray-900">Key Info</h3>
-                          <div className="space-y-3 text-sm">
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <p className="font-medium text-gray-900">Type</p>
-                                <p className="text-gray-600">{selectedProjectData.type}</p>
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">Status</p>
-                                <p className="text-gray-600">{selectedProjectData.status}</p>
-                              </div>
-                            </div>
-                            <div>
-                              <p className="font-medium text-gray-900">Time span</p>
-                              <p className="text-gray-600">{selectedProjectData.timespan}</p>
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <p className="font-medium text-gray-900">Client</p>
-                                <p className="text-gray-600">{selectedProjectData.client}</p>
-                              </div>
-                              <div>
-                                <p className="font-medium text-gray-900">Location</p>
-                                <p className="text-gray-600">{selectedProjectData.clientLocation}</p>
-                              </div>
-                            </div>
-                            <div>
-                              <p className="font-medium text-gray-900">Size</p>
-                              <p className="text-gray-600">{selectedProjectData.size}</p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Right Column - Project Overview */}
-                        <div>
-                          <h3 className="font-semibold text-sm mb-4 text-gray-900">Project Overview</h3>
-                          <p className="text-sm text-gray-700 leading-relaxed">{selectedProjectData.overview}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Navigation */}
-                  <div className="flex justify-between items-center mt-6">
-                    <Button
-                      variant="outline"
-                      onClick={handlePreviousProject}
-                      className="flex items-center gap-2 bg-transparent text-sm"
-                    >
-                      <ArrowLeft className="w-4 h-4" />
-                      PREVIOUS PROJECT
-                    </Button>
-
-                    <Button
-                      variant="outline"
-                      onClick={handleNextProject}
-                      className="flex items-center gap-2 bg-transparent text-sm"
-                    >
-                      NEXT PROJECT
-                      <ArrowRight className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </motion.div>
-
-                {/* Right Column (hidden on mobile/tablet, visible on desktop) */}
-                <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-3 lg:order-3">
-                  {otherProjects.slice(6, 12).map((project, index) => (
-                    <div
-                      key={`right-${project.id}-${index}`}
-                      className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-white shadow-sm border border-gray-100 h-24"
-                      onClick={() => handleProjectClick(project.id)}
-                    >
-                      <div className="relative h-[calc(100%-42px)]">
-                        <Image
-                          src={project.image || "/placeholder.svg"}
-                          alt={project.name}
-                          fill
-                          className="object-cover grayscale transition-all"
-                        />
-                      </div>
-                      <div className="h-[42px] bg-gray-50 py-4 p-2 flex flex-col justify-center">
-                        <h3 className="font-medium text-xs text-gray-900 leading-tight mb-0.5">{project.name}</h3>
-                        <p className="text-xs text-gray-600">
-                          {project.year} {project.location}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom spacing */}
-          <div className="h-20" />
+                {letter === " " ? "\u00A0" : letter}
+              </motion.span>
+            ))}
+          </motion.h1>
         </motion.div>
       ) : (
         <motion.div
@@ -863,249 +635,554 @@ export default function ProjectsPage() {
           animate="animate"
           exit="exit"
           variants={pageVariants}
-          transition={{ duration: 0.5 }} // Slower transition
+          transition={{ duration: 0.5 }}
           className="min-h-screen bg-white"
         >
-          {/* Header */}
-          <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
-            <div className="flex items-center gap-2 md:gap-4">
-              <div className="text-xl md:text-2xl font-bold">KH</div>
-            </div>
-
-            {/* Filters in Header for Desktop */}
-            <div className="hidden lg:flex items-center gap-4">
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                  <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                  <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                  <SelectItem value="MIXED USE">MIXED USE</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={locationFilter} onValueChange={setLocationFilter}>
-                <SelectTrigger className="w-[160px] rounded-full border-gray-300">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                  <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                  <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                  <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
-                </SelectContent>
-              </Select>
-
-              <Select value={yearFilter} onValueChange={setYearFilter}>
-                <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                  <SelectItem value="2025">2025</SelectItem>
-                  <SelectItem value="2024">2024</SelectItem>
-                  <SelectItem value="2023">2023</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10" onClick={() => setIsMenuOpen(true)}>
-              <Menu className="w-5 h-5 md:w-6 md:h-6" />
-            </Button>
-          </header>
-
-          {/* Filters (visible on mobile/tablet, hidden on desktop) */}
-          <div className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 md:pb-8 lg:hidden">
-            <Select value={typeFilter} onValueChange={setTypeFilter}>
-              <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                <SelectItem value="MIXED USE">MIXED USE</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={locationFilter} onValueChange={setLocationFilter}>
-              <SelectTrigger className="w-full sm:w-[160px] rounded-full border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={yearFilter} onValueChange={setYearFilter}>
-              <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                <SelectItem value="2025">2025</SelectItem>
-                <SelectItem value="2024">2024</SelectItem>
-                <SelectItem value="2023">2023</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="relative px-3 md:px-6 mt-8 md:mt-12">
-            {/* Page Navigation Arrows */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </Button>
-
-            {/* Grid Container - Responsive layout */}
-            <motion.div
-              key={currentPage} // Key changes to trigger animation on page change
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              variants={pageVariants}
-              transition={{ duration: 0.5 }} // Slower transition for page change
-              className="grid grid-cols-1 sm:grid-cols-2 lg:mt-[2%] md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-full px-[6%] mx-auto"
-              style={{ height: "auto", minHeight: "calc(100vh - 220px)" }} // Allow height to be auto on smaller screens
-            >
-              {currentProjects.map((project, index) => {
-                let gridClass = "col-span-1 row-span-1" // Default for mobile/tablet
-
-                // Apply complex layout only on 'lg' breakpoint and above
-
-                if (index === 0)
-                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2" // Tall left
-                else if (index === 1)
-                  gridClass = "col-span-1 row-span-1" // Small (default)
-                else if (index === 2)
-                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1" // Wide
-                else if (index === 3)
-                  gridClass = "col-span-1 row-span-1" // Small (default)
-                else if (index === 4)
-                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2" // Tall right (Mashhad Cultural Center)
-                else if (index === 5)
-                  gridClass = "col-span-1 row-span-1" // Small (default)
-                else if (index === 6)
-                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2" // Large center
-                else if (index === 7)
-                  gridClass = "col-span-1 row-span-1" // Small (default)
-                else if (index === 8)
-                  gridClass = "col-span-1 row-span-1" // Small (Isfahan Heritage Hotel) (default)
-                else if (index === 9)
-                  gridClass = "col-span-1 row-span-1" // Small (Shiraz University Campus) (default)
-                else if (index === 10)
-                  gridClass = "col-span-1 row-span-1" // Small (Tabriz Convention Center) (default)
-                else if (index === 11)
-                  gridClass = "col-span-1 row-span-1" // Kerman Solar Complex (now col-span-1) (default)
-                else if (index === 12)
-                  gridClass = "col-span-1 row-span-1" // Qom Religious Center (default)
-                else if (index === 13)
-                  gridClass = "col-span-1 row-span-1" // Ahvaz Sports Complex (default)
-                else if (index === 14)
-                  gridClass = "col-span-1 row-span-1" // Rasht Green Tower (default)
-                else if (index === 15) gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1" // Ardabil Eco-Park (now col-span-2 to fill the gap)
-
-                return (
-                  <div
-                    key={`grid-${project.id}`}
-                    className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-white shadow-sm border border-gray-100 ${gridClass}`}
-                    onClick={() => handleProjectClick(project.id)}
-                  >
-                    <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
+          <AnimatePresence mode="wait">
+            {selectedProject && selectedProjectData ? (
+              <motion.div
+                key="project-detail-view"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={projectDetailVariants}
+                transition={{ duration: 0.5 }}
+                className="min-h-screen bg-white"
+              >
+                <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
+                  <div className="flex items-center gap-2 md:gap-4">
+                    <div className="relative w-8 h-8 md:w-10 md:h-10">
                       <Image
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.name}
+                        src="/images/Logo.png"
+                        alt="Company Icon"
                         fill
-                        className="object-cover transition-transform group-hover:scale-105"
+                        className="object-contain"
                       />
                     </div>
-                    <div className="h-[60px] bg-gray-50 p-3 flex flex-col justify-center">
-                      <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-                      <p className="text-xs text-gray-600">
-                        {project.year} {project.location}
-                      </p>
+                  </div>
+                  <div className="hidden lg:flex items-center gap-4">
+                    <Select value={typeFilter} onValueChange={setTypeFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
+                        <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
+                        <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
+                        <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select value={locationFilter} onValueChange={setLocationFilter}>
+                      <SelectTrigger className="w-[160px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
+                        <SelectItem value="MASHHAD">MASHHAD</SelectItem>
+                        <SelectItem value="TEHRAN">TEHRAN</SelectItem>
+                        <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select value={yearFilter} onValueChange={setYearFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
+                        <SelectItem value="2025">2025</SelectItem>
+                        <SelectItem value="2024">2024</SelectItem>
+                        <SelectItem value="2023">2023</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      onClick={handleBackToGrid}
+                      className="flex items-center gap-2 bg-gray-900 text-white hover:bg-gray-800 hover:text-white"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="w-8 h-8 md:w-10 md:h-10"
+                      onClick={() => setIsMenuOpen(true)}
+                    >
+                      <Menu className="w-5 h-5 md:w-6 md:h-6" />
+                    </Button>
+                  </div>
+                </header>
+                <div className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 lg:hidden">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="w-8 h-8 md:w-10 md:h-10"
+                    onClick={() => setIsFilterOpen(!isFilterOpen)}
+                  >
+                    <Filter className="w-5 h-5 md:w-6 md:h-6" />
+                  </Button>
+                  <AnimatePresence>
+                    {isFilterOpen && (
+                      <motion.div
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={filterVariants}
+                        transition={{ duration: 0.3 }}
+                        className="flex flex-wrap gap-2 w-full"
+                      >
+                        <Select value={typeFilter} onValueChange={setTypeFilter}>
+                          <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
+                            <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
+                            <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
+                            <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Select value={locationFilter} onValueChange={setLocationFilter}>
+                          <SelectTrigger className="w-full sm:w-[160px] rounded-full border-gray-300">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
+                            <SelectItem value="MASHHAD">MASHHAD</SelectItem>
+                            <SelectItem value="TEHRAN">TEHRAN</SelectItem>
+                            <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <Select value={yearFilter} onValueChange={setYearFilter}>
+                          <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
+                            <SelectItem value="2025">2025</SelectItem>
+                            <SelectItem value="2024">2024</SelectItem>
+                            <SelectItem value="2023">2023</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                <div className="px-3 md:px-6 mt-[3%]">
+                  <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
+                      <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
+                        {otherProjects.slice(0, 6).map((project, index) => (
+                          <div
+                            key={`left-${project.id}-${index}`}
+                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24"
+                            onClick={() => handleProjectClick(project.id)}
+                          >
+                            <div className="relative h-[calc(100%-42px)]">
+                              <Image
+                                src={project.image || "/placeholder.svg"}
+                                alt={project.name}
+                                fill
+                                className="object-cover grayscale transition-all"
+                              />
+                            </div>
+                            <div className="h-[42px] bg-gray-50 py-4 p-2 flex flex-col justify-center">
+                              <h3 className="font-medium text-xs text-gray-900 leading-tight mb-0.5">{project.name}</h3>
+                              <p className="text-xs text-gray-600">
+                                {project.year} {project.location}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <motion.div
+                        key={selectedProjectData.id}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        variants={projectDetailVariants}
+                        transition={{ duration: 0.3 }}
+                        className="col-span-full lg:col-span-3 order-1 lg:order-2"
+                      >
+                        <div
+                          className="relative overflow-hidden rounded-lg bg-gray-100 shadow-lg border border-gray-200"
+                        >
+                          <div className="relative h-60 md:h-80">
+                            <Image
+                              src={selectedProjectData.image || "/placeholder.svg"}
+                              alt={selectedProjectData.name}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <div className="p-4 bg-white border-b border-gray-100">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+                              <div>
+                                <h2 className="font-semibold text-lg text-gray-900 mb-1">{selectedProjectData.name}</h2>
+                                <p className="text-sm text-gray-600">
+                                  {selectedProjectData.year} {selectedProjectData.location}
+                                </p>
+                              </div>
+                              <Link href={`/projects/${selectedProjectData.id}`} passHref>
+                                <Button variant="outline" size="sm" className="text-sm bg-transparent mt-2 sm:mt-0">
+                                  MORE INFO <ArrowRight className="w-4 h-4 ml-1" />
+                                </Button>
+                              </Link>
+                            </div>
+                          </div>
+                          <div className="p-4 bg-white">
+                            <div className="grid grid-cols-1 gap-6">
+                              <div>
+                                <h3 className="font-semibold text-sm mb-4 text-gray-900">Key Info</h3>
+                                <div className="space-y-3 text-sm">
+                                  <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                      <p className="font-medium text-gray-900">Type</p>
+                                      <p className="text-gray-600">{selectedProjectData.type}</p>
+                                    </div>
+                                    <div>
+                                      <p className="font-medium text-gray-900">Status</p>
+                                      <p className="text-gray-600">{selectedProjectData.status}</p>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <p className="font-medium text-gray-900">Time span</p>
+                                    <p className="text-gray-600">{selectedProjectData.timespan}</p>
+                                  </div>
+                                  <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                      <p className="font-medium text-gray-900">Client</p>
+                                      <p className="text-gray-600">{selectedProjectData.client}</p>
+                                    </div>
+                                    <div>
+                                      <p className="font-medium text-gray-900">Location</p>
+                                      <p className="text-gray-600">{selectedProjectData.clientLocation}</p>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <p className="font-medium text-gray-900">Size</p>
+                                    <p className="text-gray-600">{selectedProjectData.size}</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div>
+                                <h3 className="font-semibold text-sm mb-4 text-gray-900">Project Overview</h3>
+                                <p className="text-sm text-gray-700 leading-relaxed">{selectedProjectData.overview}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center mt-6">
+                          <Button
+                            variant="outline"
+                            onClick={handlePreviousProject}
+                            className="flex items-center gap-2 bg-transparent text-sm"
+                          >
+                            <ArrowLeft className="w-4 h-4" />
+                            PREVIOUS PROJECT
+                          </Button>
+                          <Button
+                            variant="outline"
+                            onClick={handleNextProject}
+                            className="flex items-center gap-2 bg-transparent text-sm"
+                          >
+                            NEXT PROJECT
+                            <ArrowRight className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </motion.div>
+                      <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-3 lg:order-3">
+                        {otherProjects.slice(6, 12).map((project, index) => (
+                          <div
+                            key={`right-${project.id}-${index}`}
+                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24"
+                            onClick={() => handleProjectClick(project.id)}
+                          >
+                            <div className="relative h-[calc(100%-42px)]">
+                              <Image
+                                src={project.image || "/placeholder.svg"}
+                                alt={project.name}
+                                fill
+                                className="object-cover grayscale transition-all"
+                              />
+                            </div>
+                            <div className="h-[42px] bg-gray-50 py-4 p-2 flex flex-col justify-center">
+                              <h3 className="font-medium text-xs text-gray-900 leading-tight mb-0.5">{project.name}</h3>
+                              <p className="text-xs text-gray-600">
+                                {project.year} {project.location}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                )
-              })}
-            </motion.div>
-
-            {/* Page Indicator */}
-            <div className="flex justify-center items-center mt-6 gap-4">
-              <span className="text-sm text-gray-600">
-                Page {currentPage} of {totalPages}
-              </span>
-              <div className="flex gap-2">
-                {Array.from({ length: totalPages }, (_, i) => (
-                  <button
-                    key={i + 1}
-                    onClick={() => setCurrentPage(i + 1)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      currentPage === i + 1 ? "bg-gray-900" : "bg-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom spacing */}
-          <div className="h-20" />
-
-          {/* Navigation Menu Overlay */}
-          <AnimatePresence>
-            {isMenuOpen && (
-              <motion.div
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ type: "tween", duration: 0.3 }}
-                className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
-              >
-                <div className="flex justify-end mb-8">
-                  <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
-                    <X className="w-6 h-6" />
-                    <span className="sr-only">Close menu</span>
-                  </Button>
                 </div>
-                <nav className="flex flex-col gap-4 text-lg font-medium">
-                  <Link href="/" passHref onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="ghost" className="w-full justify-start text-xl">
-                      Projects
+                <div className="h-20" />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="project-grid-view"
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={pageVariants}
+                transition={{ duration: 0.5 }}
+                className="min-h-screen bg-white"
+              >
+                <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
+                  <div className="flex items-center gap-2 md:gap-4">
+                    <div className="relative w-8 h-8 md:w-10 md:h-10">
+                      <Image
+                        src="/images/Logo.png"
+                        alt="Company Icon"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                  <div className="hidden lg:flex items-center gap-4">
+                    <Select value={typeFilter} onValueChange={setTypeFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
+                        <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
+                        <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
+                        <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select value={locationFilter} onValueChange={setLocationFilter}>
+                      <SelectTrigger className="w-[160px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
+                        <SelectItem value="MASHHAD">MASHHAD</SelectItem>
+                        <SelectItem value="TEHRAN">TEHRAN</SelectItem>
+                        <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select value={yearFilter} onValueChange={setYearFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
+                        <SelectItem value="2025">2025</SelectItem>
+                        <SelectItem value="2024">2024</SelectItem>
+                        <SelectItem value="2023">2023</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center gap-2 md:gap-4">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="w-8 h-8 md:w-10 md:h-10 lg:hidden"
+                      onClick={() => setIsFilterOpen(!isFilterOpen)}
+                    >
+                      <Filter className="w-5 h-5 md:w-6 md:h-6" />
                     </Button>
-                  </Link>
-                  <Link href="/about" passHref onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="ghost" className="w-full justify-start text-xl">
-                      About Us
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="w-8 h-8 md:w-10 md:h-10"
+                      onClick={() => setIsMenuOpen(true)}
+                    >
+                      <Menu className="w-5 h-5 md:w-6 md:h-6" />
                     </Button>
-                  </Link>
-                  <Link href="/contact" passHref onClick={() => setIsMenuOpen(false)}>
-                    <Button variant="ghost" className="w-full justify-start text-xl">
-                      Contact
-                    </Button>
-                  </Link>
-                </nav>
+                  </div>
+                </header>
+                <AnimatePresence>
+                  {isFilterOpen && (
+                    <motion.div
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      variants={filterVariants}
+                      transition={{ duration: 0.3 }}
+                      className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 md:pb-8 lg:hidden"
+                    >
+                      <Select value={typeFilter} onValueChange={setTypeFilter}>
+                        <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
+                          <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
+                          <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
+                          <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Select value={locationFilter} onValueChange={setLocationFilter}>
+                        <SelectTrigger className="w-full sm:w-[160px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
+                          <SelectItem value="MASHHAD">MASHHAD</SelectItem>
+                          <SelectItem value="TEHRAN">TEHRAN</SelectItem>
+                          <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Select value={yearFilter} onValueChange={setYearFilter}>
+                        <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
+                          <SelectItem value="2025">2025</SelectItem>
+                          <SelectItem value="2024">2024</SelectItem>
+                          <SelectItem value="2023">2023</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <div className="relative px-3 md:px-6 mt-8 md:mt-12">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    onClick={handlePreviousPage}
+                    disabled={currentPage === 1}
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </Button>
+                  <motion.div
+                    key={currentPage}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={pageVariants}
+                    transition={{ duration: 0.5 }}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:mt-[2%] md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-full px-[6%] mx-auto"
+                    style={{ height: "auto", minHeight: "calc(100vh - 220px)" }}
+                  >
+                    {currentProjects.map((project, index) => {
+                      let gridClass = "col-span-1 row-span-1"
+                      if (index === 0)
+                        gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                      else if (index === 1)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 2)
+                        gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                      else if (index === 3)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 4)
+                        gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                      else if (index === 5)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 6)
+                        gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                      else if (index === 7)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 8)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 9)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 10)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 11)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 12)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 13)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 14)
+                        gridClass = "col-span-1 row-span-1"
+                      else if (index === 15)
+                        gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1"
+
+                      return (
+                        <div
+                          key={`grid-${project.id}`}
+                          className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
+                          onClick={() => handleProjectClick(project.id)}
+                        >
+                          <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
+                            <Image
+                              src={project.image || "/placeholder.svg"}
+                              alt={project.name}
+                              fill
+                              className="object-cover transition-transform group-hover:scale-105"
+                            />
+                          </div>
+                          <div className="h-[60px] bg-gray-50 p-3 flex flex-col justify-center">
+                            <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+                            <p className="text-xs text-gray-600">
+                              {project.year} {project.location}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </motion.div>
+                  <div className="flex justify-center items-center mt-6 gap-4">
+                    <span className="text-sm text-gray-600">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <div className="flex gap-2">
+                      {Array.from({ length: totalPages }, (_, i) => (
+                        <button
+                          key={i + 1}
+                          onClick={() => setCurrentPage(i + 1)}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            currentPage === i + 1 ? "bg-gray-900" : "bg-gray-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="h-20" />
+                <AnimatePresence>
+                  {isMenuOpen && (
+                    <motion.div
+                      initial={{ x: "100%" }}
+                      animate={{ x: 0 }}
+                      exit={{ x: "100%" }}
+                      transition={{ type: "tween", duration: 0.3 }}
+                      className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
+                    >
+                      <div className="flex justify-end mb-8">
+                        <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
+                          <X className="w-6 h-6" />
+                          <span className="sr-only">Close menu</span>
+                        </Button>
+                      </div>
+                      <nav className="flex flex-col gap-4 text-lg font-medium">
+                        <Link href="/" passHref onClick={() => setIsMenuOpen(false)}>
+                          <Button variant="ghost" className="w-full justify-start text-xl">
+                            Projects
+                          </Button>
+                        </Link>
+                        <Link href="/about" passHref onClick={() => setIsMenuOpen(false)}>
+                          <Button variant="ghost" className="w-full justify-start text-xl">
+                            About Us
+                          </Button>
+                        </Link>
+                        <Link href="/contact" passHref onClick={() => setIsMenuOpen(false)}>
+                          <Button variant="ghost" className="w-full justify-start text-xl">
+                            Contact
+                          </Button>
+                        </Link>
+                      </nav>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
           </AnimatePresence>

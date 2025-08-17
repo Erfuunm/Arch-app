@@ -907,7 +907,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               <SelectItem value="2024">2024</SelectItem>
               <SelectItem value="2023">2023</SelectItem>
             </SelectContent>
-          </Select>
+          </Select> 
         </div>
 
         <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10" onClick={() => setIsMenuOpen(true)}>

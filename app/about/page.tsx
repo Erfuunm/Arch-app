@@ -9,28 +9,32 @@ import { motion, AnimatePresence } from "framer-motion"
 
 // Dummy data for employees
 const employees = [
-  { id: 1, name: "Mahnaz Dolatabadi", title: "Project Manager", image: "/images/employee-5.jpeg" },
-  { id: 2, name: "Samaneh Iman", title: "Architect", image: "/images/employee-4.jpeg" },
-  { id: 3, name: "Aniseh AzizZadeh", title: "Architect", image: "/images/employee-3.jpeg" },
-  { id: 4, name: "Linda Mirian", title: "Architect", image: "/images/employee-2.jpeg" },
-  { id: 5, name: "Fatemeh Sheibany", title: "Architect", image: "/images/employee-9.jpeg" },
-  { id: 6, name: "Foad Bazghandi", title: "Architect", image: "/images/employee-7.jpeg" },
-  { id: 7, name: "Homa Amini", title: "Architect", image: "/images/employee-8.jpeg" },
-  { id: 8, name: "Shakila Sadeghian", title: "Architect", image: "/images/employee-1.jpeg" },
-  { id: 9, name: "Ali Rezaei", title: "Designer", image: "/images/employee-7.jpeg" }, // Repeated
-  { id: 10, name: "Sara Ahmadi", title: "Urban Planner", image: "/images/employee-5.jpeg" }, // Repeated
-  { id: 11, name: "Mohammad Karimi", title: "Structural Engineer", image: "/images/employee-8.jpeg" }, // Repeated
-  { id: 12, name: "Narges Hosseini", title: "Interior Designer", image: "/images/employee-4.jpeg" }, // Repeated
-  { id: 13, name: "Kianoush Sadeghi", title: "Landscape Architect", image: "/images/employee-1.jpeg" }, // Repeated
-  { id: 14, name: "Parisa Nazari", title: "Urban Designer", image: "/images/employee-3.jpeg" }, // Repeated
-  { id: 15, name: "Reza Ghasemi", title: "Civil Engineer", image: "/images/employee-2.jpeg" }, // Repeated
-  { id: 16, name: "Zahra Karimi", title: "Architectural Historian", image: "/images/employee-9.jpeg" }, // Repeated
-  { id: 17, name: "Amir Hosseini", title: "BIM Specialist", image: "/images/employee-7.jpeg" }, // Repeated
-  { id: 18, name: "Leila Ahmadi", title: "Sustainability Consultant", image: "/images/employee-5.jpeg" }, // Repeated
+  { id: 1, name: "Mahnaz Dolatabadi", title: "Project Manager", image: "/images/employee-5.jpeg", status: "current" },
+  { id: 2, name: "Samaneh Iman", title: "Architect", image: "/images/employee-4.jpeg", status: "current" },
+  { id: 3, name: "Aniseh AzizZadeh", title: "Architect", image: "/images/employee-3.jpeg", status: "current" },
+  { id: 4, name: "Linda Mirian", title: "Architect", image: "/images/employee-2.jpeg", status: "current" },
+  { id: 5, name: "Fatemeh Sheibany", title: "Architect", image: "/images/employee-9.jpeg", status: "current" },
+  { id: 6, name: "Foad Bazghandi", title: "Architect", image: "/images/employee-7.jpeg", status: "current" },
+  { id: 7, name: "Homa Amini", title: "Architect", image: "/images/employee-8.jpeg", status: "current" },
+  { id: 8, name: "Shakila Sadeghian", title: "Architect", image: "/images/employee-1.jpeg", status: "current" },
+  { id: 9, name: "Ali Rezaei", title: "Designer", image: "/images/employee-7.jpeg", status: "current" },
+  { id: 10, name: "Sara Ahmadi", title: "Urban Planner", image: "/images/employee-5.jpeg", status: "former" },
+  { id: 11, name: "Mohammad Karimi", title: "Structural Engineer", image: "/images/employee-8.jpeg", status: "former" },
+  { id: 12, name: "Narges Hosseini", title: "Interior Designer", image: "/images/employee-4.jpeg", status: "former" },
+  { id: 13, name: "Kianoush Sadeghi", title: "Landscape Architect", image: "/images/employee-1.jpeg", status: "former" },
+  { id: 14, name: "Parisa Nazari", title: "Urban Designer", image: "/images/employee-3.jpeg", status: "former" },
+  { id: 15, name: "Reza Ghasemi", title: "Civil Engineer", image: "/images/employee-2.jpeg", status: "former" },
+  { id: 16, name: "Zahra Karimi", title: "Architectural Historian", image: "/images/employee-9.jpeg", status: "former" },
+  { id: 17, name: "Amir Hosseini", title: "BIM Specialist", image: "/images/employee-7.jpeg", status: "former" },
+  { id: 18, name: "Leila Ahmadi", title: "Sustainability Consultant", image: "/images/employee-5.jpeg", status: "former" },
 ]
 
-const EMPLOYEES_PER_PAGE = 12 // Changed from 16 to 12
+const currentEmployees = employees.filter((employee) => employee.status === "current")
+const formerEmployees = employees.filter((employee) => employee.status === "former")
 
+const EMPLOYEES_PER_PAGE = 6 // Kept at 6 to fit layout with larger photos
+
+// Animation variants for smooth transitions
 const menuVariants = {
   initial: { x: "100%" },
   animate: { x: 0 },
@@ -40,17 +44,32 @@ const menuVariants = {
 export default function AboutPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentEmployeePage, setCurrentEmployeePage] = useState(0)
+  const [formerEmployeePage, setFormerEmployeePage] = useState(0)
 
-  const totalEmployeePages = Math.ceil(employees.length / EMPLOYEES_PER_PAGE)
-  const startIndex = currentEmployeePage * EMPLOYEES_PER_PAGE
-  const currentEmployees = employees.slice(startIndex, startIndex + EMPLOYEES_PER_PAGE)
+  // Pagination for current employees
+  const totalCurrentEmployeePages = Math.ceil(currentEmployees.length / EMPLOYEES_PER_PAGE)
+  const currentStartIndex = currentEmployeePage * EMPLOYEES_PER_PAGE
+  const currentEmployeesDisplay = currentEmployees.slice(currentStartIndex, currentStartIndex + EMPLOYEES_PER_PAGE)
 
-  const handleNextEmployeePage = () => {
-    setCurrentEmployeePage((prev) => (prev + 1) % totalEmployeePages)
+  // Pagination for former employees
+  const totalFormerEmployeePages = Math.ceil(formerEmployees.length / EMPLOYEES_PER_PAGE)
+  const formerStartIndex = formerEmployeePage * EMPLOYEES_PER_PAGE
+  const formerEmployeesDisplay = formerEmployees.slice(formerStartIndex, formerStartIndex + EMPLOYEES_PER_PAGE)
+
+  const handleNextCurrentEmployeePage = () => {
+    setCurrentEmployeePage((prev) => (prev + 1) % totalCurrentEmployeePages)
   }
 
-  const handlePreviousEmployeePage = () => {
-    setCurrentEmployeePage((prev) => (prev - 1 + totalEmployeePages) % totalEmployeePages)
+  const handlePreviousCurrentEmployeePage = () => {
+    setCurrentEmployeePage((prev) => (prev - 1 + totalCurrentEmployeePages) % totalCurrentEmployeePages)
+  }
+
+  const handleNextFormerEmployeePage = () => {
+    setFormerEmployeePage((prev) => (prev + 1) % totalFormerEmployeePages)
+  }
+
+  const handlePreviousFormerEmployeePage = () => {
+    setFormerEmployeePage((prev) => (prev - 1 + totalFormerEmployeePages) % totalFormerEmployeePages)
   }
 
   return (
@@ -58,14 +77,19 @@ export default function AboutPage() {
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
         <div className="flex items-center gap-2 md:gap-4">
-          <div className="text-xl md:text-2xl font-bold">KH</div>
+          <div className="relative w-8 h-8 md:w-10 md:h-10">
+            <Image
+              src="/images/Logo.png"
+              alt="Company Icon"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
-
-        {/* Menu Button */}
         <Button
           variant="ghost"
           size="icon"
-          className="w-8 h-8 md:w-10 md:h-10" // Removed lg:hidden to make it always visible
+          className="w-8 h-8 md:w-10 md:h-10"
           onClick={() => setIsMenuOpen(true)}
         >
           <Menu className="w-5 h-5 md:w-6 md:h-6" />
@@ -73,13 +97,14 @@ export default function AboutPage() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 relative">
-        {/* Vertical Divider Line (Desktop Only) */}
-        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-3 relative">
+        {/* Vertical Divider Lines (Desktop Only) */}
+        <div className="hidden lg:block absolute left-1/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
+        <div className="hidden lg:block absolute left-2/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
 
         {/* Left Side: Manager Section */}
-        <section className="p-8 md:p-12 lg:px-24  lg:py-16 flex flex-col justify-center items-start lg:items-center text-left lg:text-left">
-          <div className="max-w-lg lg:ml-">
+        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start lg:items-center text-left lg:text-left">
+          <div className="max-w-lg">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-gray-900">
               KHAYYATZADEH AND PARTNER <br /> ARCHITECTURE STUDI
             </h1>
@@ -89,7 +114,7 @@ export default function AboutPage() {
             <Button variant="outline" className="text-base font-medium flex items-center gap-2 mb-12 bg-transparent">
               JOIN US <ArrowRight className="w-4 h-4" />
             </Button>
-            <div className="w-48 h-48 md:w-64 md:h-64 relative overflow-hidden rounded-lg mb-4">
+            <div className="w-64 h-64 md:w-80 md:h-80 relative overflow-hidden rounded-lg mb-4">
               <Image
                 src="/images/hasan-khayyat-zadeh.jpeg"
                 alt="Hasan Khayyat Zadeh"
@@ -102,15 +127,15 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Right Side: Other Employees Section */}
+        {/* Middle: Current Team Members */}
         <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
           <div className="max-w-lg lg:ml-[18%]">
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">A-Z</h2>
+            <h2 className="text-xl font-semibold mb-6 text-gray-900">Current Team Members</h2>
             <div className="relative">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
-                {currentEmployees.map((employee) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-36 gap-y-6 mb-8">
+                {currentEmployeesDisplay.map((employee) => (
                   <div key={employee.id} className="flex flex-col items-center text-center">
-                    <div className="w-24 h-24 relative overflow-hidden rounded-lg mb-2">
+                    <div className="w-28 h-28 relative overflow-hidden rounded-lg mb-2">
                       <Image
                         src={employee.image || "/placeholder.svg"}
                         alt={employee.name}
@@ -123,13 +148,13 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-              {totalEmployeePages > 1 && (
+              {totalCurrentEmployeePages > 1 && (
                 <>
                   <Button
                     variant="ghost"
                     size="icon"
                     className="absolute -left-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handlePreviousEmployeePage}
+                    onClick={handlePreviousCurrentEmployeePage}
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </Button>
@@ -137,7 +162,52 @@ export default function AboutPage() {
                     variant="ghost"
                     size="icon"
                     className="absolute -right-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handleNextEmployeePage}
+                    onClick={handleNextCurrentEmployeePage}
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* Right: Former Team Members */}
+        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
+          <div className="max-w-lg lg:ml-[18%]">
+            <h2 className="text-xl font-semibold mb-6 text-gray-900">Former Team Members</h2>
+            <div className="relative">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-36 gap-y-6 mb-8">
+                {formerEmployeesDisplay.map((employee) => (
+                  <div key={employee.id} className="flex flex-col items-center text-center">
+                    <div className="w-28 h-28 relative overflow-hidden rounded-lg mb-2">
+                      <Image
+                        src={employee.image || "/placeholder.svg"}
+                        alt={employee.name}
+                        fill
+                        className="object-cover grayscale"
+                      />
+                    </div>
+                    <h3 className="text-sm font-medium text-gray-900 leading-tight">{employee.name}</h3>
+                    <p className="text-xs text-gray-600">{employee.title}</p>
+                  </div>
+                ))}
+              </div>
+              {totalFormerEmployeePages > 1 && (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute -left-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    onClick={handlePreviousFormerEmployeePage}
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute -right-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    onClick={handleNextFormerEmployeePage}
                   >
                     <ChevronRight className="w-6 h-6" />
                   </Button>
@@ -148,7 +218,7 @@ export default function AboutPage() {
         </section>
       </main>
 
-      {/* Navigation Menu Overlay (reused from app/page.tsx) */}
+      {/* Navigation Menu Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
