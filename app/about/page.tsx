@@ -1,38 +1,37 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 
-// Dummy data for employees
-const employees = [
-  { id: 1, name: "Mahnaz Dolatabadi", title: "Project Manager", image: "/images/employee-5.jpeg", status: "current" },
-  { id: 2, name: "Samaneh Iman", title: "Architect", image: "/images/employee-4.jpeg", status: "current" },
-  { id: 3, name: "Aniseh AzizZadeh", title: "Architect", image: "/images/employee-3.jpeg", status: "current" },
-  { id: 4, name: "Linda Mirian", title: "Architect", image: "/images/employee-2.jpeg", status: "current" },
-  { id: 5, name: "Fatemeh Sheibany", title: "Architect", image: "/images/employee-9.jpeg", status: "current" },
-  { id: 6, name: "Foad Bazghandi", title: "Architect", image: "/images/employee-7.jpeg", status: "current" },
-  { id: 7, name: "Homa Amini", title: "Architect", image: "/images/employee-8.jpeg", status: "current" },
-  { id: 8, name: "Shakila Sadeghian", title: "Architect", image: "/images/employee-1.jpeg", status: "current" },
-  { id: 9, name: "Ali Rezaei", title: "Designer", image: "/images/employee-7.jpeg", status: "current" },
-  { id: 10, name: "Sara Ahmadi", title: "Urban Planner", image: "/images/employee-5.jpeg", status: "former" },
-  { id: 11, name: "Mohammad Karimi", title: "Structural Engineer", image: "/images/employee-8.jpeg", status: "former" },
-  { id: 12, name: "Narges Hosseini", title: "Interior Designer", image: "/images/employee-4.jpeg", status: "former" },
-  { id: 13, name: "Kianoush Sadeghi", title: "Landscape Architect", image: "/images/employee-1.jpeg", status: "former" },
-  { id: 14, name: "Parisa Nazari", title: "Urban Designer", image: "/images/employee-3.jpeg", status: "former" },
-  { id: 15, name: "Reza Ghasemi", title: "Civil Engineer", image: "/images/employee-2.jpeg", status: "former" },
-  { id: 16, name: "Zahra Karimi", title: "Architectural Historian", image: "/images/employee-9.jpeg", status: "former" },
-  { id: 17, name: "Amir Hosseini", title: "BIM Specialist", image: "/images/employee-7.jpeg", status: "former" },
-  { id: 18, name: "Leila Ahmadi", title: "Sustainability Consultant", image: "/images/employee-5.jpeg", status: "former" },
-]
-
-const currentEmployees = employees.filter((employee) => employee.status === "current")
-const formerEmployees = employees.filter((employee) => employee.status === "former")
-
-const EMPLOYEES_PER_PAGE = 6 // Kept at 6 to fit layout with larger photos
+// Translation object for bilingual static text
+const translations = {
+  en: {
+    studioName: "KHAYYATZADEH AND PARTNER ARCHITECTURE STUDIO",
+    description: "Behind every iconic project is a talented team of international architects, designers and thinkers.",
+    joinUs: "JOIN US",
+    ceo: "CEO",
+    currentTeam: "Current Team Members",
+    formerTeam: "Former Team Members",
+    projects: "Projects",
+    aboutUs: "About Us",
+    contact: "Contact",
+  },
+  fa: {
+    studioName: "استودیو معماری خیاط‌زاده و همکاران",
+    description: "پشت هر پروژه نمادین، تیمی با استعداد از معماران، طراحان و متفکران بین‌المللی قرار دارد.",
+    joinUs: "به ما بپیوندید",
+    ceo: "مدیرعامل",
+    currentTeam: "اعضای فعلی تیم",
+    formerTeam: "اعضای سابق تیم",
+    projects: "پروژه‌ها",
+    aboutUs: "درباره ما",
+    contact: "تماس",
+  },
+}
 
 // Animation variants for smooth transitions
 const menuVariants = {
@@ -42,9 +41,31 @@ const menuVariants = {
 }
 
 export default function AboutPage() {
+  const [lang, setLang] = useState<"en" | "fa">("en") // Language state
+  const [employees, setEmployees] = useState<any[]>([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentEmployeePage, setCurrentEmployeePage] = useState(0)
   const [formerEmployeePage, setFormerEmployeePage] = useState(0)
+
+  // Load employees based on language
+  useEffect(() => {
+    const loadEmployees = async () => {
+      try {
+        const response = await fetch(lang === "en" ? "/data/employees_en.json" : "/data/employees_fa.json")
+        const data = await response.json()
+        setEmployees(data)
+      } catch (error) {
+        console.error("Error loading employees:", error)
+      }
+    }
+    loadEmployees()
+  }, [lang])
+
+  // Filter employees by status
+  const currentEmployees = employees.filter((employee) => employee.status === "current")
+  const formerEmployees = employees.filter((employee) => employee.status === "former")
+
+  const EMPLOYEES_PER_PAGE = 6 // Kept at 6 to fit layout with larger photos
 
   // Pagination for current employees
   const totalCurrentEmployeePages = Math.ceil(currentEmployees.length / EMPLOYEES_PER_PAGE)
@@ -73,7 +94,7 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col" style={{ direction: "ltr", fontFamily: "Inter, sans-serif" }}>
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
         <div className="flex items-center gap-2 md:gap-4">
@@ -85,6 +106,13 @@ export default function AboutPage() {
               className="object-contain"
             />
           </div>
+          <Button
+            variant="outline"
+            onClick={() => setLang(lang === "en" ? "fa" : "en")}
+            className="text-sm"
+          >
+            {lang === "en" ? "فارسی" : "English"}
+          </Button>
         </div>
         <Button
           variant="ghost"
@@ -103,34 +131,34 @@ export default function AboutPage() {
         <div className="hidden lg:block absolute left-2/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
 
         {/* Left Side: Manager Section */}
-        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start lg:items-center text-left lg:text-left">
+        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
           <div className="max-w-lg">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-gray-900">
-              KHAYYATZADEH AND PARTNER <br /> ARCHITECTURE STUDI
+            <h1 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight mb-6 text-gray-900">
+              {translations[lang].studioName}
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-              Behind every iconic project is a talented team of international architects, designers and thinkers.
+              {translations[lang].description}
             </p>
             <Button variant="outline" className="text-base font-medium flex items-center gap-2 mb-12 bg-transparent">
-              JOIN US <ArrowRight className="w-4 h-4" />
+              {translations[lang].joinUs} <ArrowRight className="w-4 h-4" />
             </Button>
             <div className="w-64 h-64 md:w-80 md:h-80 relative overflow-hidden rounded-lg mb-4">
               <Image
                 src="/images/hasan-khayyat-zadeh.jpeg"
-                alt="Hasan Khayyat Zadeh"
+                alt={lang === "fa" ? "حسن خیاط‌زاده" : "Hasan Khayyat Zadeh"}
                 fill
                 className="object-cover grayscale"
               />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">Hasan Khayyat Zadeh</h3>
-            <p className="text-sm text-gray-600">CEO</p>
+            <h3 className="text-lg font-semibold text-gray-900">{lang === "fa" ? "حسن خیاط‌زاده" : "Hasan Khayyat Zadeh"}</h3>
+            <p className="text-sm text-gray-600">{translations[lang].ceo}</p>
           </div>
         </section>
 
         {/* Middle: Current Team Members */}
         <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
           <div className="max-w-lg lg:ml-[18%]">
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">Current Team Members</h2>
+            <h2 className="text-xl font-semibold mb-6 text-gray-900">{translations[lang].currentTeam}</h2>
             <div className="relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-36 gap-y-6 mb-8">
                 {currentEmployeesDisplay.map((employee) => (
@@ -175,7 +203,7 @@ export default function AboutPage() {
         {/* Right: Former Team Members */}
         <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
           <div className="max-w-lg lg:ml-[18%]">
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">Former Team Members</h2>
+            <h2 className="text-xl font-semibold mb-6 text-gray-900">{translations[lang].formerTeam}</h2>
             <div className="relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-36 gap-y-6 mb-8">
                 {formerEmployeesDisplay.map((employee) => (
@@ -222,12 +250,12 @@ export default function AboutPage() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            variants={menuVariants}
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
+            style={{ direction: "ltr", fontFamily: "Inter, sans-serif" }}
           >
             <div className="flex justify-end mb-8">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
@@ -238,17 +266,17 @@ export default function AboutPage() {
             <nav className="flex flex-col gap-4 text-lg font-medium">
               <Link href="/" passHref onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start text-xl">
-                  Projects
+                  {translations[lang].projects}
                 </Button>
               </Link>
               <Link href="/about" passHref onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start text-xl">
-                  About Us
+                  {translations[lang].aboutUs}
                 </Button>
               </Link>
               <Link href="/contact" passHref onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start text-xl">
-                  Contact
+                  {translations[lang].contact}
                 </Button>
               </Link>
             </nav>

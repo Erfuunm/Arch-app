@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "مهناز دولت‌آبادی",
+    "title": "مدیر پروژه",
+    "image": "/images/employee-5.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 2,
+    "name": "سمانه ایمان",
+    "title": "معمار",
+    "image": "/images/employee-4.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 3,
+    "name": "آنیسه عزیززاده",
+    "title": "معمار",
+    "image": "/images/employee-3.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 4,
+    "name": "لیندا میریان",
+    "title": "معمار",
+    "image": "/images/employee-2.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 5,
+    "name": "فاطمه شیبانی",
+    "title": "معمار",
+    "image": "/images/employee-9.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 6,
+    "name": "فواد بازغندی",
+    "title": "معمار",
+    "image": "/images/employee-7.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 7,
+    "name": "هما امینی",
+    "title": "معمار",
+    "image": "/images/employee-8.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 8,
+    "name": "شکیلا صادقیان",
+    "title": "معمار",
+    "image": "/images/employee-1.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 9,
+    "name": "علی رضایی",
+    "title": "طراح",
+    "image": "/images/employee-7.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 10,
+    "name": "سارا احمدی",
+    "title": "برنامه‌ریز شهری",
+    "image": "/images/employee-5.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 11,
+    "name": "محمد کریمی",
+    "title": "مهندس سازه",
+    "image": "/images/employee-8.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 12,
+    "name": "نرگس حسینی",
+    "title": "طراح داخلی",
+    "image": "/images/employee-4.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 13,
+    "name": "کیانوش صادقی",
+    "title": "معمار منظر",
+    "image": "/images/employee-1.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 14,
+    "name": "پریسا نظری",
+    "title": "طراح شهری",
+    "image": "/images/employee-3.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 15,
+    "name": "رضا قاسمی",
+    "title": "مهندس عمران",
+    "image": "/images/employee-2.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 16,
+    "name": "زهرا کریمی",
+    "title": "مورخ معماری",
+    "image": "/images/employee-9.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 17,
+    "name": "امیر حسینی",
+    "title": "متخصص BIM",
+    "image": "/images/employee-7.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 18,
+    "name": "لیلا احمدی",
+    "title": "مشاور پایداری",
+    "image": "/images/employee-5.jpeg",
+    "status": "former"
+  }
+]

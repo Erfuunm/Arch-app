@@ -8,493 +8,59 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion, AnimatePresence } from "framer-motion"
 
-const projects = [
-  {
-    id: 1,
-    name: "Armaghan Residential Complex",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/armaghan.jpg",
-    type: "Living, Sustainability",
-    status: "Completed",
-    timespan: "2020-2025",
-    client: "Armaghan Development",
-    clientLocation: "Rotterdam, NL",
-    size: "7,970 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+// Translation object for bilingual static text
+const translations = {
+  en: {
+    allType: "ALL TYPE",
+    residential: "RESIDENTIAL",
+    commercial: "COMMERCIAL",
+    mixedUse: "MIXED USE",
+    allLocations: "ALL LOCATIONS",
+    allYears: "ALL YEARS",
+    back: "Back",
+    moreInfo: "MORE INFO",
+    previousProject: "PREVIOUS PROJECT",
+    nextProject: "NEXT PROJECT",
+    keyInfo: "Key Info",
+    type: "Type",
+    status: "Status",
+    timespan: "Time span",
+    client: "Client",
+    location: "Location",
+    size: "Size",
+    projectOverview: "Project Overview",
+    projects: "Projects",
+    aboutUs: "About Us",
+    contact: "Contact",
+    pageOf: "Page {current} of {total}",
+    loadingText: "KHAYYATZADEH- AND- ASSOCIATES",
   },
-  {
-    id: 2,
-    name: "Ershad Twin Towers",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/ershad.jpg",
-    type: "Residential, Mixed-Use",
-    status: "Under Construction",
-    timespan: "2023-2025",
-    client: "Ershad Holdings",
-    clientLocation: "Tehran, IR",
-    size: "12,450 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+  fa: {
+    allType: "همه انواع",
+    residential: "مسکونی",
+    commercial: "تجاری",
+    mixedUse: "چندمنظوره",
+    allLocations: "همه مکان‌ها",
+    allYears: "همه سال‌ها",
+    back: "بازگشت",
+    moreInfo: "اطلاعات بیشتر",
+    previousProject: "پروژه قبلی",
+    nextProject: "پروژه بعدی",
+    keyInfo: "اطلاعات کلیدی",
+    type: "نوع",
+    status: "وضعیت",
+    timespan: "بازه زمانی",
+    client: "مشتری",
+    location: "مکان",
+    size: "اندازه",
+    projectOverview: "نمای کلی پروژه",
+    projects: "پروژه‌ها",
+    aboutUs: "درباره ما",
+    contact: "تماس",
+    pageOf: "صفحه {current} از {total}",
+    loadingText: "خیاط‌زاده و همکاران",
   },
-  {
-    id: 3,
-    name: "Grownida Innovation Center",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/grownida.jpg",
-    type: "Commercial, Innovation",
-    status: "Completed",
-    timespan: "2022-2025",
-    client: "Grownida Tech",
-    clientLocation: "Mashhad, IR",
-    size: "8,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 4,
-    name: "Javaher Plaza Tower",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/jawaher.jpg",
-    type: "Commercial, Office",
-    status: "Planning",
-    timespan: "2024-2026",
-    client: "Javaher Group",
-    clientLocation: "Isfahan, IR",
-    size: "15,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 5,
-    name: "Mashhad Cultural Center",
-    year: "2024",
-    location: "MASHHAD",
-    image: "/images/grownida.jpg",
-    type: "Cultural, Public",
-    status: "Completed",
-    timespan: "2021-2024",
-    client: "Mashhad Municipality",
-    clientLocation: "Mashhad, IR",
-    size: "6,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 6,
-    name: "Pardis Shopping Complex",
-    year: "2024",
-    location: "TEHRAN",
-    image: "/images/ershad.jpg",
-    type: "Commercial, Retail",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Pardis Development",
-    clientLocation: "Tehran, IR",
-    size: "18,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 7,
-    name: "Khorasan Medical Center",
-    year: "2023",
-    location: "MASHHAD",
-    image: "/images/jawaher.jpg",
-    type: "Healthcare, Institutional",
-    status: "Completed",
-    timespan: "2020-2023",
-    client: "Khorasan Health Ministry",
-    clientLocation: "Mashhad, IR",
-    size: "22,300 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 8,
-    name: "Tehran Business District",
-    year: "2024",
-    location: "TEHRAN",
-    image: "/images/armaghan.jpg",
-    type: "Commercial, Mixed-Use",
-    status: "Planning",
-    timespan: "2024-2027",
-    client: "Tehran Development Corp",
-    clientLocation: "Tehran, IR",
-    size: "45,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 9,
-    name: "Isfahan Heritage Hotel",
-    year: "2023",
-    location: "ISFAHAN",
-    image: "/images/grownida.jpg",
-    type: "Hospitality, Heritage",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Isfahan Tourism Board",
-    clientLocation: "Isfahan, IR",
-    size: "12,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 10,
-    name: "Shiraz University Campus",
-    year: "2024",
-    location: "SHIRAZ",
-    image: "/images/ershad.jpg",
-    type: "Educational, Institutional",
-    status: "Under Construction",
-    timespan: "2022-2024",
-    client: "Shiraz University",
-    clientLocation: "Shiraz, IR",
-    size: "28,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 11,
-    name: "Tabriz Convention Center",
-    year: "2024",
-    location: "TABRIZ",
-    image: "/images/jawaher.jpg",
-    type: "Convention, Commercial",
-    status: "Planning",
-    timespan: "2024-2026",
-    client: "Tabriz Municipality",
-    clientLocation: "Tabriz, IR",
-    size: "19,400 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 13,
-    name: "Kerman Solar Complex",
-    year: "2023",
-    location: "KERMAN",
-    image: "/images/armaghan.jpg",
-    type: "Industrial, Sustainability",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Kerman Energy Corp",
-    clientLocation: "Kerman, IR",
-    size: "35,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 14,
-    name: "Qom Religious Center",
-    year: "2024",
-    location: "QOM",
-    image: "/images/grownida.jpg",
-    type: "Religious, Cultural",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Qom Religious Authority",
-    clientLocation: "Qom, IR",
-    size: "14,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 15,
-    name: "Ahvaz Sports Complex",
-    year: "2023",
-    location: "AHVAZ",
-    image: "/images/ershad.jpg",
-    type: "Sports, Recreation",
-    status: "Completed",
-    timespan: "2020-2023",
-    client: "Ahvaz Sports Federation",
-    clientLocation: "Ahvaz, IR",
-    size: "42,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 16,
-    name: "Rasht Green Tower",
-    year: "2024",
-    location: "RASHT",
-    image: "/images/jawaher.jpg",
-    type: "Residential, Eco-Friendly",
-    status: "Planning",
-    timespan: "2024-2027",
-    client: "Rasht Development",
-    clientLocation: "Rasht, IR",
-    size: "16,900 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 17,
-    name: "Ardabil Eco-Park",
-    year: "2024",
-    location: "ARDABIL",
-    image: "/images/grownida.jpg",
-    type: "Public, Eco-Friendly",
-    status: "Completed",
-    timespan: "2022-2024",
-    client: "Ardabil Municipality",
-    clientLocation: "Ardabil, IR",
-    size: "11,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 18,
-    name: "Bandar Abbas Port Complex",
-    year: "2025",
-    location: "BANDAR ABBAS",
-    image: "/images/armaghan.jpg",
-    type: "Industrial, Maritime",
-    status: "Planning",
-    timespan: "2025-2028",
-    client: "Ports Authority",
-    clientLocation: "Bandar Abbas, IR",
-    size: "58,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 19,
-    name: "Yazd Desert Resort",
-    year: "2024",
-    location: "YAZD",
-    image: "/images/grownida.jpg",
-    type: "Hospitality, Tourism",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Yazd Tourism Board",
-    clientLocation: "Yazd, IR",
-    size: "21,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 20,
-    name: "Hamadan Tech Park",
-    year: "2025",
-    location: "HAMADAN",
-    image: "/images/ershad.jpg",
-    type: "Technology, Innovation",
-    status: "Planning",
-    timespan: "2025-2027",
-    client: "Hamadan Tech Authority",
-    clientLocation: "Hamadan, IR",
-    size: "33,400 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 21,
-    name: "Karaj Residential Hub",
-    year: "2024",
-    location: "KARAJ",
-    image: "/images/jawaher.jpg",
-    type: "Residential, Urban",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Karaj Development",
-    clientLocation: "Karaj, IR",
-    size: "26,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 22,
-    name: "Urmia Lake Center",
-    year: "2023",
-    location: "URMIA",
-    image: "/images/armaghan.jpg",
-    type: "Environmental, Research",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Environmental Ministry",
-    clientLocation: "Urmia, IR",
-    size: "18,900 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 23,
-    name: "Zahedan Border Complex",
-    year: "2025",
-    location: "ZAHEDAN",
-    image: "/images/grownida.jpg",
-    type: "Government, Security",
-    status: "Planning",
-    timespan: "2025-2027",
-    client: "Border Authority",
-    clientLocation: "Zahedan, IR",
-    size: "31,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 24,
-    name: "Gorgan Agricultural Center",
-    year: "2024",
-    location: "GORGAN",
-    image: "/images/ershad.jpg",
-    type: "Agricultural, Research",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Agriculture Ministry",
-    clientLocation: "Gorgan, IR",
-    size: "24,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 25,
-    name: "Bushehr Coastal Resort",
-    year: "2024",
-    location: "BUSHEHR",
-    image: "/images/jawaher.jpg",
-    type: "Hospitality, Coastal",
-    status: "Planning",
-    timespan: "2024-2026",
-    client: "Bushehr Tourism",
-    clientLocation: "Bushehr, IR",
-    size: "29,400 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 26,
-    name: "Semnan Industrial Park",
-    year: "2023",
-    location: "SEMNAN",
-    image: "/images/armaghan.jpg",
-    type: "Industrial, Manufacturing",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Semnan Industries",
-    clientLocation: "Semnan, IR",
-    size: "52,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 27,
-    name: "Ilam University Complex",
-    year: "2025",
-    location: "ILAM",
-    image: "/images/grownida.jpg",
-    type: "Educational, Campus",
-    status: "Planning",
-    timespan: "2025-2028",
-    client: "Ilam University",
-    clientLocation: "Ilam, IR",
-    size: "38,700 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 28,
-    name: "Sanandaj Cultural Plaza",
-    year: "2024",
-    location: "SANANDAJ",
-    image: "/images/ershad.jpg",
-    type: "Cultural, Community",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Sanandaj Municipality",
-    clientLocation: "Sanandaj, IR",
-    size: "17,300 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 29,
-    name: "Birjand Solar Farm",
-    year: "2023",
-    location: "BIRJAND",
-    image: "/images/jawaher.jpg",
-    type: "Energy, Renewable",
-    status: "Completed",
-    timespan: "2022-2023",
-    client: "Renewable Energy Corp",
-    clientLocation: "Birjand, IR",
-    size: "67,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 30,
-    name: "Kish Island Resort",
-    year: "2025",
-    location: "KISH",
-    image: "/images/armaghan.jpg",
-    type: "Hospitality, Island",
-    status: "Planning",
-    timespan: "2025-2027",
-    client: "Kish Development",
-    clientLocation: "Kish, IR",
-    size: "41,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 31,
-    name: "Arak Industrial Complex",
-    year: "2024",
-    location: "ARAK",
-    image: "/images/grownida.jpg",
-    type: "Industrial, Heavy",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Arak Industries",
-    clientLocation: "Arak, IR",
-    size: "73,900 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 32,
-    name: "Zanjan Mining Center",
-    year: "2023",
-    location: "ZANJAN",
-    image: "/images/ershad.jpg",
-    type: "Mining, Industrial",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Zanjan Mining Corp",
-    clientLocation: "Zanjan, IR",
-    size: "48,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-  {
-    id: 33,
-    name: "Kashan Historical Renovation",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/jawaher.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
-  },
-]
-
-// Remove project with id: 12
-const projectsWithoutId12 = projects.filter((project) => project.id !== 12)
-
-const PROJECTS_PER_PAGE = 16
+}
 
 // Animation variants for smooth transitions
 const pageVariants = {
@@ -509,7 +75,6 @@ const projectDetailVariants = {
   exit: { opacity: 0, scale: 0.95 },
 }
 
-// Animation variants for the loading screen
 const loadingContainerVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { staggerChildren: 0.05 } },
@@ -522,7 +87,6 @@ const letterVariants = {
   exit: { opacity: 0, y: -20, transition: { duration: 0.2 } },
 }
 
-// Animation variants for mobile filter dropdown
 const filterVariants = {
   initial: { opacity: 0, y: -10 },
   animate: { opacity: 1, y: 0 },
@@ -530,6 +94,8 @@ const filterVariants = {
 }
 
 export default function ProjectsPage() {
+  const [lang, setLang] = useState<"en" | "fa">("en") // Language state
+  const [projects, setProjects] = useState<any[]>([])
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
   const [locationFilter, setLocationFilter] = useState("ALL LOCATIONS")
   const [yearFilter, setYearFilter] = useState("ALL YEARS")
@@ -538,6 +104,22 @@ export default function ProjectsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+
+  // Load projects based on language
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const response = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
+        const data = await response.json()
+        // Remove project with id: 12
+        const projectsWithoutId12 = data.filter((project: any) => project.id !== 12)
+        setProjects(projectsWithoutId12)
+      } catch (error) {
+        console.error("Error loading projects:", error)
+      }
+    }
+    loadProjects()
+  }, [lang])
 
   // Handle loading screen timing
   useEffect(() => {
@@ -548,11 +130,12 @@ export default function ProjectsPage() {
   }, [])
 
   // Calculate total pages
-  const totalProjects = projectsWithoutId12.length
+  const PROJECTS_PER_PAGE = 16
+  const totalProjects = projects.length
   const totalPages = Math.ceil(totalProjects / PROJECTS_PER_PAGE)
 
   const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE
-  const currentProjects = projectsWithoutId12.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
+  const currentProjects = projects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
 
   const handleProjectClick = (projectId: number) => {
     setSelectedProject(projectId)
@@ -564,17 +147,17 @@ export default function ProjectsPage() {
 
   const handlePreviousProject = () => {
     if (selectedProject) {
-      const currentIndex = projectsWithoutId12.findIndex((p) => p.id === selectedProject)
-      const previousIndex = currentIndex > 0 ? currentIndex - 1 : projectsWithoutId12.length - 1
-      setSelectedProject(projectsWithoutId12[previousIndex].id)
+      const currentIndex = projects.findIndex((p) => p.id === selectedProject)
+      const previousIndex = currentIndex > 0 ? currentIndex - 1 : projects.length - 1
+      setSelectedProject(projects[previousIndex].id)
     }
   }
 
   const handleNextProject = () => {
     if (selectedProject) {
-      const currentIndex = projectsWithoutId12.findIndex((p) => p.id === selectedProject)
-      const nextIndex = currentIndex < projectsWithoutId12.length - 1 ? currentIndex + 1 : 0
-      setSelectedProject(projectsWithoutId12[nextIndex].id)
+      const currentIndex = projects.findIndex((p) => p.id === selectedProject)
+      const nextIndex = currentIndex < projects.length - 1 ? currentIndex + 1 : 0
+      setSelectedProject(projects[nextIndex].id)
     }
   }
 
@@ -590,13 +173,38 @@ export default function ProjectsPage() {
     }
   }
 
-  const selectedProjectData = projectsWithoutId12.find((p) => p.id === selectedProject)
+  const selectedProjectData = projects.find((p) => p.id === selectedProject)
+  const otherProjects = projects.filter((p) => p.id !== selectedProject)
 
-  const otherProjects = projectsWithoutId12.filter((p) => p.id !== selectedProject)
+  // Text direction and font styles for content (excluding header)
+  const contentTextDirection = lang === "fa" ? "rtl" : "ltr"
+  const contentFontFamily = lang === "fa" ? "Vazirmatn, sans-serif" : "Inter, sans-serif"
 
-  // Text for the loading screen
-  const loadingText = "KHAYYATZADEH- AND- ASSOCIATES"
-  const letters = loadingText.split("")
+  // Always LTR and Inter font for header
+  const headerTextDirection = "ltr"
+  const headerFontFamily = "Inter, sans-serif"
+
+  // Translated filter options
+  const filterOptions = {
+    type: [
+      { value: "ALL TYPE", label: translations[lang].allType },
+      { value: "RESIDENTIAL", label: translations[lang].residential },
+      { value: "COMMERCIAL", label: translations[lang].commercial },
+      { value: "MIXED USE", label: translations[lang].mixedUse },
+    ],
+    location: [
+      { value: "ALL LOCATIONS", label: translations[lang].allLocations },
+      { value: "MASHHAD", label: lang === "fa" ? "مشهد" : "MASHHAD" },
+      { value: "TEHRAN", label: lang === "fa" ? "تهران" : "TEHRAN" },
+      { value: "ISFAHAN", label: lang === "fa" ? "اصفهان" : "ISFAHAN" },
+    ],
+    year: [
+      { value: "ALL YEARS", label: translations[lang].allYears },
+      { value: "2025", label: "2025" },
+      { value: "2024", label: "2024" },
+      { value: "2023", label: "2023" },
+    ],
+  }
 
   return (
     <AnimatePresence mode="wait">
@@ -612,12 +220,13 @@ export default function ProjectsPage() {
         >
           <motion.h1
             className="text-white text-2xl md:text-4xl font-bold tracking-wider flex"
+            style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
             variants={loadingContainerVariants}
             initial="initial"
             animate="animate"
             exit="exit"
           >
-            {letters.map((letter, index) => (
+            {translations[lang].loadingText.split("").map((letter, index) => (
               <motion.span
                 key={index}
                 variants={letterVariants}
@@ -637,6 +246,7 @@ export default function ProjectsPage() {
           variants={pageVariants}
           transition={{ duration: 0.5 }}
           className="min-h-screen bg-white"
+          style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
         >
           <AnimatePresence mode="wait">
             {selectedProject && selectedProjectData ? (
@@ -648,8 +258,12 @@ export default function ProjectsPage() {
                 variants={projectDetailVariants}
                 transition={{ duration: 0.5 }}
                 className="min-h-screen bg-white"
+                style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
-                <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
+                <header
+                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100"
+                  style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}
+                >
                   <div className="flex items-center gap-2 md:gap-4">
                     <div className="relative w-8 h-8 md:w-10 md:h-10">
                       <Image
@@ -659,6 +273,13 @@ export default function ProjectsPage() {
                         className="object-contain"
                       />
                     </div>
+                    <Button
+                      variant="outline"
+                      onClick={() => setLang(lang === "en" ? "fa" : "en")}
+                      className="text-sm"
+                    >
+                      {lang === "en" ? "فارسی" : "English"}
+                    </Button>
                   </div>
                   <div className="hidden lg:flex items-center gap-4">
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
@@ -666,10 +287,11 @@ export default function ProjectsPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                        <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                        <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                        <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                        {filterOptions.type.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <Select value={locationFilter} onValueChange={setLocationFilter}>
@@ -677,10 +299,11 @@ export default function ProjectsPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                        <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                        <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                        <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                        {filterOptions.location.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <Select value={yearFilter} onValueChange={setYearFilter}>
@@ -688,10 +311,11 @@ export default function ProjectsPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                        <SelectItem value="2025">2025</SelectItem>
-                        <SelectItem value="2024">2024</SelectItem>
-                        <SelectItem value="2023">2023</SelectItem>
+                        {filterOptions.year.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -701,7 +325,7 @@ export default function ProjectsPage() {
                       onClick={handleBackToGrid}
                       className="flex items-center gap-2 bg-gray-900 text-white hover:bg-gray-800 hover:text-white"
                     >
-                      Back
+                      {translations[lang].back}
                     </Button>
                     <Button
                       variant="ghost"
@@ -737,10 +361,11 @@ export default function ProjectsPage() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                            <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                            <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                            <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                            {filterOptions.type.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                         <Select value={locationFilter} onValueChange={setLocationFilter}>
@@ -748,10 +373,11 @@ export default function ProjectsPage() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                            <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                            <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                            <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                            {filterOptions.location.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                         <Select value={yearFilter} onValueChange={setYearFilter}>
@@ -759,10 +385,11 @@ export default function ProjectsPage() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                            <SelectItem value="2025">2025</SelectItem>
-                            <SelectItem value="2024">2024</SelectItem>
-                            <SelectItem value="2023">2023</SelectItem>
+                            {filterOptions.year.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </motion.div>
@@ -826,7 +453,7 @@ export default function ProjectsPage() {
                               </div>
                               <Link href={`/projects/${selectedProjectData.id}`} passHref>
                                 <Button variant="outline" size="sm" className="text-sm bg-transparent mt-2 sm:mt-0">
-                                  MORE INFO <ArrowRight className="w-4 h-4 ml-1" />
+                                  {translations[lang].moreInfo} <ArrowRight className="w-4 h-4 ml-1" />
                                 </Button>
                               </Link>
                             </div>
@@ -834,40 +461,40 @@ export default function ProjectsPage() {
                           <div className="p-4 bg-white">
                             <div className="grid grid-cols-1 gap-6">
                               <div>
-                                <h3 className="font-semibold text-sm mb-4 text-gray-900">Key Info</h3>
+                                <h3 className="font-semibold text-sm mb-4 text-gray-900">{translations[lang].keyInfo}</h3>
                                 <div className="space-y-3 text-sm">
                                   <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                      <p className="font-medium text-gray-900">Type</p>
+                                      <p className="font-medium text-gray-900">{translations[lang].type}</p>
                                       <p className="text-gray-600">{selectedProjectData.type}</p>
                                     </div>
                                     <div>
-                                      <p className="font-medium text-gray-900">Status</p>
+                                      <p className="font-medium text-gray-900">{translations[lang].status}</p>
                                       <p className="text-gray-600">{selectedProjectData.status}</p>
                                     </div>
                                   </div>
                                   <div>
-                                    <p className="font-medium text-gray-900">Time span</p>
+                                    <p className="font-medium text-gray-900">{translations[lang].timespan}</p>
                                     <p className="text-gray-600">{selectedProjectData.timespan}</p>
                                   </div>
                                   <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                      <p className="font-medium text-gray-900">Client</p>
+                                      <p className="font-medium text-gray-900">{translations[lang].client}</p>
                                       <p className="text-gray-600">{selectedProjectData.client}</p>
                                     </div>
                                     <div>
-                                      <p className="font-medium text-gray-900">Location</p>
+                                      <p className="font-medium text-gray-900">{translations[lang].location}</p>
                                       <p className="text-gray-600">{selectedProjectData.clientLocation}</p>
                                     </div>
                                   </div>
                                   <div>
-                                    <p className="font-medium text-gray-900">Size</p>
+                                    <p className="font-medium text-gray-900">{translations[lang].size}</p>
                                     <p className="text-gray-600">{selectedProjectData.size}</p>
                                   </div>
                                 </div>
                               </div>
                               <div>
-                                <h3 className="font-semibold text-sm mb-4 text-gray-900">Project Overview</h3>
+                                <h3 className="font-semibold text-sm mb-4 text-gray-900">{translations[lang].projectOverview}</h3>
                                 <p className="text-sm text-gray-700 leading-relaxed">{selectedProjectData.overview}</p>
                               </div>
                             </div>
@@ -879,16 +506,34 @@ export default function ProjectsPage() {
                             onClick={handlePreviousProject}
                             className="flex items-center gap-2 bg-transparent text-sm"
                           >
-                            <ArrowLeft className="w-4 h-4" />
-                            PREVIOUS PROJECT
+                            {lang === "fa" ? (
+                              <>
+                                {translations[lang].previousProject}
+                                <ArrowRight className="w-4 h-4" />
+                              </>
+                            ) : (
+                              <>
+                                <ArrowLeft className="w-4 h-4" />
+                                {translations[lang].previousProject}
+                              </>
+                            )}
                           </Button>
                           <Button
                             variant="outline"
                             onClick={handleNextProject}
                             className="flex items-center gap-2 bg-transparent text-sm"
                           >
-                            NEXT PROJECT
-                            <ArrowRight className="w-4 h-4" />
+                            {lang === "fa" ? (
+                              <>
+                                <ArrowLeft className="w-4 h-4" />
+                                {translations[lang].nextProject}
+                              </>
+                            ) : (
+                              <>
+                                {translations[lang].nextProject}
+                                <ArrowRight className="w-4 h-4" />
+                              </>
+                            )}
                           </Button>
                         </div>
                       </motion.div>
@@ -930,8 +575,12 @@ export default function ProjectsPage() {
                 variants={pageVariants}
                 transition={{ duration: 0.5 }}
                 className="min-h-screen bg-white"
+                style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
-                <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
+                <header
+                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100"
+                  style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}
+                >
                   <div className="flex items-center gap-2 md:gap-4">
                     <div className="relative w-8 h-8 md:w-10 md:h-10">
                       <Image
@@ -941,6 +590,13 @@ export default function ProjectsPage() {
                         className="object-contain"
                       />
                     </div>
+                    <Button
+                      variant="outline"
+                      onClick={() => setLang(lang === "en" ? "fa" : "en")}
+                      className="text-sm"
+                    >
+                      {lang === "en" ? "فارسی" : "English"}
+                    </Button>
                   </div>
                   <div className="hidden lg:flex items-center gap-4">
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
@@ -948,10 +604,11 @@ export default function ProjectsPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                        <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                        <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                        <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                        {filterOptions.type.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <Select value={locationFilter} onValueChange={setLocationFilter}>
@@ -959,10 +616,11 @@ export default function ProjectsPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                        <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                        <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                        <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                        {filterOptions.location.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <Select value={yearFilter} onValueChange={setYearFilter}>
@@ -970,10 +628,11 @@ export default function ProjectsPage() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                        <SelectItem value="2025">2025</SelectItem>
-                        <SelectItem value="2024">2024</SelectItem>
-                        <SelectItem value="2023">2023</SelectItem>
+                        {filterOptions.year.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
@@ -1011,10 +670,11 @@ export default function ProjectsPage() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-                          <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-                          <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-                          <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+                          {filterOptions.type.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <Select value={locationFilter} onValueChange={setLocationFilter}>
@@ -1022,10 +682,11 @@ export default function ProjectsPage() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-                          <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-                          <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-                          <SelectItem value="ISFAHAN">ISFAHAN</SelectItem>
+                          {filterOptions.location.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                       <Select value={yearFilter} onValueChange={setYearFilter}>
@@ -1033,10 +694,11 @@ export default function ProjectsPage() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
-                          <SelectItem value="2025">2025</SelectItem>
-                          <SelectItem value="2024">2024</SelectItem>
-                          <SelectItem value="2023">2023</SelectItem>
+                          {filterOptions.year.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </motion.div>
@@ -1050,7 +712,7 @@ export default function ProjectsPage() {
                     onClick={handlePreviousPage}
                     disabled={currentPage === 1}
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    {lang === "fa" ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
                   </Button>
                   <Button
                     variant="ghost"
@@ -1059,7 +721,7 @@ export default function ProjectsPage() {
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    {lang === "fa" ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
                   </Button>
                   <motion.div
                     key={currentPage}
@@ -1132,7 +794,7 @@ export default function ProjectsPage() {
                   </motion.div>
                   <div className="flex justify-center items-center mt-6 gap-4">
                     <span className="text-sm text-gray-600">
-                      Page {currentPage} of {totalPages}
+                      {translations[lang].pageOf.replace("{current}", currentPage.toString()).replace("{total}", totalPages.toString())}
                     </span>
                     <div className="flex gap-2">
                       {Array.from({ length: totalPages }, (_, i) => (
@@ -1151,11 +813,12 @@ export default function ProjectsPage() {
                 <AnimatePresence>
                   {isMenuOpen && (
                     <motion.div
-                      initial={{ x: "100%" }}
+                      initial={{ x: lang === "fa" ? "-100%" : "100%" }}
                       animate={{ x: 0 }}
-                      exit={{ x: "100%" }}
+                      exit={{ x: lang === "fa" ? "-100%" : "100%" }}
                       transition={{ type: "tween", duration: 0.3 }}
                       className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
+                      style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
                     >
                       <div className="flex justify-end mb-8">
                         <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
@@ -1166,17 +829,17 @@ export default function ProjectsPage() {
                       <nav className="flex flex-col gap-4 text-lg font-medium">
                         <Link href="/" passHref onClick={() => setIsMenuOpen(false)}>
                           <Button variant="ghost" className="w-full justify-start text-xl">
-                            Projects
+                            {translations[lang].projects}
                           </Button>
                         </Link>
                         <Link href="/about" passHref onClick={() => setIsMenuOpen(false)}>
                           <Button variant="ghost" className="w-full justify-start text-xl">
-                            About Us
+                            {translations[lang].aboutUs}
                           </Button>
                         </Link>
                         <Link href="/contact" passHref onClick={() => setIsMenuOpen(false)}>
                           <Button variant="ghost" className="w-full justify-start text-xl">
-                            Contact
+                            {translations[lang].contact}
                           </Button>
                         </Link>
                       </nav>

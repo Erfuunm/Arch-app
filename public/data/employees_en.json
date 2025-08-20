@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "name": "Mahnaz Dolatabadi",
+    "title": "Project Manager",
+    "image": "/images/employee-5.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 2,
+    "name": "Samaneh Iman",
+    "title": "Architect",
+    "image": "/images/employee-4.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 3,
+    "name": "Aniseh AzizZadeh",
+    "title": "Architect",
+    "image": "/images/employee-3.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 4,
+    "name": "Linda Mirian",
+    "title": "Architect",
+    "image": "/images/employee-2.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 5,
+    "name": "Fatemeh Sheibany",
+    "title": "Architect",
+    "image": "/images/employee-9.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 6,
+    "name": "Foad Bazghandi",
+    "title": "Architect",
+    "image": "/images/employee-7.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 7,
+    "name": "Homa Amini",
+    "title": "Architect",
+    "image": "/images/employee-8.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 8,
+    "name": "Shakila Sadeghian",
+    "title": "Architect",
+    "image": "/images/employee-1.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 9,
+    "name": "Ali Rezaei",
+    "title": "Designer",
+    "image": "/images/employee-7.jpeg",
+    "status": "current"
+  },
+  {
+    "id": 10,
+    "name": "Sara Ahmadi",
+    "title": "Urban Planner",
+    "image": "/images/employee-5.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 11,
+    "name": "Mohammad Karimi",
+    "title": "Structural Engineer",
+    "image": "/images/employee-8.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 12,
+    "name": "Narges Hosseini",
+    "title": "Interior Designer",
+    "image": "/images/employee-4.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 13,
+    "name": "Kianoush Sadeghi",
+    "title": "Landscape Architect",
+    "image": "/images/employee-1.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 14,
+    "name": "Parisa Nazari",
+    "title": "Urban Designer",
+    "image": "/images/employee-3.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 15,
+    "name": "Reza Ghasemi",
+    "title": "Civil Engineer",
+    "image": "/images/employee-2.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 16,
+    "name": "Zahra Karimi",
+    "title": "Architectural Historian",
+    "image": "/images/employee-9.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 17,
+    "name": "Amir Hosseini",
+    "title": "BIM Specialist",
+    "image": "/images/employee-7.jpeg",
+    "status": "former"
+  },
+  {
+    "id": 18,
+    "name": "Leila Ahmadi",
+    "title": "Sustainability Consultant",
+    "image": "/images/employee-5.jpeg",
+    "status": "former"
+  }
+]
