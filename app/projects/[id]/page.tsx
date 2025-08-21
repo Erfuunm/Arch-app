@@ -9,8 +9,21 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { motion, AnimatePresence } from "framer-motion"
 import { use } from "react"
 
-// Re-defining projects data for this page for demonstration purposes.
+// Translation object for bilingual static text
+const translations = {
+  en: {
+    projects: "Projects",
+    aboutUs: "About Us",
+    contact: "Contact",
+  },
+  fa: {
+    projects: "پروژه‌ها",
+    aboutUs: "درباره ما",
+    contact: "تماس",
+  },
+}
 
+// Re-defining projects data for this page for demonstration purposes.
 const projects = [
   {
     id: 1,
@@ -814,7 +827,6 @@ const projects = [
   },
 ]
 
-
 const menuVariants = {
   initial: { x: "100%" },
   animate: { x: 0 },
@@ -829,6 +841,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [lang, setLang] = useState<"en" | "fa">("en") // Language state
 
   // Default filters for display, not functional on this page
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
@@ -861,13 +874,27 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col" lang={lang}>
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
         <div className="flex items-center gap-2 md:gap-4">
-          <div className="text-xl md:text-2xl font-bold">KH</div>
+          <div className="relative w-8 h-8 md:w-10 md:h-10">
+            <Image
+              src="/images/Logo.png"
+              alt="Company Icon"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <Button
+            variant="outline"
+            onClick={() => setLang(lang === "en" ? "fa" : "en")}
+            className="text-sm border-gray-300 hover:bg-gray-100 transition-colors"
+          >
+            {lang === "en" ? "فارسی" : "English"}
+          </Button>
           <div className="hidden sm:block text-sm md:text-base text-gray-600 ml-4">
-            PROJECTS / {project.name.toUpperCase()}
+            {translations[lang].projects} / {lang === "fa" ? project.name.replace("Residential", "مسکونی").replace("Complex", "مجتمع").replace("Tower", "برج").replace("Center", "مرکز").replace("Plaza", "میدان").replace("Innovation", "نوآوری").replace("Cultural", "فرهنگی").replace("Shopping", "خرید").replace("Medical", "پزشکی").replace("Business District", "منطقه تجاری").replace("Heritage", "میراث").replace("University Campus", "پردیس دانشگاهی").replace("Convention", "کنفرانس").replace("Solar", "خورشیدی").replace("Sports", "ورزشی").replace("Green", "سبز").replace("Eco-Park", "پارک زیست‌محیطی").replace("Port", "بندر").replace("Desert Resort", "اقامتگاه بیابانی").replace("Tech Park", "پارک فناوری").replace("Religious", "مذهبی").replace("Agricultural", "کشاورزی").replace("Coastal", "ساحلی").replace("Industrial Park", "پارک صنعتی").replace("Mining", "معدن").replace("Historical Renovation", "بازسازی تاریخی") : project.name.toUpperCase()}
           </div>
         </div>
 
@@ -878,10 +905,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ALL TYPE">ALL TYPE</SelectItem>
-              <SelectItem value="RESIDENTIAL">RESIDENTIAL</SelectItem>
-              <SelectItem value="COMMERCIAL">COMMERCIAL</SelectItem>
-              <SelectItem value="MIXED USE">MIXED USE</SelectItem>
+              <SelectItem value="ALL TYPE">{lang === "fa" ? "همه انواع" : "ALL TYPE"}</SelectItem>
+              <SelectItem value="RESIDENTIAL">{lang === "fa" ? "مسکونی" : "RESIDENTIAL"}</SelectItem>
+              <SelectItem value="COMMERCIAL">{lang === "fa" ? "تجاری" : "COMMERCIAL"}</SelectItem>
+              <SelectItem value="MIXED USE">{lang === "fa" ? "چندمنظوره" : "MIXED USE"}</SelectItem>
             </SelectContent>
           </Select>
 
@@ -890,10 +917,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ALL LOCATIONS">ALL LOCATIONS</SelectItem>
-              <SelectItem value="MASHHAD">MASHHAD</SelectItem>
-              <SelectItem value="TEHRAN">TEHRAN</SelectItem>
-              <SelectItem value="ISFAHAN">ISFAFAN</SelectItem>
+              <SelectItem value="ALL LOCATIONS">{lang === "fa" ? "همه مکان‌ها" : "ALL LOCATIONS"}</SelectItem>
+              <SelectItem value="MASHHAD">{lang === "fa" ? "مشهد" : "MASHHAD"}</SelectItem>
+              <SelectItem value="TEHRAN">{lang === "fa" ? "تهران" : "TEHRAN"}</SelectItem>
+              <SelectItem value="ISFAHAN">{lang === "fa" ? "اصفهان" : "ISFAHAN"}</SelectItem>
             </SelectContent>
           </Select>
 
@@ -902,7 +929,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="ALL YEARS">ALL YEARS</SelectItem>
+              <SelectItem value="ALL YEARS">{lang === "fa" ? "همه سال‌ها" : "ALL YEARS"}</SelectItem>
               <SelectItem value="2025">2025</SelectItem>
               <SelectItem value="2024">2024</SelectItem>
               <SelectItem value="2023">2023</SelectItem>
@@ -916,13 +943,13 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-6">
+      <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-6" style={{ direction: lang === "fa" ? "rtl" : "ltr" }}>
         <div className="w-full max-w-5xl relative mb-4">
           {/* Main Project Image */}
-          <div className="relative w-full aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+          <div className="relative w calc(100% + 2rem) -mx-4 md:-mx-6 lg:mx-0 aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
             <Image
               src={project.galleryImages[currentImageIndex] || "/placeholder.svg"}
-              alt={`${project.name} image ${currentImageIndex + 1}`}
+              alt={`${lang === "fa" ? project.name.replace("Residential", "مسکونی").replace("Complex", "مجتمع").replace("Tower", "برج").replace("Center", "مرکز").replace("Plaza", "میدان").replace("Innovation", "نوآوری").replace("Cultural", "فرهنگی").replace("Shopping", "خرید").replace("Medical", "پزشکی").replace("Business District", "منطقه تجاری").replace("Heritage", "میراث").replace("University Campus", "پردیس دانشگاهی").replace("Convention", "کنفرانس").replace("Solar", "خورشیدی").replace("Sports", "ورزشی").replace("Green", "سبز").replace("Eco-Park", "پارک زیست‌محیطی").replace("Port", "بندر").replace("Desert Resort", "اقامتگاه بیابانی").replace("Tech Park", "پارک فناوری").replace("Religious", "مذهبی").replace("Agricultural", "کشاورزی").replace("Coastal", "ساحلی").replace("Industrial Park", "پارک صنعتی").replace("Mining", "معدن").replace("Historical Renovation", "بازسازی تاریخی") : project.name} image ${currentImageIndex + 1}`}
               fill
               className="object-cover"
             />
@@ -960,7 +987,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               >
                 <Image
                   src={image || "/placeholder.svg"}
-                  alt={`${project.name} thumbnail ${index + 1}`}
+                  alt={`${lang === "fa" ? project.name.replace("Residential", "مسکونی").replace("Complex", "مجتمع").replace("Tower", "برج").replace("Center", "مرکز").replace("Plaza", "میدان").replace("Innovation", "نوآوری").replace("Cultural", "فرهنگی").replace("Shopping", "خرید").replace("Medical", "پزشکی").replace("Business District", "منطقه تجاری").replace("Heritage", "میراث").replace("University Campus", "پردیس دانشگاهی").replace("Convention", "کنفرانس").replace("Solar", "خورشیدی").replace("Sports", "ورزشی").replace("Green", "سبز").replace("Eco-Park", "پارک زیست‌محیطی").replace("Port", "بندر").replace("Desert Resort", "اقامتگاه بیابانی").replace("Tech Park", "پارک فناوری").replace("Religious", "مذهبی").replace("Agricultural", "کشاورزی").replace("Coastal", "ساحلی").replace("Industrial Park", "پارک صنعتی").replace("Mining", "معدن").replace("Historical Renovation", "بازسازی تاریخی") : project.name} thumbnail ${index + 1}`}
                   fill
                   className="object-cover"
                 />
@@ -980,6 +1007,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
             variants={menuVariants}
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
+            style={{ direction: "ltr" }}
           >
             <div className="flex justify-end mb-8">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
@@ -990,17 +1018,17 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
             <nav className="flex flex-col gap-4 text-lg font-medium">
               <Link href="/" passHref onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start text-xl">
-                  Projects
+                  {translations[lang].projects}
                 </Button>
               </Link>
               <Link href="/about" passHref onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start text-xl">
-                  About Us
+                  {translations[lang].aboutUs}
                 </Button>
               </Link>
               <Link href="/contact" passHref onClick={() => setIsMenuOpen(false)}>
                 <Button variant="ghost" className="w-full justify-start text-xl">
-                  Contact
+                  {translations[lang].contact}
                 </Button>
               </Link>
             </nav>

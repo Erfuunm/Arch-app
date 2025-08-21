@@ -92,3 +92,21 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+@font-face {
+  font-family: 'CustomPersianFont';
+  src: url('/fonts/CustomPersianFont.woff2') format('woff2'),
+       url('/fonts/CustomPersianFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html[lang="fa"] {
+  font-family: 'CustomPersianFont', sans-serif;
+}
+
+html[lang="en"] {
+  font-family: 'Inter', sans-serif;
+}

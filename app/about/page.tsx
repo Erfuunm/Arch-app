@@ -94,7 +94,7 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col" style={{ direction: "ltr", fontFamily: "Inter, sans-serif" }}>
+    <div className="min-h-screen bg-white flex flex-col" lang={lang}>
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
         <div className="flex items-center gap-2 md:gap-4">
@@ -131,7 +131,10 @@ export default function AboutPage() {
         <div className="hidden lg:block absolute left-2/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
 
         {/* Left Side: Manager Section */}
-        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
+        <section 
+          className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left"
+          style={{ direction: lang === "fa" ? "rtl" : "ltr", textAlign: lang === "fa" ? "right" : "left" }}
+        >
           <div className="max-w-lg">
             <h1 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight mb-6 text-gray-900">
               {translations[lang].studioName}
@@ -255,7 +258,7 @@ export default function AboutPage() {
             exit={{ x: "100%" }}
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
-            style={{ direction: "ltr", fontFamily: "Inter, sans-serif" }}
+            style={{ direction: "ltr" }}
           >
             <div className="flex justify-end mb-8">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
