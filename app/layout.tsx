@@ -1,5 +1,4 @@
 "use client"
-import type { Metadata } from 'next'
 import './globals.css'
 import { createContext, useContext, useState, ReactNode } from 'react'
 
@@ -32,19 +31,13 @@ export function useLanguage() {
   return context
 }
 
-export const metadata: Metadata = {
-  title: 'Arch App',
-  description: 'Created by Nord Team',
-  generator: 'Erfuun',
-}
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang={useLanguage().lang}>
+    <html lang="en">
       <body>
         <LanguageProvider>{children}</LanguageProvider>
       </body>

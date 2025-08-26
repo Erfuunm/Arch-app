@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Menu, ArrowLeft, ArrowRight, X, Filter } from "lucide-react"
@@ -100,7 +100,6 @@ export default function ProjectsPage() {
   const [locationFilter, setLocationFilter] = useState("ALL LOCATIONS")
   const [yearFilter, setYearFilter] = useState("ALL YEARS")
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
-  const [currentPage, setCurrentPage] = useState(1)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
@@ -129,13 +128,19 @@ export default function ProjectsPage() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Calculate total pages
-  const PROJECTS_PER_PAGE = 16
-  const totalProjects = projects.length
-  const totalPages = Math.ceil(totalProjects / PROJECTS_PER_PAGE)
+  const filteredProjects = useMemo(() => {
+    return projects.filter((project) => {
+      const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter;
+      const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter;
+      const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter;
+      return typeMatch && locationMatch && yearMatch;
+    });
+  }, [projects, typeFilter, locationFilter, yearFilter]);
 
-  const startIndex = (currentPage - 1) * PROJECTS_PER_PAGE
-  const currentProjects = projects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
+  // Calculate total pages (limited to 2 pages)
+  const PROJECTS_PER_PAGE = 16
+  const totalProjects = Math.min(filteredProjects.length, PROJECTS_PER_PAGE * 2) // Limit to 2 pages
+  const totalPages = Math.min(Math.ceil(totalProjects / PROJECTS_PER_PAGE), 2) // Max 2 pages
 
   const handleProjectClick = (projectId: number) => {
     setSelectedProject(projectId)
@@ -147,34 +152,24 @@ export default function ProjectsPage() {
 
   const handlePreviousProject = () => {
     if (selectedProject) {
-      const currentIndex = projects.findIndex((p) => p.id === selectedProject)
-      const previousIndex = currentIndex > 0 ? currentIndex - 1 : projects.length - 1
-      setSelectedProject(projects[previousIndex].id)
+      const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject)
+      if (currentIndex === -1) return;
+      const previousIndex = currentIndex > 0 ? currentIndex - 1 : filteredProjects.length - 1
+      setSelectedProject(filteredProjects[previousIndex].id)
     }
   }
 
   const handleNextProject = () => {
     if (selectedProject) {
-      const currentIndex = projects.findIndex((p) => p.id === selectedProject)
-      const nextIndex = currentIndex < projects.length - 1 ? currentIndex + 1 : 0
-      setSelectedProject(projects[nextIndex].id)
+      const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject)
+      if (currentIndex === -1) return;
+      const nextIndex = currentIndex < filteredProjects.length - 1 ? currentIndex + 1 : 0
+      setSelectedProject(filteredProjects[nextIndex].id)
     }
   }
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1)
-    }
-  }
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1)
-    }
-  }
-
-  const selectedProjectData = projects.find((p) => p.id === selectedProject)
-  const otherProjects = projects.filter((p) => p.id !== selectedProject)
+  const selectedProjectData = filteredProjects.find((p) => p.id === selectedProject)
+  const otherProjects = filteredProjects.filter((p) => p.id !== selectedProject)
 
   // Text direction and font styles for content (excluding header)
   const contentTextDirection = lang === "fa" ? "rtl" : "ltr"
@@ -261,7 +256,7 @@ export default function ProjectsPage() {
                 style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
                 <header
-                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100"
+                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white"
                   style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}
                 >
                   <div className="flex items-center gap-2 md:gap-4">
@@ -337,7 +332,7 @@ export default function ProjectsPage() {
                     </Button>
                   </div>
                 </header>
-                <div className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 lg:hidden">
+                <div className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 lg:hidden bg-white">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -396,7 +391,7 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 mt-[3%]">
+                <div className="px-3 md:px-6 mt-[3%] bg-gray-100">
                   <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
@@ -574,11 +569,11 @@ export default function ProjectsPage() {
                 exit="exit"
                 variants={pageVariants}
                 transition={{ duration: 0.5 }}
-                className="min-h-screen bg-white"
+                className="min-h-screen "
                 style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
                 <header
-                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100"
+                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white"
                   style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}
                 >
                   <div className="flex items-center gap-2 md:gap-4">
@@ -663,7 +658,7 @@ export default function ProjectsPage() {
                       exit="exit"
                       variants={filterVariants}
                       transition={{ duration: 0.3 }}
-                      className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 md:pb-8 lg:hidden"
+                      className="flex flex-wrap gap-2 p-4 md:p-6 pb-4 md:pb-8 lg:hidden bg-white"
                     >
                       <Select value={typeFilter} onValueChange={setTypeFilter}>
                         <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
@@ -704,118 +699,87 @@ export default function ProjectsPage() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <div className="relative px-3 md:px-6 mt-8 md:mt-12">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handlePreviousPage}
-                    disabled={currentPage === 1}
-                  >
-                    {lang === "fa" ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handleNextPage}
-                    disabled={currentPage === totalPages}
-                  >
-                    {lang === "fa" ? <ChevronLeft className="w-6 h-6" /> : <ChevronRight className="w-6 h-6" />}
-                  </Button>
-                  <motion.div
-                    key={currentPage}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    variants={pageVariants}
-                    transition={{ duration: 0.5 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:mt-[2%] md:grid-cols-3 lg:grid-cols-6 gap-3 max-w-full px-[6%] mx-auto"
-                    style={{ height: "auto", minHeight: "calc(100vh - 220px)" }}
-                  >
-                    {currentProjects.map((project, index) => {
-                      let gridClass = "col-span-1 row-span-1"
-                      if (index === 0)
-                        gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                      else if (index === 1)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 2)
-                        gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
-                      else if (index === 3)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 4)
-                        gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                      else if (index === 5)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 6)
-                        gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
-                      else if (index === 7)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 8)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 9)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 10)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 11)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 12)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 13)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 14)
-                        gridClass = "col-span-1 row-span-1"
-                      else if (index === 15)
-                        gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1"
-
+                <div className="px-3 md:px-6 mt-8 md:mt-2 md:pb-8 bg-gray-300 overflow-x-auto overflow-y-hidden">
+                  <div className="flex flex-row snap-x snap-mandatory">
+                    {Array.from({ length: totalPages }).map((_, pageIndex) => {
+                      const startIndex = pageIndex * PROJECTS_PER_PAGE;
+                      const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE);
                       return (
                         <div
-                          key={`grid-${project.id}`}
-                          className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
-                          onClick={() => handleProjectClick(project.id)}
+                          key={`page-${pageIndex}`}
+                          className="min-w-full flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 px-[6%] mx-auto lg:mt-[2%]"
+                          style={{ height: "calc(100vh - 220px)", overflowY: "hidden" }}
                         >
-                          <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
-                            <Image
-                              src={project.image || "/placeholder.svg"}
-                              alt={project.name}
-                              fill
-                              className="object-cover transition-transform group-hover:scale-105"
-                            />
-                          </div>
-                          <div className="h-[60px] bg-gray-50 p-3 flex flex-col justify-center">
-                            <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-                            <p className="text-xs text-gray-600">
-                              {project.year} {project.location}
-                            </p>
-                          </div>
+                          {currProjects.map((project, index) => {
+                            let gridClass = "col-span-1 row-span-1"
+                            if (index === 0)
+                              gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                            else if (index === 1)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 2)
+                              gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                            else if (index === 3)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 4)
+                              gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                            else if (index === 5)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 6)
+                              gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                            else if (index === 7)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 8)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 9)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 10)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 11)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 12)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 13)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 14)
+                              gridClass = "col-span-1 row-span-1"
+                            else if (index === 15)
+                              gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1"
+
+                            return (
+                              <div
+                                key={`grid-${project.id}`}
+                                className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
+                                onClick={() => handleProjectClick(project.id)}
+                              >
+                                <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
+                                  <Image
+                                    src={project.image || "/placeholder.svg"}
+                                    alt={project.name}
+                                    fill
+                                    className="object-cover transition-transform group-hover:scale-105"
+                                  />
+                                </div>
+                                <div className="h-[60px] bg-gray-50 p-3 flex flex-col justify-center">
+                                  <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+                                  <p className="text-xs text-gray-600">
+                                    {project.year} {project.location}
+                                  </p>
+                                </div>
+                              </div>
+                            )
+                          })}
                         </div>
                       )
                     })}
-                  </motion.div>
-                  <div className="flex justify-center items-center mt-6 gap-4">
-                    <span className="text-sm text-gray-600">
-                      {translations[lang].pageOf.replace("{current}", currentPage.toString()).replace("{total}", totalPages.toString())}
-                    </span>
-                    <div className="flex gap-2">
-                      {Array.from({ length: totalPages }, (_, i) => (
-                        <button
-                          key={i + 1}
-                          onClick={() => setCurrentPage(i + 1)}
-                          className={`w-2 h-2 rounded-full transition-colors ${
-                            currentPage === i + 1 ? "bg-gray-900" : "bg-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
                   </div>
                 </div>
-                <div className="h-20" />
+                <div className="h-20 bg-white" />
                 <AnimatePresence>
                   {isMenuOpen && (
                     <motion.div
-                      initial={{ x: lang === "fa" ? "-100%" : "100%" }}
+                      initial={{ x: "100%" }}
                       animate={{ x: 0 }}
-                      exit={{ x: lang === "fa" ? "-100%" : "100%" }}
+                      exit={{ x: "100%" }}
                       transition={{ type: "tween", duration: 0.3 }}
                       className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
                       style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}

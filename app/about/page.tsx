@@ -14,8 +14,7 @@ const translations = {
     description: "Behind every iconic project is a talented team of international architects, designers and thinkers.",
     joinUs: "JOIN US",
     ceo: "CEO",
-    currentTeam: "Current Team Members",
-    formerTeam: "Former Team Members",
+    team: "Team Members",
     projects: "Projects",
     aboutUs: "About Us",
     contact: "Contact",
@@ -25,8 +24,7 @@ const translations = {
     description: "پشت هر پروژه نمادین، تیمی با استعداد از معماران، طراحان و متفکران بین‌المللی قرار دارد.",
     joinUs: "به ما بپیوندید",
     ceo: "مدیرعامل",
-    currentTeam: "اعضای فعلی تیم",
-    formerTeam: "اعضای سابق تیم",
+    team: "اعضای تیم",
     projects: "پروژه‌ها",
     aboutUs: "درباره ما",
     contact: "تماس",
@@ -44,8 +42,7 @@ export default function AboutPage() {
   const [lang, setLang] = useState<"en" | "fa">("en") // Language state
   const [employees, setEmployees] = useState<any[]>([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [currentEmployeePage, setCurrentEmployeePage] = useState(0)
-  const [formerEmployeePage, setFormerEmployeePage] = useState(0)
+  const [employeePage, setEmployeePage] = useState(0)
 
   // Load employees based on language
   useEffect(() => {
@@ -61,42 +58,31 @@ export default function AboutPage() {
     loadEmployees()
   }, [lang])
 
-  // Filter employees by status
-  const currentEmployees = employees.filter((employee) => employee.status === "current")
-  const formerEmployees = employees.filter((employee) => employee.status === "former")
+  // Sort employees: current first, then former
+  const sortedEmployees = [
+    ...employees.filter((employee) => employee.status === "current"),
+    ...employees.filter((employee) => employee.status === "former")
+  ]
 
-  const EMPLOYEES_PER_PAGE = 6 // Kept at 6 to fit layout with larger photos
+  const EMPLOYEES_PER_PAGE = 9 // Increased to 9 to show more members
 
-  // Pagination for current employees
-  const totalCurrentEmployeePages = Math.ceil(currentEmployees.length / EMPLOYEES_PER_PAGE)
-  const currentStartIndex = currentEmployeePage * EMPLOYEES_PER_PAGE
-  const currentEmployeesDisplay = currentEmployees.slice(currentStartIndex, currentStartIndex + EMPLOYEES_PER_PAGE)
+  // Pagination for employees
+  const totalEmployeePages = Math.ceil(sortedEmployees.length / EMPLOYEES_PER_PAGE)
+  const startIndex = employeePage * EMPLOYEES_PER_PAGE
+  const employeesDisplay = sortedEmployees.slice(startIndex, startIndex + EMPLOYEES_PER_PAGE)
 
-  // Pagination for former employees
-  const totalFormerEmployeePages = Math.ceil(formerEmployees.length / EMPLOYEES_PER_PAGE)
-  const formerStartIndex = formerEmployeePage * EMPLOYEES_PER_PAGE
-  const formerEmployeesDisplay = formerEmployees.slice(formerStartIndex, formerStartIndex + EMPLOYEES_PER_PAGE)
-
-  const handleNextCurrentEmployeePage = () => {
-    setCurrentEmployeePage((prev) => (prev + 1) % totalCurrentEmployeePages)
+  const handleNextEmployeePage = () => {
+    setEmployeePage((prev) => (prev + 1) % totalEmployeePages)
   }
 
-  const handlePreviousCurrentEmployeePage = () => {
-    setCurrentEmployeePage((prev) => (prev - 1 + totalCurrentEmployeePages) % totalCurrentEmployeePages)
-  }
-
-  const handleNextFormerEmployeePage = () => {
-    setFormerEmployeePage((prev) => (prev + 1) % totalFormerEmployeePages)
-  }
-
-  const handlePreviousFormerEmployeePage = () => {
-    setFormerEmployeePage((prev) => (prev - 1 + totalFormerEmployeePages) % totalFormerEmployeePages)
+  const handlePreviousEmployeePage = () => {
+    setEmployeePage((prev) => (prev - 1 + totalEmployeePages) % totalEmployeePages)
   }
 
   return (
     <div className="min-h-screen bg-white flex flex-col" lang={lang}>
       {/* Header */}
-      <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100">
+      <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200">
         <div className="flex items-center gap-2 md:gap-4">
           <div className="relative w-8 h-8 md:w-10 md:h-10">
             <Image
@@ -158,15 +144,15 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Middle: Current Team Members */}
+        {/* Middle: Team Members */}
         <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
-          <div className="max-w-lg lg:ml-[18%]">
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">{translations[lang].currentTeam}</h2>
+          <div className="max-w-2xl lg:ml-[10%]">
+            <h2 className="text-2xl font-semibold mb-8 text-gray-900">{translations[lang].team}</h2>
             <div className="relative">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-36 gap-y-6 mb-8">
-                {currentEmployeesDisplay.map((employee) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-48 gap-y-8 mb-8">
+                {employeesDisplay.map((employee) => (
                   <div key={employee.id} className="flex flex-col items-center text-center">
-                    <div className="w-28 h-28 relative overflow-hidden rounded-lg mb-2">
+                    <div className="w-36 h-36 relative overflow-hidden rounded-lg mb-3">
                       <Image
                         src={employee.image || "/placeholder.svg"}
                         alt={employee.name}
@@ -174,26 +160,26 @@ export default function AboutPage() {
                         className="object-cover grayscale"
                       />
                     </div>
-                    <h3 className="text-sm font-medium text-gray-900 leading-tight">{employee.name}</h3>
-                    <p className="text-xs text-gray-600">{employee.title}</p>
+                    <h3 className="text-base font-medium text-gray-900 leading-tight">{employee.name}</h3>
+                    <p className="text-sm text-gray-600">{employee.title}</p>
                   </div>
                 ))}
               </div>
-              {totalCurrentEmployeePages > 1 && (
+              {totalEmployeePages > 1 && (
                 <>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="absolute -left-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handlePreviousCurrentEmployeePage}
+                    className="absolute -left-24 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    onClick={handlePreviousEmployeePage}
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="absolute -right-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handleNextCurrentEmployeePage}
+                    className="absolute -right-24 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    onClick={handleNextEmployeePage}
                   >
                     <ChevronRight className="w-6 h-6" />
                   </Button>
@@ -203,49 +189,8 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Right: Former Team Members */}
+        {/* Right: Empty Section */}
         <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
-          <div className="max-w-lg lg:ml-[18%]">
-            <h2 className="text-xl font-semibold mb-6 text-gray-900">{translations[lang].formerTeam}</h2>
-            <div className="relative">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-36 gap-y-6 mb-8">
-                {formerEmployeesDisplay.map((employee) => (
-                  <div key={employee.id} className="flex flex-col items-center text-center">
-                    <div className="w-28 h-28 relative overflow-hidden rounded-lg mb-2">
-                      <Image
-                        src={employee.image || "/placeholder.svg"}
-                        alt={employee.name}
-                        fill
-                        className="object-cover grayscale"
-                      />
-                    </div>
-                    <h3 className="text-sm font-medium text-gray-900 leading-tight">{employee.name}</h3>
-                    <p className="text-xs text-gray-600">{employee.title}</p>
-                  </div>
-                ))}
-              </div>
-              {totalFormerEmployeePages > 1 && (
-                <>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute -left-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handlePreviousFormerEmployeePage}
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute -right-20 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
-                    onClick={handleNextFormerEmployeePage}
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </Button>
-                </>
-              )}
-            </div>
-          </div>
         </section>
       </main>
 
