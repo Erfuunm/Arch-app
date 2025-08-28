@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -8,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion, AnimatePresence } from "framer-motion"
 import { use } from "react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog"
 
 // Translation object for bilingual static text
 const translations = {
@@ -15,11 +17,23 @@ const translations = {
     projects: "Projects",
     aboutUs: "About Us",
     contact: "Contact",
+    showDocument: "Show Document",
+    projectOverview: "Project Overview",
+    specifications: "Specifications",
+    clientInfo: "Client Information",
+    page: "Page",
+    of: "of",
   },
   fa: {
     projects: "پروژه‌ها",
     aboutUs: "درباره ما",
     contact: "تماس",
+    showDocument: "نمایش سند",
+    projectOverview: "بررسی پروژه",
+    specifications: "مشخصات",
+    clientInfo: "اطلاعات مشتری",
+    page: "صفحه",
+    of: "از",
   },
 }
 
@@ -842,6 +856,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [lang, setLang] = useState<"en" | "fa">("en") // Language state
+  const [modalPage, setModalPage] = useState(1)
+  const totalModalPages = 3 // Adjust based on number of pages
 
   // Default filters for display, not functional on this page
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
@@ -873,6 +889,82 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     setCurrentImageIndex(index)
   }
 
+  const handleNextModalPage = () => {
+    setModalPage((prev) => Math.min(prev + 1, totalModalPages))
+  }
+
+  const handlePrevModalPage = () => {
+    setModalPage((prev) => Math.max(prev - 1, 1))
+  }
+
+  const getProjectName = (name: string) => {
+    if (lang === "fa") {
+      return name
+        .replace("Residential", "مسکونی")
+        .replace("Complex", "مجتمع")
+        .replace("Tower", "برج")
+        .replace("Center", "مرکز")
+        .replace("Plaza", "میدان")
+        .replace("Innovation", "نوآوری")
+        .replace("Cultural", "فرهنگی")
+        .replace("Shopping", "خرید")
+        .replace("Medical", "پزشکی")
+        .replace("Business District", "منطقه تجاری")
+        .replace("Heritage", "میراث")
+        .replace("University Campus", "پردیس دانشگاهی")
+        .replace("Convention", "کنفرانس")
+        .replace("Solar", "خورشیدی")
+        .replace("Sports", "ورزشی")
+        .replace("Green", "سبز")
+        .replace("Eco-Park", "پارک زیست‌محیطی")
+        .replace("Port", "بندر")
+        .replace("Desert Resort", "اقامتگاه بیابانی")
+        .replace("Tech Park", "پارک فناوری")
+        .replace("Religious", "مذهبی")
+        .replace("Agricultural", "کشاورزی")
+        .replace("Coastal", "ساحلی")
+        .replace("Industrial Park", "پارک صنعتی")
+        .replace("Mining", "معدن")
+        .replace("Historical Renovation", "بازسازی تاریخی")
+    }
+    return name.toUpperCase()
+  }
+
+  const renderModalContent = () => {
+    switch (modalPage) {
+      case 1:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">{translations[lang].projectOverview}</h3>
+            <p className="text-gray-600"><strong>Name:</strong> {getProjectName(project.name)}</p>
+            <p className="text-gray-600"><strong>Year:</strong> {project.year}</p>
+            <p className="text-gray-600"><strong>Location:</strong> {project.location}</p>
+            <p className="text-gray-600">{project.overview}</p>
+          </div>
+        )
+      case 2:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">{translations[lang].specifications}</h3>
+            <p className="text-gray-600"><strong>Type:</strong> {project.type}</p>
+            <p className="text-gray-600"><strong>Status:</strong> {project.status}</p>
+            <p className="text-gray-600"><strong>Timespan:</strong> {project.timespan}</p>
+            <p className="text-gray-600"><strong>Size:</strong> {project.size}</p>
+          </div>
+        )
+      case 3:
+        return (
+          <div className="space-y-4">
+            <h3 className="text-xl font-bold">{translations[lang].clientInfo}</h3>
+            <p className="text-gray-600"><strong>Client:</strong> {project.client}</p>
+            <p className="text-gray-600"><strong>Client Location:</strong> {project.clientLocation}</p>
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white flex flex-col" lang={lang}>
       {/* Header */}
@@ -894,7 +986,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
             {lang === "en" ? "فارسی" : "English"}
           </Button>
           <div className="hidden sm:block text-sm md:text-base text-gray-600 ml-4">
-            {translations[lang].projects} / {lang === "fa" ? project.name.replace("Residential", "مسکونی").replace("Complex", "مجتمع").replace("Tower", "برج").replace("Center", "مرکز").replace("Plaza", "میدان").replace("Innovation", "نوآوری").replace("Cultural", "فرهنگی").replace("Shopping", "خرید").replace("Medical", "پزشکی").replace("Business District", "منطقه تجاری").replace("Heritage", "میراث").replace("University Campus", "پردیس دانشگاهی").replace("Convention", "کنفرانس").replace("Solar", "خورشیدی").replace("Sports", "ورزشی").replace("Green", "سبز").replace("Eco-Park", "پارک زیست‌محیطی").replace("Port", "بندر").replace("Desert Resort", "اقامتگاه بیابانی").replace("Tech Park", "پارک فناوری").replace("Religious", "مذهبی").replace("Agricultural", "کشاورزی").replace("Coastal", "ساحلی").replace("Industrial Park", "پارک صنعتی").replace("Mining", "معدن").replace("Historical Renovation", "بازسازی تاریخی") : project.name.toUpperCase()}
+            {translations[lang].projects} / {getProjectName(project.name)}
           </div>
         </div>
 
@@ -949,7 +1041,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           <div className="relative w calc(100% + 2rem) -mx-4 md:-mx-6 lg:mx-0 aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
             <Image
               src={project.galleryImages[currentImageIndex] || "/placeholder.svg"}
-              alt={`${lang === "fa" ? project.name.replace("Residential", "مسکونی").replace("Complex", "مجتمع").replace("Tower", "برج").replace("Center", "مرکز").replace("Plaza", "میدان").replace("Innovation", "نوآوری").replace("Cultural", "فرهنگی").replace("Shopping", "خرید").replace("Medical", "پزشکی").replace("Business District", "منطقه تجاری").replace("Heritage", "میراث").replace("University Campus", "پردیس دانشگاهی").replace("Convention", "کنفرانس").replace("Solar", "خورشیدی").replace("Sports", "ورزشی").replace("Green", "سبز").replace("Eco-Park", "پارک زیست‌محیطی").replace("Port", "بندر").replace("Desert Resort", "اقامتگاه بیابانی").replace("Tech Park", "پارک فناوری").replace("Religious", "مذهبی").replace("Agricultural", "کشاورزی").replace("Coastal", "ساحلی").replace("Industrial Park", "پارک صنعتی").replace("Mining", "معدن").replace("Historical Renovation", "بازسازی تاریخی") : project.name} image ${currentImageIndex + 1}`}
+              alt={`${getProjectName(project.name)} image ${currentImageIndex + 1}`}
               fill
               className="object-cover"
             />
@@ -987,7 +1079,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               >
                 <Image
                   src={image || "/placeholder.svg"}
-                  alt={`${lang === "fa" ? project.name.replace("Residential", "مسکونی").replace("Complex", "مجتمع").replace("Tower", "برج").replace("Center", "مرکز").replace("Plaza", "میدان").replace("Innovation", "نوآوری").replace("Cultural", "فرهنگی").replace("Shopping", "خرید").replace("Medical", "پزشکی").replace("Business District", "منطقه تجاری").replace("Heritage", "میراث").replace("University Campus", "پردیس دانشگاهی").replace("Convention", "کنفرانس").replace("Solar", "خورشیدی").replace("Sports", "ورزشی").replace("Green", "سبز").replace("Eco-Park", "پارک زیست‌محیطی").replace("Port", "بندر").replace("Desert Resort", "اقامتگاه بیابانی").replace("Tech Park", "پارک فناوری").replace("Religious", "مذهبی").replace("Agricultural", "کشاورزی").replace("Coastal", "ساحلی").replace("Industrial Park", "پارک صنعتی").replace("Mining", "معدن").replace("Historical Renovation", "بازسازی تاریخی") : project.name} thumbnail ${index + 1}`}
+                  alt={`${getProjectName(project.name)} thumbnail ${index + 1}`}
                   fill
                   className="object-cover"
                 />
@@ -995,6 +1087,39 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
             ))}
           </div>
         </div>
+
+        {/* Show Document Button */}
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" className="mt-6 rounded-full border-gray-300 hover:bg-gray-100">
+              {translations[lang].showDocument}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-3xl p-6 rounded-lg shadow-xl bg-white" style={{ direction: lang === "fa" ? "rtl" : "ltr" }}>
+            <DialogHeader className="flex justify-between items-center mb-4">
+              <DialogTitle>{getProjectName(project.name)}</DialogTitle>
+              <DialogClose asChild>
+                <Button variant="ghost" size="icon">
+                  <X className="w-5 h-5" />
+                </Button>
+              </DialogClose>
+            </DialogHeader>
+            <div className="min-h-[300px] p-4 border border-gray-200 rounded-md bg-gray-50">
+              {renderModalContent()}
+            </div>
+            <div className="flex justify-between items-center mt-4">
+              <Button variant="outline" onClick={handlePrevModalPage} disabled={modalPage === 1}>
+                <ChevronLeft className="w-4 h-4 mr-2" /> {lang === "fa" ? "قبلی" : "Previous"}
+              </Button>
+              <span className="text-gray-600">
+                {translations[lang].page} {modalPage} {translations[lang].of} {totalModalPages}
+              </span>
+              <Button variant="outline" onClick={handleNextModalPage} disabled={modalPage === totalModalPages}>
+                {lang === "fa" ? "بعدی" : "Next"} <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </main>
 
       {/* Navigation Menu Overlay */}

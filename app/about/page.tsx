@@ -111,15 +111,15 @@ export default function AboutPage() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-3 relative">
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 relative">
         {/* Vertical Divider Lines (Desktop Only) */}
         <div className="hidden lg:block absolute left-1/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
-        <div className="hidden lg:block absolute left-2/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
+        <div className="hidden lg:block absolute left-3/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
 
         {/* Left Side: Manager Section */}
         <section 
-          className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left"
-          style={{ direction: lang === "fa" ? "rtl" : "ltr", textAlign: lang === "fa" ? "right" : "left" }}
+          className="p-8 md:p-12 lg:px-48 lg:py-16 flex flex-col justify-center items-start text-left"
+
         >
           <div className="max-w-lg">
             <h1 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight mb-6 text-gray-900">
@@ -145,14 +145,14 @@ export default function AboutPage() {
         </section>
 
         {/* Middle: Team Members */}
-        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
-          <div className="max-w-2xl lg:ml-[10%]">
-            <h2 className="text-2xl font-semibold mb-8 text-gray-900">{translations[lang].team}</h2>
+        <section className="p-8 md:p-12  lg:px-0 lg:py-16 flex flex-col justify-center items-start text-left">
+          <div className="max-w-2xl lg:ml-[5%]">
+            <h2 className="text-2xl font-semibold mb-8 text-gray-900  md:ml-[-7%]">{translations[lang].team} : </h2>
             <div className="relative">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-48 gap-y-8 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-20 md:gap-x-48 gap-y-8 mb-8">
                 {employeesDisplay.map((employee) => (
                   <div key={employee.id} className="flex flex-col items-center text-center">
-                    <div className="w-36 h-36 relative overflow-hidden rounded-lg mb-3">
+                    <div className="w-48 h-40 relative overflow-hidden rounded-lg mb-3">
                       <Image
                         src={employee.image || "/placeholder.svg"}
                         alt={employee.name}
@@ -160,8 +160,8 @@ export default function AboutPage() {
                         className="object-cover grayscale"
                       />
                     </div>
-                    <h3 className="text-base font-medium text-gray-900 leading-tight">{employee.name}</h3>
-                    <p className="text-sm text-gray-600">{employee.title}</p>
+                    <h3 className="text-base font-medium text-gray-900 leading-tight w-48">{employee.name}</h3>
+                    <p className="text-sm text-gray-600 w-48">{employee.title}</p>
                   </div>
                 ))}
               </div>

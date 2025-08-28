@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Menu, ArrowLeft, ArrowRight, X, Filter } from "lucide-react"
@@ -94,7 +94,7 @@ const filterVariants = {
 }
 
 export default function ProjectsPage() {
-  const [lang, setLang] = useState<"en" | "fa">("en") // Language state
+  const [lang, setLang] = useState<"en" | "fa">("en")
   const [projects, setProjects] = useState<any[]>([])
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
   const [locationFilter, setLocationFilter] = useState("ALL LOCATIONS")
@@ -103,6 +103,8 @@ export default function ProjectsPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   // Load projects based on language
   useEffect(() => {
@@ -110,7 +112,6 @@ export default function ProjectsPage() {
       try {
         const response = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
         const data = await response.json()
-        // Remove project with id: 12
         const projectsWithoutId12 = data.filter((project: any) => project.id !== 12)
         setProjects(projectsWithoutId12)
       } catch (error) {
@@ -124,23 +125,89 @@ export default function ProjectsPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000) // 0.5s entrance + 2s display + 0.5s exit
+    }, 3000)
     return () => clearTimeout(timer)
   }, [])
 
+  // Detect mobile
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  // Handle mouse movement for horizontal scrolling (desktop only)
+  useEffect(() => {
+    if (isMobile) return
+    const scrollContainer = scrollContainerRef.current
+    if (!scrollContainer) return
+
+    let isDragging = false
+    let startX: number
+    let scrollLeft: number
+
+    const handleMouseDown = (e: MouseEvent) => {
+      isDragging = true
+      startX = e.pageX - scrollContainer.offsetLeft
+      scrollLeft = scrollContainer.scrollLeft
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging) return
+      e.preventDefault()
+      const x = e.pageX - scrollContainer.offsetLeft
+      const walk = (x - startX) * 2
+      scrollContainer.scrollLeft = scrollLeft - walk
+    }
+
+    const handleMouseUp = () => {
+      isDragging = false
+    }
+
+    scrollContainer.addEventListener("mousedown", handleMouseDown)
+    scrollContainer.addEventListener("mousemove", handleMouseMove)
+    scrollContainer.addEventListener("mouseup", handleMouseUp)
+    scrollContainer.addEventListener("mouseleave", handleMouseUp)
+
+    return () => {
+      scrollContainer.removeEventListener("mousedown", handleMouseDown)
+      scrollContainer.removeEventListener("mousemove", handleMouseMove)
+      scrollContainer.removeEventListener("mouseup", handleMouseUp)
+      scrollContainer.removeEventListener("mouseleave", handleMouseUp)
+    }
+  }, [isMobile])
+
+  // Handle mouse wheel for horizontal scrolling (desktop only)
+  useEffect(() => {
+    if (isMobile) return
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault()
+      const scrollAmount = e.deltaY * 0.5 // Adjust scroll speed
+      container.scrollBy({ left: scrollAmount, behavior: "smooth" })
+    }
+
+    container.addEventListener("wheel", handleWheel, { passive: false })
+    return () => container.removeEventListener("wheel", handleWheel)
+  }, [isMobile])
+
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
-      const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter;
-      const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter;
-      const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter;
-      return typeMatch && locationMatch && yearMatch;
-    });
-  }, [projects, typeFilter, locationFilter, yearFilter]);
+      const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
+      const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
+      const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter
+      return typeMatch && locationMatch && yearMatch
+    })
+  }, [projects, typeFilter, locationFilter, yearFilter])
 
-  // Calculate total pages (limited to 2 pages)
   const PROJECTS_PER_PAGE = 16
-  const totalProjects = Math.min(filteredProjects.length, PROJECTS_PER_PAGE * 2) // Limit to 2 pages
-  const totalPages = Math.min(Math.ceil(totalProjects / PROJECTS_PER_PAGE), 2) // Max 2 pages
+  const totalProjects = Math.min(filteredProjects.length, PROJECTS_PER_PAGE * 2)
+  const totalPages = Math.min(Math.ceil(totalProjects / PROJECTS_PER_PAGE), 2)
 
   const handleProjectClick = (projectId: number) => {
     setSelectedProject(projectId)
@@ -153,7 +220,7 @@ export default function ProjectsPage() {
   const handlePreviousProject = () => {
     if (selectedProject) {
       const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject)
-      if (currentIndex === -1) return;
+      if (currentIndex === -1) return
       const previousIndex = currentIndex > 0 ? currentIndex - 1 : filteredProjects.length - 1
       setSelectedProject(filteredProjects[previousIndex].id)
     }
@@ -162,7 +229,7 @@ export default function ProjectsPage() {
   const handleNextProject = () => {
     if (selectedProject) {
       const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject)
-      if (currentIndex === -1) return;
+      if (currentIndex === -1) return
       const nextIndex = currentIndex < filteredProjects.length - 1 ? currentIndex + 1 : 0
       setSelectedProject(filteredProjects[nextIndex].id)
     }
@@ -171,15 +238,11 @@ export default function ProjectsPage() {
   const selectedProjectData = filteredProjects.find((p) => p.id === selectedProject)
   const otherProjects = filteredProjects.filter((p) => p.id !== selectedProject)
 
-  // Text direction and font styles for content (excluding header)
   const contentTextDirection = lang === "fa" ? "rtl" : "ltr"
   const contentFontFamily = lang === "fa" ? "Vazirmatn, sans-serif" : "Inter, sans-serif"
-
-  // Always LTR and Inter font for header
   const headerTextDirection = "ltr"
   const headerFontFamily = "Inter, sans-serif"
 
-  // Translated filter options
   const filterOptions = {
     type: [
       { value: "ALL TYPE", label: translations[lang].allType },
@@ -240,7 +303,7 @@ export default function ProjectsPage() {
           exit="exit"
           variants={pageVariants}
           transition={{ duration: 0.5 }}
-          className="min-h-screen bg-white"
+          className="min-h-screen bg-white overflow-hidden"
           style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
         >
           <AnimatePresence mode="wait">
@@ -252,11 +315,11 @@ export default function ProjectsPage() {
                 exit="exit"
                 variants={projectDetailVariants}
                 transition={{ duration: 0.5 }}
-                className="min-h-screen bg-white"
+                className="min-h-screen bg-white overflow-hidden"
                 style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
                 <header
-                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white"
+                  className="flex items-center justify-between p-4 md:p-6 border-b  border-gray-100 bg-white"
                   style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}
                 >
                   <div className="flex items-center gap-2 md:gap-4">
@@ -268,53 +331,54 @@ export default function ProjectsPage() {
                         className="object-contain"
                       />
                     </div>
+                  </div>
+                                      <div className="hidden lg:flex items-center gap-4">
+                      <Select value={typeFilter} onValueChange={setTypeFilter}>
+                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filterOptions.type.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select value={locationFilter} onValueChange={setLocationFilter}>
+                        <SelectTrigger className="w-[160px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filterOptions.location.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select value={yearFilter} onValueChange={setYearFilter}>
+                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filterOptions.year.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  <div className="flex items-center gap-4 ">
+
                     <Button
                       variant="outline"
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
                       className="text-sm"
                     >
-                      {lang === "en" ? "فارسی" : "English"}
+                      {lang === "en" ? "EN/FA" : "FA/EN"}
                     </Button>
-                  </div>
-                  <div className="hidden lg:flex items-center gap-4">
-                    <Select value={typeFilter} onValueChange={setTypeFilter}>
-                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {filterOptions.type.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Select value={locationFilter} onValueChange={setLocationFilter}>
-                      <SelectTrigger className="w-[160px] rounded-full border-gray-300">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {filterOptions.location.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Select value={yearFilter} onValueChange={setYearFilter}>
-                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {filterOptions.year.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex items-center gap-4">
                     <Button
                       variant="outline"
                       onClick={handleBackToGrid}
@@ -391,7 +455,7 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 mt-[3%] bg-gray-100">
+                <div className="px-3 md:px-6 mt-[3%] bg-gray-100 ">
                   <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
@@ -559,7 +623,6 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                 </div>
-                <div className="h-20" />
               </motion.div>
             ) : (
               <motion.div
@@ -569,7 +632,7 @@ export default function ProjectsPage() {
                 exit="exit"
                 variants={pageVariants}
                 transition={{ duration: 0.5 }}
-                className="min-h-screen "
+                className="min-h-screen overflow-hidden"
                 style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
                 <header
@@ -585,53 +648,54 @@ export default function ProjectsPage() {
                         className="object-contain"
                       />
                     </div>
+                  </div>
+                                      <div className="hidden lg:flex items-center gap-4">
+                      <Select value={typeFilter} onValueChange={setTypeFilter}>
+                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filterOptions.type.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select value={locationFilter} onValueChange={setLocationFilter}>
+                        <SelectTrigger className="w-[160px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filterOptions.location.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Select value={yearFilter} onValueChange={setYearFilter}>
+                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {filterOptions.year.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  <div className="flex items-center gap-2 md:gap-4">
+
                     <Button
                       variant="outline"
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
                       className="text-sm"
                     >
-                      {lang === "en" ? "فارسی" : "English"}
+                      {lang === "en" ? "EN/FA" : "FA/EN"}
                     </Button>
-                  </div>
-                  <div className="hidden lg:flex items-center gap-4">
-                    <Select value={typeFilter} onValueChange={setTypeFilter}>
-                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {filterOptions.type.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Select value={locationFilter} onValueChange={setLocationFilter}>
-                      <SelectTrigger className="w-[160px] rounded-full border-gray-300">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {filterOptions.location.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <Select value={yearFilter} onValueChange={setYearFilter}>
-                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {filterOptions.year.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div className="flex items-center gap-2 md:gap-4">
                     <Button
                       variant="ghost"
                       size="icon"
@@ -699,51 +763,59 @@ export default function ProjectsPage() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <div className="px-3 md:px-6 mt-8 md:mt-2 md:pb-8 bg-gray-300 overflow-x-auto overflow-y-hidden">
-                  <div className="flex flex-row snap-x snap-mandatory">
+                <div
+                  ref={scrollContainerRef}
+                  className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-y-auto overflow-x-hidden' : 'overflow-x-auto overflow-y-hidden'}`}
+                  style={{ height: "calc(100vh - 112px)", scrollBehavior: isMobile ? 'auto' : 'smooth' }}
+                >
+                  <div className={isMobile ? "flex flex-col gap-4" : "flex flex-row gap-4"}>
                     {Array.from({ length: totalPages }).map((_, pageIndex) => {
-                      const startIndex = pageIndex * PROJECTS_PER_PAGE;
-                      const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE);
+                      const startIndex = pageIndex * PROJECTS_PER_PAGE
+                      const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
                       return (
                         <div
                           key={`page-${pageIndex}`}
-                          className="min-w-full flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 px-[6%] mx-auto lg:mt-[2%]"
-                          style={{ height: "calc(100vh - 220px)", overflowY: "hidden" }}
+                          className={isMobile
+                            ? "w-full grid grid-cols-1 gap-3"
+                            : "min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] pr-5 flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]"}
+                          style={{ height: isMobile ? "auto" : "calc(100vh - 212px)", overflowY: isMobile ? "visible" : "hidden" }}
                         >
                           {currProjects.map((project, index) => {
-                            let gridClass = "col-span-1 row-span-1"
-                            if (index === 0)
-                              gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                            else if (index === 1)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 2)
-                              gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
-                            else if (index === 3)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 4)
-                              gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                            else if (index === 5)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 6)
-                              gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
-                            else if (index === 7)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 8)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 9)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 10)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 11)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 12)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 13)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 14)
-                              gridClass = "col-span-1 row-span-1"
-                            else if (index === 15)
-                              gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1"
+                            let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1"
+                            if (!isMobile) {
+                              if (index === 0)
+                                gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                              else if (index === 1)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 2)
+                                gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                              else if (index === 3)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 4)
+                                gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                              else if (index === 5)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 6)
+                                gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                              else if (index === 7)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 8)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 9)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 10)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 11)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 12)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 13)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 14)
+                                gridClass = "col-span-1 row-span-1"
+                              else if (index === 15)
+                                gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1"
+                            }
 
                             return (
                               <div
@@ -773,7 +845,6 @@ export default function ProjectsPage() {
                     })}
                   </div>
                 </div>
-                <div className="h-20 bg-white" />
                 <AnimatePresence>
                   {isMenuOpen && (
                     <motion.div
