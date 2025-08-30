@@ -67,24 +67,24 @@ export default function ContactPage() {
               className="object-contain"
             />
           </div>
+        </div>
+        <div className="flex items-center gap-2 md:gap-4">
           <Button
             variant="outline"
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
-            className="text-sm border-gray-200 hover:bg-gray-100/80 rounded-lg transition-colors"
+            className="text-sm"
           >
-            {lang === "en" ? "فارسی" : "English"}
+            {lang === "en" ? "EN/FA" : "FA/EN"}
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="w-10 h-10 md:w-12 md:h-12 hover:bg-gray-100/80 rounded-full transition-colors"
+            onClick={() => setIsMenuOpen(true)}
+          >
+            <Menu className="w-6 h-6 text-gray-700" />
           </Button>
         </div>
-
-        {/* Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="w-10 h-10 md:w-12 md:h-12 hover:bg-gray-100/80 rounded-full transition-colors"
-          onClick={() => setIsMenuOpen(true)}
-        >
-          <Menu className="w-6 h-6 text-gray-700" />
-        </Button>
       </header>
 
       {/* Main Content Area */}

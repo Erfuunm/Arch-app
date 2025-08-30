@@ -780,66 +780,93 @@ export default function ProjectsPage() {
                             : "min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] pr-5 flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]"}
                           style={{ height: isMobile ? "auto" : "calc(100vh - 212px)", overflowY: isMobile ? "visible" : "hidden" }}
                         >
-                          {currProjects.map((project, index) => {
-                            let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1"
-                            if (!isMobile) {
-                              if (index === 0)
-                                gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                              else if (index === 1)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 2)
-                                gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
-                              else if (index === 3)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 4)
-                                gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                              else if (index === 5)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 6)
-                                gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
-                              else if (index === 7)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 8)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 9)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 10)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 11)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 12)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 13)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 14)
-                                gridClass = "col-span-1 row-span-1"
-                              else if (index === 15)
-                                gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-1"
-                            }
+{currProjects.map((project, index) => {
+  let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1";
+  let isPlaceholder = false;
 
-                            return (
-                              <div
-                                key={`grid-${project.id}`}
-                                className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
-                                onClick={() => handleProjectClick(project.id)}
-                              >
-                                <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
-                                  <Image
-                                    src={project.image || "/placeholder.svg"}
-                                    alt={project.name}
-                                    fill
-                                    className="object-cover transition-transform group-hover:scale-105"
-                                  />
-                                </div>
-                                <div className="h-[60px] bg-gray-50 p-3 flex flex-col justify-center">
-                                  <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-                                  <p className="text-xs text-gray-600">
-                                    {project.year} {project.location}
-                                  </p>
-                                </div>
-                              </div>
-                            )
-                          })}
+  // Define placeholder indices where you want blank spaces
+  if (!isMobile) {
+    if (index === 0) {
+      gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2";
+    } else if (index === 1) {
+      // Mark as placeholder to create a blank space
+      isPlaceholder = true;
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 2) {
+      gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1";
+    } else if (index === 3) {
+ 
+      gridClass = "col-span-1 row-span-3 ";
+    } else if (index === 4) {
+      
+      gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2";
+    } else if (index === 5) {
+      
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 6) {
+      gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2";
+    } else if (index === 7) {
+      gridClass = "col-span-1 row-span-1 hidden";
+      
+           
+    } else if (index === 8) {
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 9) {
+      gridClass = "col-span-1 row-span-2";
+    } else if (index === 10) {
+      gridClass = "col-span-1 row-span-1 bg-red-800 hidden";
+             isPlaceholder = true;
+    } else if (index === 11) {
+       isPlaceholder = true;
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 12) {
+             isPlaceholder = true;
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 13) {
+             
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 14) {
+       isPlaceholder = true;
+      gridClass = "col-span-1 row-span-1";
+    } else if (index === 15) {
+      gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-1";
+    }
+  }
+
+  // Render a placeholder for blank spaces
+  if (isPlaceholder) {
+    return (
+      <div
+        key={`placeholder-${index}`}
+        className={`relative ${gridClass}`}
+      />
+    );
+  }
+
+  // Render project item for non-placeholder indices
+  return (
+    <div
+      key={`grid-${project.id}`}
+      className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
+      onClick={() => handleProjectClick(project.id)}
+    >
+      <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
+        <Image
+          src={project.image || "/placeholder.svg"}
+          alt={project.name}
+          fill
+          className="object-cover transition-transform group-hover:scale-105"
+        />
+      </div>
+      <div className="h-[60px] bg-gray-50 p-3 flex flex FUNNY STORY! I got so caught up analyzing this code that I forgot to make dinner—my cat’s giving me the stink eye now! Anyway, back to your grid... col justify-center">
+        <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+        <p className="text-xs text-gray-600">
+          {project.year} {project.location}
+        </p>
+      </div>
+    </div>
+  );
+})}
                         </div>
                       )
                     })}

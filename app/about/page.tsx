@@ -39,7 +39,7 @@ const menuVariants = {
 }
 
 export default function AboutPage() {
-  const [lang, setLang] = useState<"en" | "fa">("en") // Language state
+  const [lang, setLang] = useState<"en" | "fa">("en")
   const [employees, setEmployees] = useState<any[]>([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [employeePage, setEmployeePage] = useState(0)
@@ -64,9 +64,7 @@ export default function AboutPage() {
     ...employees.filter((employee) => employee.status === "former")
   ]
 
-  const EMPLOYEES_PER_PAGE = 9 // Increased to 9 to show more members
-
-  // Pagination for employees
+  const EMPLOYEES_PER_PAGE = 9
   const totalEmployeePages = Math.ceil(sortedEmployees.length / EMPLOYEES_PER_PAGE)
   const startIndex = employeePage * EMPLOYEES_PER_PAGE
   const employeesDisplay = sortedEmployees.slice(startIndex, startIndex + EMPLOYEES_PER_PAGE)
@@ -79,10 +77,15 @@ export default function AboutPage() {
     setEmployeePage((prev) => (prev - 1 + totalEmployeePages) % totalEmployeePages)
   }
 
+  const contentTextDirection = lang === "fa" ? "rtl" : "ltr"
+  const contentFontFamily = lang === "fa" ? "Vazirmatn, sans-serif" : "Inter, sans-serif"
+  const headerTextDirection = "ltr"
+  const headerFontFamily = "Inter, sans-serif"
+
   return (
-    <div className="min-h-screen bg-white flex flex-col" lang={lang}>
+    <div className="min-h-screen bg-white flex flex-col" lang={lang} style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}>
       {/* Header */}
-      <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200">
+      <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white" style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}>
         <div className="flex items-center gap-2 md:gap-4">
           <div className="relative w-8 h-8 md:w-10 md:h-10">
             <Image
@@ -92,22 +95,24 @@ export default function AboutPage() {
               className="object-contain"
             />
           </div>
+        </div>
+        <div className="flex items-center gap-2 md:gap-4">
           <Button
             variant="outline"
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
             className="text-sm"
           >
-            {lang === "en" ? "فارسی" : "English"}
+            {lang === "en" ? "EN/FA" : "FA/EN"}
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="w-8 h-8 md:w-10 md:h-10"
+            onClick={() => setIsMenuOpen(true)}
+          >
+            <Menu className="w-5 h-5 md:w-6 md:h-6" />
           </Button>
         </div>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="w-8 h-8 md:w-10 md:h-10"
-          onClick={() => setIsMenuOpen(true)}
-        >
-          <Menu className="w-5 h-5 md:w-6 md:h-6" />
-        </Button>
       </header>
 
       {/* Main Content Area */}
@@ -119,7 +124,6 @@ export default function AboutPage() {
         {/* Left Side: Manager Section */}
         <section 
           className="p-8 md:p-12 lg:px-48 lg:py-16 flex flex-col justify-center items-start text-left"
-
         >
           <div className="max-w-lg">
             <h1 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight mb-6 text-gray-900">
@@ -145,9 +149,9 @@ export default function AboutPage() {
         </section>
 
         {/* Middle: Team Members */}
-        <section className="p-8 md:p-12  lg:px-0 lg:py-16 flex flex-col justify-center items-start text-left">
+        <section className="p-8 md:p-12 lg:px-0 lg:py-16 flex flex-col justify-center items-start text-left">
           <div className="max-w-2xl lg:ml-[5%]">
-            <h2 className="text-2xl font-semibold mb-8 text-gray-900  md:ml-[-7%]">{translations[lang].team} : </h2>
+            <h2 className="text-2xl font-semibold mb-8 text-gray-900 md:ml-[-7%]">{translations[lang].team} : </h2>
             <div className="relative">
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-20 md:gap-x-48 gap-y-8 mb-8">
                 {employeesDisplay.map((employee) => (
@@ -198,12 +202,13 @@ export default function AboutPage() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={menuVariants}
             transition={{ type: "tween", duration: 0.3 }}
             className="fixed inset-y-0 right-0 w-full sm:w-80 bg-white shadow-lg z-50 p-6 flex flex-col"
-            style={{ direction: "ltr" }}
+            style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
           >
             <div className="flex justify-end mb-8">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>

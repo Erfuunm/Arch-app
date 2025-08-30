@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -978,13 +977,6 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               className="object-contain"
             />
           </div>
-          <Button
-            variant="outline"
-            onClick={() => setLang(lang === "en" ? "fa" : "en")}
-            className="text-sm border-gray-300 hover:bg-gray-100 transition-colors"
-          >
-            {lang === "en" ? "فارسی" : "English"}
-          </Button>
           <div className="hidden sm:block text-sm md:text-base text-gray-600 ml-4">
             {translations[lang].projects} / {getProjectName(project.name)}
           </div>
@@ -1029,9 +1021,18 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           </Select> 
         </div>
 
-        <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10" onClick={() => setIsMenuOpen(true)}>
-          <Menu className="w-5 h-5 md:w-6 md:h-6" />
-        </Button>
+        <div className="flex items-center gap-2 md:gap-4">
+          <Button
+            variant="outline"
+            onClick={() => setLang(lang === "en" ? "fa" : "en")}
+            className="text-sm"
+          >
+            {lang === "en" ? "EN/FA" : "FA/EN"}
+          </Button>
+          <Button variant="ghost" size="icon" className="w-8 h-8 md:w-10 md:h-10" onClick={() => setIsMenuOpen(true)}>
+            <Menu className="w-5 h-5 md:w-6 md:h-6" />
+          </Button>
+        </div>
       </header>
 
       {/* Main Content Area */}
