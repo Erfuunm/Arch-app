@@ -188,13 +188,28 @@ export default function ProjectsPage() {
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault()
-      const scrollAmount = e.deltaY * 0.5 // Adjust scroll speed
+      const scrollAmount = e.deltaY * 0.5
       container.scrollBy({ left: scrollAmount, behavior: "smooth" })
     }
 
     container.addEventListener("wheel", handleWheel, { passive: false })
     return () => container.removeEventListener("wheel", handleWheel)
   }, [isMobile])
+
+  // Handle arrow button scrolling
+  const scrollLeft = () => {
+    const container = scrollContainerRef.current
+    if (container) {
+      container.scrollBy({ left: -300, behavior: "smooth" })
+    }
+  }
+
+  const scrollRight = () => {
+    const container = scrollContainerRef.current
+    if (container) {
+      container.scrollBy({ left: 300, behavior: "smooth" })
+    }
+  }
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
@@ -277,7 +292,7 @@ export default function ProjectsPage() {
           className="fixed inset-0 bg-black flex items-center justify-center z-50"
         >
           <motion.h1
-            className="text-white text-2xl md:text-4xl font-bold tracking-wider flex"
+            className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-wider flex flex-wrap justify-center px-4"
             style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
             variants={loadingContainerVariants}
             initial="initial"
@@ -319,7 +334,7 @@ export default function ProjectsPage() {
                 style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}
               >
                 <header
-                  className="flex items-center justify-between p-4 md:p-6 border-b  border-gray-100 bg-white"
+                  className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white"
                   style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}
                 >
                   <div className="flex items-center gap-2 md:gap-4">
@@ -332,46 +347,45 @@ export default function ProjectsPage() {
                       />
                     </div>
                   </div>
-                                      <div className="hidden lg:flex items-center gap-4">
-                      <Select value={typeFilter} onValueChange={setTypeFilter}>
-                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filterOptions.type.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Select value={locationFilter} onValueChange={setLocationFilter}>
-                        <SelectTrigger className="w-[160px] rounded-full border-gray-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filterOptions.location.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Select value={yearFilter} onValueChange={setYearFilter}>
-                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filterOptions.year.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  <div className="flex items-center gap-4 ">
-
+                  <div className="hidden lg:flex items-center gap-4">
+                    <Select value={typeFilter} onValueChange={setTypeFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filterOptions.type.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Select value={locationFilter} onValueChange={setLocationFilter}>
+                      <SelectTrigger className="w-[160px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filterOptions.location.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Select value={yearFilter} onValueChange={setYearFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filterOptions.year.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex items-center gap-4">
                     <Button
                       variant="outline"
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
@@ -455,7 +469,7 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 mt-[3%] bg-gray-100 ">
+                <div className="px-3 md:px-6 mt-[3%] bg-gray-100">
                   <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
@@ -494,7 +508,7 @@ export default function ProjectsPage() {
                         <div
                           className="relative overflow-hidden rounded-lg bg-gray-100 shadow-lg border border-gray-200"
                         >
-                          <div className="relative h-60 md:h-80">
+                          <div className="relative h-60 sm:h-80 md:h-96 lg:h-[500px]">
                             <Image
                               src={selectedProjectData.image || "/placeholder.svg"}
                               alt={selectedProjectData.name}
@@ -649,46 +663,45 @@ export default function ProjectsPage() {
                       />
                     </div>
                   </div>
-                                      <div className="hidden lg:flex items-center gap-4">
-                      <Select value={typeFilter} onValueChange={setTypeFilter}>
-                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filterOptions.type.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Select value={locationFilter} onValueChange={setLocationFilter}>
-                        <SelectTrigger className="w-[160px] rounded-full border-gray-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filterOptions.location.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      <Select value={yearFilter} onValueChange={setYearFilter}>
-                        <SelectTrigger className="w-[140px] rounded-full border-gray-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {filterOptions.year.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              {option.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+                  <div className="hidden lg:flex items-center gap-4">
+                    <Select value={typeFilter} onValueChange={setTypeFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filterOptions.type.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Select value={locationFilter} onValueChange={setLocationFilter}>
+                      <SelectTrigger className="w-[160px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filterOptions.location.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Select value={yearFilter} onValueChange={setYearFilter}>
+                      <SelectTrigger className="w-[140px] rounded-full border-gray-300">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {filterOptions.year.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                   <div className="flex items-center gap-2 md:gap-4">
-
                     <Button
                       variant="outline"
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
@@ -763,113 +776,125 @@ export default function ProjectsPage() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <div
-                  ref={scrollContainerRef}
-                  className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-y-auto overflow-x-hidden' : 'overflow-x-auto overflow-y-hidden'}`}
-                  style={{ height: "calc(100vh - 112px)", scrollBehavior: isMobile ? 'auto' : 'smooth' }}
-                >
-                  <div className={isMobile ? "flex flex-col gap-4" : "flex flex-row gap-4"}>
-                    {Array.from({ length: totalPages }).map((_, pageIndex) => {
-                      const startIndex = pageIndex * PROJECTS_PER_PAGE
-                      const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
-                      return (
-                        <div
-                          key={`page-${pageIndex}`}
-                          className={isMobile
-                            ? "w-full grid grid-cols-1 gap-3"
-                            : "min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] pr-5 flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]"}
-                          style={{ height: isMobile ? "auto" : "calc(100vh - 212px)", overflowY: isMobile ? "visible" : "hidden" }}
-                        >
-{currProjects.map((project, index) => {
-  let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1";
-  let isPlaceholder = false;
+                <div className="relative">
+                  <div
+                    ref={scrollContainerRef}
+                    className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-x-auto' : 'overflow-x-auto overflow-y-hidden'}`}
+                    style={{ height: isMobile ? "auto" : "calc(100vh - 112px)", scrollBehavior: "smooth" }}
+                  >
+                    <div className={isMobile ? "flex flex-row gap-4" : "flex flex-row gap-4"}>
+                      {Array.from({ length: totalPages }).map((_, pageIndex) => {
+                        const startIndex = pageIndex * PROJECTS_PER_PAGE
+                        const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
+                        return (
+                          <div
+                            key={`page-${pageIndex}`}
+                            className={isMobile
+                              ? "min-w-[calc(100vw-24px)] grid grid-cols-1 sm:grid-cols-2 gap-3"
+                              : "min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] pr-5 flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]"}
+                            style={{ height: isMobile ? "auto" : "calc(100vh - 212px)", overflowY: isMobile ? "auto" : "hidden" }}
+                          >
+                            {currProjects.map((project, index) => {
+                              let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1"
+                              let isPlaceholder = false
 
-  // Define placeholder indices where you want blank spaces
-  if (!isMobile) {
-    if (index === 0) {
-      gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2";
-    } else if (index === 1) {
-      // Mark as placeholder to create a blank space
-      isPlaceholder = true;
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 2) {
-      gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1";
-    } else if (index === 3) {
- 
-      gridClass = "col-span-1 row-span-3 ";
-    } else if (index === 4) {
-      
-      gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2";
-    } else if (index === 5) {
-      
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 6) {
-      gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2";
-    } else if (index === 7) {
-      gridClass = "col-span-1 row-span-1 hidden";
-      
-           
-    } else if (index === 8) {
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 9) {
-      gridClass = "col-span-1 row-span-2";
-    } else if (index === 10) {
-      gridClass = "col-span-1 row-span-1 bg-red-800 hidden";
-             isPlaceholder = true;
-    } else if (index === 11) {
-       isPlaceholder = true;
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 12) {
-             isPlaceholder = true;
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 13) {
-             
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 14) {
-       isPlaceholder = true;
-      gridClass = "col-span-1 row-span-1";
-    } else if (index === 15) {
-      gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-1";
-    }
-  }
+                              if (!isMobile) {
+                                if (index === 0) {
+                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                                } else if (index === 1) {
+                                  isPlaceholder = true
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 2) {
+                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                                } else if (index === 3) {
+                                  gridClass = "col-span-1 row-span-3"
+                                } else if (index === 4) {
+                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                                } else if (index === 5) {
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 6) {
+                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                                } else if (index === 7) {
+                                  gridClass = "col-span-1 row-span-1 hidden"
+                                } else if (index === 8) {
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 9) {
+                                  gridClass = "col-span-1 row-span-2"
+                                } else if (index === 10) {
+                                  isPlaceholder = true
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 11) {
+                                  isPlaceholder = true
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 12) {
+                                  isPlaceholder = true
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 13) {
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 14) {
+                                  isPlaceholder = true
+                                  gridClass = "col-span-1 row-span-1"
+                                } else if (index === 15) {
+                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-1"
+                                }
+                              }
 
-  // Render a placeholder for blank spaces
-  if (isPlaceholder) {
-    return (
-      <div
-        key={`placeholder-${index}`}
-        className={`relative ${gridClass}`}
-      />
-    );
-  }
+                              if (isPlaceholder) {
+                                return (
+                                  <div
+                                    key={`placeholder-${index}`}
+                                    className={`relative ${gridClass}`}
+                                  />
+                                )
+                              }
 
-  // Render project item for non-placeholder indices
-  return (
-    <div
-      key={`grid-${project.id}`}
-      className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
-      onClick={() => handleProjectClick(project.id)}
-    >
-      <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
-        <Image
-          src={project.image || "/placeholder.svg"}
-          alt={project.name}
-          fill
-          className="object-cover transition-transform group-hover:scale-105"
-        />
-      </div>
-      <div className="h-[60px] bg-gray-50 p-3 flex flex FUNNY STORY! I got so caught up analyzing this code that I forgot to make dinner—my cat’s giving me the stink eye now! Anyway, back to your grid... col justify-center">
-        <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-        <p className="text-xs text-gray-600">
-          {project.year} {project.location}
-        </p>
-      </div>
-    </div>
-  );
-})}
-                        </div>
-                      )
-                    })}
+                              return (
+                                <div
+                                  key={`grid-${project.id}`}
+                                  className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
+                                  onClick={() => handleProjectClick(project.id)}
+                                >
+                                  <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
+                                    <Image
+                                      src={project.image || "/placeholder.svg"}
+                                      alt={project.name}
+                                      fill
+                                      className="object-cover transition-transform group-hover:scale-105"
+                                    />
+                                  </div>
+                                  <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-center justify-center">
+                                    <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+                                    <p className="text-xs text-gray-600">
+                                      {project.year} {project.location}
+                                    </p>
+                                  </div>
+                                </div>
+                              )
+                            })}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                  <div className="absolute top-1/2 transform -translate-y-1/2 left-0 z-10">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="bg-white/80 hover:bg-white shadow-md rounded-full w-10 h-10"
+                      onClick={scrollLeft}
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </Button>
+                  </div>
+                  <div className="absolute top-1/2 transform -translate-y-1/2 right-0 z-10">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="bg-white/80 hover:bg-white shadow-md rounded-full w-10 h-10"
+                      onClick={scrollRight}
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </Button>
                   </div>
                 </div>
                 <AnimatePresence>

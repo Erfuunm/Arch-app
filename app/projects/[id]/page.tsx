@@ -980,10 +980,11 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           <div className="hidden sm:block text-sm md:text-base text-gray-600 ml-4">
             {translations[lang].projects} / {getProjectName(project.name)}
           </div>
+          
         </div>
 
         {/* Filters in Header for Desktop */}
-        <div className="hidden lg:ml-[-18%] lg:flex items-center gap-4">
+        <div className="hidden lg:ml-[-18%]  items-center gap-4">
           <Select value={typeFilter} onValueChange={setTypeFilter}>
             <SelectTrigger className="w-[140px] rounded-full border-gray-300">
               <SelectValue />
