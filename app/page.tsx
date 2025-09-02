@@ -792,7 +792,7 @@ export default function ProjectsPage() {
                             className={isMobile
                               ? "min-w-[calc(100vw-24px)] grid grid-cols-1 sm:grid-cols-2 gap-3"
                               : "min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] pr-5 flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]"}
-                            style={{ height: isMobile ? "auto" : "calc(100vh - 212px)", overflowY: isMobile ? "auto" : "hidden" }}
+                            style={{ height: isMobile ? "auto" : "calc(100vh - 172px)", overflowY: isMobile ? "auto" : "hidden" }}
                           >
                             {currProjects.map((project, index) => {
                               let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1"
@@ -854,7 +854,7 @@ export default function ProjectsPage() {
                                   className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
                                   onClick={() => handleProjectClick(project.id)}
                                 >
-                                  <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-60px)]">
+                                  <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-30px)]">
                                     <Image
                                       src={project.image || "/placeholder.svg"}
                                       alt={project.name}
