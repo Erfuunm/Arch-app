@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState, useEffect } from "react"
@@ -64,7 +65,7 @@ export default function AboutPage() {
     ...employees.filter((employee) => employee.status === "former")
   ]
 
-  const EMPLOYEES_PER_PAGE = 9
+  const EMPLOYEES_PER_PAGE = 12
   const totalEmployeePages = Math.ceil(sortedEmployees.length / EMPLOYEES_PER_PAGE)
   const startIndex = employeePage * EMPLOYEES_PER_PAGE
   const employeesDisplay = sortedEmployees.slice(startIndex, startIndex + EMPLOYEES_PER_PAGE)
@@ -83,7 +84,7 @@ export default function AboutPage() {
   const headerFontFamily = "Inter, sans-serif"
 
   return (
-    <div className="min-h-screen bg-white flex flex-col" lang={lang} style={{ direction: contentTextDirection, fontFamily: contentFontFamily }}>
+    <div className="h-screen bg-white flex flex-col md:overflow-hidden" lang={lang} style={{  fontFamily: contentFontFamily }}>
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white" style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}>
         <div className="flex items-center gap-2 md:gap-4">
@@ -98,7 +99,7 @@ export default function AboutPage() {
         </div>
         <div className="flex items-center gap-2 md:gap-4">
           <Button
-            variant="outline"
+           
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
             className="text-sm"
           >
@@ -116,26 +117,26 @@ export default function AboutPage() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 relative">
-        {/* Vertical Divider Lines (Desktop Only) */}
-        <div className="hidden lg:block absolute left-1/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
-        <div className="hidden lg:block absolute left-3/3 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 relative md:overflow-hidden ">
+        {/* Vertical Divider Line (Desktop Only) */}
+        <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
 
         {/* Left Side: Manager Section */}
         <section 
-          className="p-8 md:p-12 lg:px-48 lg:py-16 flex flex-col justify-center items-start text-left"
+          className="p-8 md:p-12 lg:p-16 md:ml-[-10%] flex flex-col justify-center items-center text-left"
+          style={{  fontFamily: contentFontFamily }}
         >
-          <div className="max-w-lg">
-            <h1 className="text-3xl md:text-4xl lg:text-3xl font-bold leading-tight mb-6 text-gray-900">
+          <div className="max-w-md">
+            <h1 className="text-2xl md:text-3xl lg:text-2xl font-bold leading-tight mb-6 text-gray-900">
               {translations[lang].studioName}
             </h1>
-            <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-gray-700 mb-8 leading-relaxed text-base md:text-lg">
               {translations[lang].description}
             </p>
             <Button variant="outline" className="text-base font-medium flex items-center gap-2 mb-12 bg-transparent">
               {translations[lang].joinUs} <ArrowRight className="w-4 h-4" />
             </Button>
-            <div className="w-64 h-64 md:w-80 md:h-80 relative overflow-hidden rounded-lg mb-4">
+            <div className="w-48 h-48 md:w-64 md:h-64 relative overflow-hidden rounded-lg mb-4">
               <Image
                 src="/images/hasan-khayyat-zadeh.jpeg"
                 alt={lang === "fa" ? "حسن خیاط‌زاده" : "Hasan Khayyat Zadeh"}
@@ -143,20 +144,23 @@ export default function AboutPage() {
                 className="object-cover grayscale"
               />
             </div>
-            <h3 className="text-lg font-semibold text-gray-900">{lang === "fa" ? "حسن خیاط‌زاده" : "Hasan Khayyat Zadeh"}</h3>
+            <h3 className="text-base md:text-lg font-semibold text-gray-900">{lang === "fa" ? "حسن خیاط‌زاده" : "Hasan Khayyat Zadeh"}</h3>
             <p className="text-sm text-gray-600">{translations[lang].ceo}</p>
           </div>
         </section>
 
-        {/* Middle: Team Members */}
-        <section className="p-8 md:p-12 lg:px-0 lg:py-16 flex flex-col justify-center items-start text-left">
-          <div className="max-w-2xl lg:ml-[5%]">
-            <h2 className="text-2xl font-semibold mb-8 text-gray-900 md:ml-[-7%]">{translations[lang].team} : </h2>
+        {/* Right: Team Members */}
+        <section 
+          className="p-8 md:p-12 lg:p-16 flex flex-col justify-center items-start text-left md:mt-[-5%]"
+          style={{ fontFamily: contentFontFamily }}
+        >
+          <div className="max-w-4xl w-full">
+            <h2 className="text-xl md:text-2xl font-semibold mb-8 text-gray-900">{translations[lang].team} :</h2>
             <div className="relative">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-x-20 md:gap-x-48 gap-y-8 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                 {employeesDisplay.map((employee) => (
                   <div key={employee.id} className="flex flex-col items-center text-center">
-                    <div className="w-48 h-40 relative overflow-hidden rounded-lg mb-3">
+                    <div className="w-32 h-32 md:w-40 md:h-40 relative overflow-hidden rounded-lg mb-3">
                       <Image
                         src={employee.image || "/placeholder.svg"}
                         alt={employee.name}
@@ -164,8 +168,8 @@ export default function AboutPage() {
                         className="object-cover grayscale"
                       />
                     </div>
-                    <h3 className="text-base font-medium text-gray-900 leading-tight w-48">{employee.name}</h3>
-                    <p className="text-sm text-gray-600 w-48">{employee.title}</p>
+                    <h3 className="text-sm md:text-base font-medium text-gray-900 leading-tight">{employee.name}</h3>
+                    <p className="text-xs md:text-sm text-gray-600">{employee.title}</p>
                   </div>
                 ))}
               </div>
@@ -174,7 +178,7 @@ export default function AboutPage() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="absolute -left-24 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
                     onClick={handlePreviousEmployeePage}
                   >
                     <ChevronLeft className="w-6 h-6" />
@@ -182,7 +186,7 @@ export default function AboutPage() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="absolute -right-24 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
+                    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white shadow-md rounded-full"
                     onClick={handleNextEmployeePage}
                   >
                     <ChevronRight className="w-6 h-6" />
@@ -191,10 +195,6 @@ export default function AboutPage() {
               )}
             </div>
           </div>
-        </section>
-
-        {/* Right: Empty Section */}
-        <section className="p-8 md:p-12 lg:px-24 lg:py-16 flex flex-col justify-center items-start text-left">
         </section>
       </main>
 

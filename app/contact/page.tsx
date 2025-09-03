@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Mail, Phone, MapPin, Instagram, ArrowRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import JoinUsModal from "./JoinUsModal"
 
 // Translation object for bilingual static text
 const translations = {
@@ -50,6 +51,7 @@ const cardVariants = {
 export default function ContactPage() {
   const [lang, setLang] = useState<"en" | "fa">("en") // Language state
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <div 
@@ -70,7 +72,6 @@ export default function ContactPage() {
         </div>
         <div className="flex items-center gap-2 md:gap-4">
           <Button
-            variant="outline"
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
             className="text-sm"
           >
@@ -115,6 +116,7 @@ export default function ContactPage() {
               </p>
               <Button 
                 className="text-base font-medium flex items-center gap-2 mb-6 bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-all duration-300"
+                onClick={() => setIsModalOpen(true)}
               >
                 {translations[lang].joinUs} <ArrowRight className="w-4 h-4" />
               </Button>
@@ -238,6 +240,9 @@ export default function ContactPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Join Us Modal */}
+      <JoinUsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} lang={lang} />
     </div>
   )
 }

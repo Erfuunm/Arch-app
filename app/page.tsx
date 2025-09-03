@@ -387,16 +387,16 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex items-center gap-4">
                     <Button
-                      variant="outline"
+                      
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
                       className="text-sm"
                     >
                       {lang === "en" ? "EN/FA" : "FA/EN"}
                     </Button>
                     <Button
-                      variant="outline"
+                      
                       onClick={handleBackToGrid}
-                      className="flex items-center gap-2 bg-gray-900 text-white hover:bg-gray-800 hover:text-white"
+                      className="flex items-center gap-2  text-white hover:bg-gray-800 hover:text-white"
                     >
                       {translations[lang].back}
                     </Button>
@@ -469,8 +469,8 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 mt-[3%] bg-gray-100">
-                  <div className="max-w-7xl mx-auto">
+                <div className="px-3 md:px-6 h-auto  bg-[#f5f5f5]">
+                  <div className="max-w-7xl mx-auto pb-10 pt-8">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
                         {otherProjects.slice(0, 6).map((project, index) => (
@@ -703,7 +703,7 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex items-center gap-2 md:gap-4">
                     <Button
-                      variant="outline"
+                     
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
                       className="text-sm"
                     >
@@ -780,7 +780,7 @@ export default function ProjectsPage() {
                   <div
                     ref={scrollContainerRef}
                     className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-x-auto' : 'overflow-x-auto overflow-y-hidden'}`}
-                    style={{ height: isMobile ? "auto" : "calc(100vh - 112px)", scrollBehavior: "smooth" }}
+                    style={{ height: isMobile ? "auto" : "calc(100vh - 92px)", scrollBehavior: "smooth" }}
                   >
                     <div className={isMobile ? "flex flex-row gap-4" : "flex flex-row gap-4"}>
                       {Array.from({ length: totalPages }).map((_, pageIndex) => {
@@ -790,8 +790,8 @@ export default function ProjectsPage() {
                           <div
                             key={`page-${pageIndex}`}
                             className={isMobile
-                              ? "min-w-[calc(100vw-24px)] grid grid-cols-1 sm:grid-cols-2 gap-3"
-                              : "min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] pr-5 flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]"}
+                              ? "min-w-[calc(100vw-44px)] grid grid-cols-1 sm:grid-cols-2 gap-3"
+                              : `min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]`}
                             style={{ height: isMobile ? "auto" : "calc(100vh - 172px)", overflowY: isMobile ? "auto" : "hidden" }}
                           >
                             {currProjects.map((project, index) => {
