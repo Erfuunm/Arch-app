@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useRouter } from 'next/navigation'; // Import useRouter
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
@@ -857,6 +858,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const [lang, setLang] = useState<"en" | "fa">("en") // Language state
   const [modalPage, setModalPage] = useState(1)
   const totalModalPages = 3 // Adjust based on number of pages
+  const router = useRouter();
 
   // Default filters for display, not functional on this page
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
@@ -1023,8 +1025,15 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
+                    <Button
+            
+            onClick={() => router.push('/')} // Navigate to root path
+            className="text-sm"
+          >
+            {lang === "en" ? "Back" : "بازگشت"}
+          </Button>
           <Button
-            variant="outline"
+            
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
             className="text-sm"
           >
