@@ -387,16 +387,14 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex items-center gap-4">
                     <Button
-                      
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
                       className="text-sm"
                     >
                       {lang === "en" ? "EN/FA" : "FA/EN"}
                     </Button>
                     <Button
-                      
                       onClick={handleBackToGrid}
-                      className="flex items-center gap-2  text-white hover:bg-gray-800 hover:text-white"
+                      className="flex items-center gap-2 text-white hover:bg-gray-800 hover:text-white"
                     >
                       {translations[lang].back}
                     </Button>
@@ -469,7 +467,7 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 h-auto  bg-[#f5f5f5]">
+                <div className="px-3 md:px-6 h-auto bg-[#f5f5f5]">
                   <div className="max-w-7xl mx-auto pb-10 pt-8">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
@@ -510,7 +508,7 @@ export default function ProjectsPage() {
                         >
                           <div className="relative h-60 sm:h-80 md:h-96 lg:h-[500px]">
                             <Image
-                              src={selectedProjectData.image || "/placeholder.svg"}
+                              src={selectedProjectData.detailImage || selectedProjectData.image || "/placeholder.svg"}
                               alt={selectedProjectData.name}
                               fill
                               className="object-cover"
@@ -703,7 +701,6 @@ export default function ProjectsPage() {
                   </div>
                   <div className="flex items-center gap-2 md:gap-4">
                     <Button
-                     
                       onClick={() => setLang(lang === "en" ? "fa" : "en")}
                       className="text-sm"
                     >
