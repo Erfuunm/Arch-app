@@ -2,6 +2,8 @@ import { useState, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import emailjs from "@emailjs/browser";
+import JSZip from "jszip";
 
 interface JoinUsModalProps {
   isOpen: boolean;
@@ -22,11 +24,13 @@ const translations = {
     other: "Other",
     education: "Education",
     location: "Location",
-    resume: "Upload.Resume (PDF, max 15MB)",
+    resume: "Upload Resume (PDF, max 2MB)",
     submit: "Submit",
     cancel: "Cancel",
-    fileSizeError: "File size exceeds 15MB limit",
+    fileSizeError: "File size exceeds 2MB limit",
     fileTypeError: "Please upload a PDF file",
+    compressing: "Compressing file...",
+    fileTooLargeForEmail: "The uploaded file is too large after compression (must be under ~7MB after encoding). Please use a smaller file or contact support.",
     successMessage: "Your application has been submitted successfully!",
     errorMessage: "Failed to send application. Please try again.",
   },
@@ -42,11 +46,13 @@ const translations = {
     other: "سایر",
     education: "تحصیلات",
     location: "موقعیت",
-    resume: "آپلود رزومه (PDF، حداکثر ۱۵ مگابایت)",
+    resume: "آپلود رزومه (PDF، حداکثر ۲ مگابایت)",
     submit: "ارسال",
     cancel: "لغو",
-    fileSizeError: "حجم فایل از حد مجاز ۱۵ مگابایت بیشتر است",
+    fileSizeError: "حجم فایل از حد مجاز ۲ مگابایت بیشتر است",
     fileTypeError: "لطفاً فایل PDF آپلود کنید",
+    compressing: "در حال فشرده‌سازی فایل...",
+    fileTooLargeForEmail: "فایل آپلود شده پس از فشرده‌سازی بیش از حد بزرگ است (باید زیر ۷ مگابایت پس از رمزگذاری باشد). لطفاً از فایل کوچک‌تر استفاده کنید یا با پشتیبانی تماس بگیرید.",
     successMessage: "درخواست شما با موفقیت ارسال شد!",
     errorMessage: "ارسال درخواست ناموفق بود. لطفاً دوباره امتحان کنید.",
   },
@@ -68,9 +74,11 @@ export default function JoinUsModal({ isOpen, onClose, lang }: JoinUsModalProps)
     location: "",
   });
   const [resume, setResume] = useState<File | null>(null);
+  const [resumeType, setResumeType] = useState<"PDF" | "ZIP">("PDF");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCompressing, setIsCompressing] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -79,21 +87,49 @@ export default function JoinUsModal({ isOpen, onClose, lang }: JoinUsModalProps)
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      if (file.size > 15 * 1024 * 1024) {
+      console.log(`Original file size: ${(file.size / (1024 * 1024)).toFixed(2)} MB`);
+      if (file.size > 2 * 1024 * 1024) {
         setError(translations[lang].fileSizeError);
         setResume(null);
+        setResumeType("PDF");
         return;
       }
       if (file.type !== "application/pdf") {
         setError(translations[lang].fileTypeError);
         setResume(null);
+        setResumeType("PDF");
         return;
       }
-      setError("");
-      setResume(file);
+
+      // Compress to ZIP if file > 50KB
+      if (file.size > 50 * 1024) {
+        setIsCompressing(true);
+        setError("");
+        try {
+          const zip = new JSZip();
+          zip.file("resume.pdf", file);
+          const zippedBlob = await zip.generateAsync({ type: "blob" });
+          const zippedFile = new File([zippedBlob], `${file.name.replace('.pdf', '')}_resume.zip`, { type: "application/zip" });
+          console.log(`Zipped file size: ${(zippedFile.size / (1024 * 1024)).toFixed(2)} MB`);
+          setResume(zippedFile);
+          setResumeType("ZIP");
+          setError("");
+        } catch (zipError) {
+          console.error("ZIP compression failed:", zipError);
+          setError(translations[lang].errorMessage);
+          setResume(null);
+          setResumeType("PDF");
+        } finally {
+          setIsCompressing(false);
+        }
+      } else {
+        setError("");
+        setResume(file);
+        setResumeType("PDF");
+      }
     }
   };
 
@@ -103,28 +139,71 @@ export default function JoinUsModal({ isOpen, onClose, lang }: JoinUsModalProps)
     setSuccess("");
     setIsSubmitting(true);
 
-    try {
-      // Simulate sending email with form data and resume
-      // In a real app, this would use a backend service like EmailJS or a server endpoint
-      const form = new FormData();
-      form.append("name", formData.name);
-      form.append("lastName", formData.lastName);
-      form.append("age", formData.age);
-      form.append("gender", formData.gender);
-      form.append("education", formData.education);
-      form.append("location", formData.location);
-      if (resume) form.append("resume", resume);
+    if (!resume) {
+      setError("Please upload a resume.");
+      setIsSubmitting(false);
+      return;
+    }
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      // Prepare form data for EmailJS
+      const emailData = {
+        name: formData.name,
+        lastName: formData.lastName,
+        age: formData.age,
+        gender: formData.gender,
+        education: formData.education,
+        location: formData.location,
+        time: new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai" }),
+        to_email: "arman.mizban@gmail.com",
+        resume: await fileToBase64(resume),
+        resume_type: resumeType, // Add resume_type for template
+      };
+
+      // Log payload size for debugging
+      const payloadSize = JSON.stringify(emailData).length + (resume ? resume.size * 1.33 : 0);
+      console.log(`Estimated total payload size: ${(payloadSize / (1024 * 1024)).toFixed(2)} MB`);
+
+      // Initialize EmailJS with your public key
+      emailjs.init("yQNgJvnMJz3uvtDd4");
+
+      // Send email with form data
+      const response = await emailjs.send(
+        "service_h13d4wx",
+        "template_j2w6v3c",
+        emailData
+      );
+
+      console.log("EmailJS response:", response);
+
       setSuccess(translations[lang].successMessage);
       setFormData({ name: "", lastName: "", age: "", gender: "", education: "", location: "" });
       setResume(null);
-    } catch (err) {
-      setError(translations[lang].errorMessage);
+      setResumeType("PDF");
+    } catch (err: any) {
+      console.error("EmailJS error:", err);
+      if (err?.status === 413) {
+        setError(translations[lang].fileTooLargeForEmail);
+      } else {
+        setError(translations[lang].errorMessage);
+      }
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  // Utility function to convert file to base64
+  const fileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const result = reader.result as string;
+        console.log(`Base64 size: ${(result.length / (1024 * 1024)).toFixed(2)} MB`);
+        resolve(result);
+      };
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   return (
@@ -239,6 +318,7 @@ export default function JoinUsModal({ isOpen, onClose, lang }: JoinUsModalProps)
                     onChange={handleFileChange}
                     className="hidden"
                     id="resume-upload"
+                    disabled={isCompressing}
                   />
                   <label
                     htmlFor="resume-upload"
@@ -246,7 +326,7 @@ export default function JoinUsModal({ isOpen, onClose, lang }: JoinUsModalProps)
                   >
                     <Upload className="w-5 h-5 text-gray-600" />
                     <span className="text-sm text-gray-600">
-                      {resume ? resume.name : translations[lang].resume}
+                      {isCompressing ? translations[lang].compressing : (resume ? resume.name : translations[lang].resume)}
                     </span>
                   </label>
                 </div>
@@ -259,14 +339,14 @@ export default function JoinUsModal({ isOpen, onClose, lang }: JoinUsModalProps)
                   type="button"
                   variant="outline"
                   onClick={onClose}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isCompressing}
                 >
                   {translations[lang].cancel}
                 </Button>
                 <Button
                   type="submit"
                   className="bg-gray-900 text-white hover:bg-gray-800"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isCompressing || !resume}
                 >
                   {isSubmitting ? "Submitting..." : translations[lang].submit}
                 </Button>

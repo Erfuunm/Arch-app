@@ -21,6 +21,7 @@ const translations = {
     instagram: "Instagram",
     projects: "Projects",
     aboutUs: "About Us",
+    addressValue: "No. 46.1, Unit 2, 10th Goya St, Malek Abad, Mashhad, Iran"
   },
   fa: {
     contact: "تماس",
@@ -33,6 +34,7 @@ const translations = {
     instagram: "اینستاگرام",
     projects: "پروژه‌ها",
     aboutUs: "درباره ما",
+    addressValue: "مشهد / ملک آباد – نبش گویا 10 پلاک 46.1 واحد 2"
   },
 }
 
@@ -131,7 +133,7 @@ export default function ContactPage() {
                   <Mail className="w-5 h-5 text-gray-600" />
                   <div style={{ textAlign: lang === "fa" ? "right" : "left" }}>
                     <p className="text-sm text-gray-600">{translations[lang].email}</p>
-                    <p className="text-base font-medium text-gray-900">contact@pex-office.com</p>
+                    <p className="text-base font-medium text-gray-900">khayyatzadeh@gmail.com</p>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -141,7 +143,7 @@ export default function ContactPage() {
                   <Phone className="w-5 h-5 text-gray-600" />
                   <div style={{ textAlign: lang === "fa" ? "right" : "left" }}>
                     <p className="text-sm text-gray-600">{translations[lang].phone}</p>
-                    <p className="text-base font-medium text-gray-900">+1 (555) 123-4567</p>
+                    <p className="text-base font-medium text-gray-900">05136026460 - 09153159410</p>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -151,7 +153,7 @@ export default function ContactPage() {
                   <MapPin className="w-5 h-5 text-gray-600" />
                   <div style={{ textAlign: lang === "fa" ? "right" : "left" }}>
                     <p className="text-sm text-gray-600">{translations[lang].address}</p>
-                    <p className="text-base font-medium text-gray-900">123 Architecture Ave, Design District</p>
+                    <p className="text-base font-medium text-gray-900">{translations[lang].addressValue}</p>
                   </div>
                 </motion.div>
                 <motion.div 
@@ -191,7 +193,7 @@ export default function ContactPage() {
               ></iframe>
             </div>
             <p className="text-sm text-gray-600 mt-4" style={{ textAlign: lang === "fa" ? "right" : "left" }}>
-              {translations[lang].address}: 123 Architecture Ave, Design District
+              {translations[lang].address}: {translations[lang].addressValue}
             </p>
           </motion.div>
         </div>
