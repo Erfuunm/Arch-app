@@ -536,7 +536,7 @@ const projects = [
     name: "Zahedan Border Complex",
     year: "2025",
     location: "ZAHEDAN",
-    image: "/images/grownida.jpg",
+    image: "/images/EHSAN Hottel/1.jpg",
     type: "Government, Security",
     status: "Planning",
     timespan: "2025-2027",
@@ -546,14 +546,11 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/grownida.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+      "/images/EHSAN Hottel/1.jpg",
+      "/images/EHSAN Hottel/2.jpg",
+      "/images/EHSAN Hottel/3.jpg",
+      "/images/EHSAN Hottel/4.jpg",
+      "/images/EHSAN Hottel/5.jpg",
     ],
   },
   {
