@@ -553,10 +553,10 @@ const projects = [
   },
   {
     id: 24,
-    name: "Gorgan Agricultural Center",
+    name: "Fajr 4 Commercial Complex",
     year: "2024",
     location: "GORGAN",
-    image: "/images/ershad.jpg",
+    image: "/images/Fajr 4 Commercial Complex/1.jpg",
     type: "Agricultural, Research",
     status: "Under Construction",
     timespan: "2023-2024",
@@ -566,14 +566,12 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/ershad.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+      "/images/Fajr 4 Commercial Complex/1.jpg",
+      "/images/Fajr 4 Commercial Complex/2.jpg",
+      "/images/Fajr 4 Commercial Complex/3.jpg",
+       "/images/Fajr 4 Commercial Complex/4.jpg",
+       "/images/Fajr 4 Commercial Complex/5.jpg",
+   
     ],
   },
   {
