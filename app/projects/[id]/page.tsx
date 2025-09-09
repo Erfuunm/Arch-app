@@ -458,10 +458,10 @@ const projects = [
   },
   {
     id: 20,
-    name: "Hamadan Tech Park",
+    name: "ZEYTON no.2 Residential Complex",
     year: "2025",
     location: "HAMADAN",
-    image: "/images/ershad.jpg",
+    image:  "/images/ZEYTON no.2 Residential Complex/1.jpg",
     type: "Technology, Innovation",
     status: "Planning",
     timespan: "2025-2027",
@@ -471,14 +471,12 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/ershad.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+      "/images/ZEYTON no.2 Residential Complex/1.jpg",
+      "/images/ZEYTON no.2 Residential Complex/4.jpg",
+      "/images/ZEYTON no.2 Residential Complex/5.jpg",
+     "/images/ZEYTON no.2 Residential Complex/2.jpg",
+       "/images/ZEYTON no.2 Residential Complex/3.jpg",
+
     ],
   },
   {
@@ -625,10 +623,10 @@ const projects = [
   },
   {
     id: 27,
-    name: "Ilam University Complex",
+    name: "JAVAHER PLAZA Residential & Commerical Complex2",
     year: "2025",
     location: "ILAM",
-    image: "/images/grownida.jpg",
+    image: "/images/JAVAHER PLAZA Residential & Commerical Complex2/1.jpg",
     type: "Educational, Campus",
     status: "Planning",
     timespan: "2025-2028",
@@ -638,14 +636,11 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/grownida.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+      "/images/JAVAHER PLAZA Residential & Commerical Complex2/1.jpg",
+      "/images/JAVAHER PLAZA Residential & Commerical Complex2/2.jpg",
+      "/images/JAVAHER PLAZA Residential & Commerical Complex2/3.jpg",
+      "/images/JAVAHER PLAZA Residential & Commerical Complex2/4.jpg",
+      "/images/JAVAHER PLAZA Residential & Commerical Complex2/5.jpg",
     ],
   },
   {
