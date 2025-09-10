@@ -221,8 +221,8 @@ export default function ProjectsPage() {
   }, [projects, typeFilter, locationFilter, yearFilter])
 
   const PROJECTS_PER_PAGE = 16
-  const totalProjects = Math.min(filteredProjects.length, PROJECTS_PER_PAGE * 2)
-  const totalPages = Math.min(Math.ceil(totalProjects / PROJECTS_PER_PAGE), 2)
+  const totalProjects = Math.min(filteredProjects.length, PROJECTS_PER_PAGE * 3)
+  const totalPages = Math.min(Math.ceil(totalProjects / PROJECTS_PER_PAGE), 3)
 
   const handleProjectClick = (projectId: number) => {
     setSelectedProject(projectId)
@@ -773,127 +773,154 @@ export default function ProjectsPage() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <div className="relative">
+ <div className="relative">
+  <div
+    ref={scrollContainerRef}
+    className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-y-auto' : 'overflow-x-auto overflow-y-hidden'}`}
+    style={{ height: isMobile ? "auto" : "calc(100vh - 92px)", scrollBehavior: "smooth" }}
+  >
+    {isMobile ? (
+      <div className="grid grid-cols-1 gap-3">
+        {filteredProjects.map((project, index) => (
+          <div
+            key={`grid-${project.id}`}
+            className="group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200"
+            onClick={() => handleProjectClick(project.id)}
+          >
+            <div className="relative h-[180px]">
+              <Image
+                src={project.image || "/placeholder.svg"}
+                alt={project.name}
+                fill
+                className="object-cover transition-transform group-hover:scale-105"
+              />
+            </div>
+            <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-center justify-center">
+              <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+              <p className="text-xs text-gray-600">
+                {project.year} {project.location}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div className="flex flex-row gap-4">
+        {Array.from({ length: totalPages }).map((_, pageIndex) => {
+          const startIndex = pageIndex * PROJECTS_PER_PAGE
+          const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
+          return (
+            <div
+              key={`page-${pageIndex}`}
+              className={`min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]`}
+              style={{ height: "calc(100vh - 172px)", overflowY: "hidden" }}
+            >
+              {currProjects.map((project, index) => {
+                let gridClass = "col-span-1 row-span-1"
+                let isPlaceholder = false
+
+                if (index === 0) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                } else if (index === 1) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 2) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                } else if (index === 3) {
+                  gridClass = "col-span-1 row-span-3"
+                } else if (index === 4) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                } else if (index === 5) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 6) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                } else if (index === 7) {
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 8) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 9) {
+                  gridClass = "col-span-1 row-span-2"
+                } else if (index === 10) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 11) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 12) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 13) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 14) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 15) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-1"
+                }
+
+                if (isPlaceholder) {
+                  return (
+                    <div
+                      key={`placeholder-${index}`}
+                      className={`relative ${gridClass}`}
+                    />
+                  )
+                }
+
+                return (
                   <div
-                    ref={scrollContainerRef}
-                    className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-x-auto' : 'overflow-x-auto overflow-y-hidden'}`}
-                    style={{ height: isMobile ? "auto" : "calc(100vh - 92px)", scrollBehavior: "smooth" }}
+                    key={`grid-${project.id}`}
+                    className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
+                    onClick={() => handleProjectClick(project.id)}
                   >
-                    <div className={isMobile ? "flex flex-row gap-4" : "flex flex-row gap-4"}>
-                      {Array.from({ length: totalPages }).map((_, pageIndex) => {
-                        const startIndex = pageIndex * PROJECTS_PER_PAGE
-                        const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
-                        return (
-                          <div
-                            key={`page-${pageIndex}`}
-                            className={isMobile
-                              ? "min-w-[calc(100vw-44px)] grid grid-cols-1 sm:grid-cols-2 gap-3"
-                              : `min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]`}
-                            style={{ height: isMobile ? "auto" : "calc(100vh - 172px)", overflowY: isMobile ? "auto" : "hidden" }}
-                          >
-                            {currProjects.map((project, index) => {
-                              let gridClass = isMobile ? "col-span-1 row-span-1 w-full" : "col-span-1 row-span-1"
-                              let isPlaceholder = false
-
-                              if (!isMobile) {
-                                if (index === 0) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                                } else if (index === 1) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 2) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
-                                } else if (index === 3) {
-                                  gridClass = "col-span-1 row-span-3"
-                                } else if (index === 4) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                                } else if (index === 5) {
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 6) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
-                                } else if (index === 7) {
-                                  gridClass = "col-span-1 row-span-1 hidden"
-                                } else if (index === 8) {
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 9) {
-                                  gridClass = "col-span-1 row-span-2"
-                                } else if (index === 10) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 11) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 12) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 13) {
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 14) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 15) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-1"
-                                }
-                              }
-
-                              if (isPlaceholder) {
-                                return (
-                                  <div
-                                    key={`placeholder-${index}`}
-                                    className={`relative ${gridClass}`}
-                                  />
-                                )
-                              }
-
-                              return (
-                                <div
-                                  key={`grid-${project.id}`}
-                                  className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
-                                  onClick={() => handleProjectClick(project.id)}
-                                >
-                                  <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-30px)]">
-                                    <Image
-                                      src={project.image || "/placeholder.svg"}
-                                      alt={project.name}
-                                      fill
-                                      className="object-cover transition-transform group-hover:scale-105"
-                                    />
-                                  </div>
-                                  <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-center justify-center">
-                                    <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-                                    <p className="text-xs text-gray-600">
-                                      {project.year} {project.location}
-                                    </p>
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        )
-                      })}
+                    <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-30px)]">
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.name}
+                        fill
+                        className="object-cover transition-transform group-hover:scale-105"
+                      />
+                    </div>
+                    <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-center justify-center">
+                      <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+                      <p className="text-xs text-gray-600">
+                        {project.year} {project.location}
+                      </p>
                     </div>
                   </div>
-                  <div className="absolute top-1/2 transform -translate-y-1/2 left-0 z-10">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="bg-white/80 hover:bg-white shadow-md rounded-full w-10 h-10"
-                      onClick={scrollLeft}
-                    >
-                      <ChevronLeft className="w-6 h-6" />
-                    </Button>
-                  </div>
-                  <div className="absolute top-1/2 transform -translate-y-1/2 right-0 z-10">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      className="bg-white/80 hover:bg-white shadow-md rounded-full w-10 h-10"
-                      onClick={scrollRight}
-                    >
-                      <ChevronRight className="w-6 h-6" />
-                    </Button>
-                  </div>
-                </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
+    )}
+  </div>
+  {!isMobile && (
+    <>
+      <div className="absolute top-1/2 transform -translate-y-1/2 left-0 z-10">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-white/80 hover:bg-white shadow-md rounded-full w-10 h-10"
+          onClick={scrollLeft}
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </Button>
+      </div>
+      <div className="absolute top-1/2 transform -translate-y-1/2 right-0 z-10">
+        <Button
+          variant="outline"
+          size="icon"
+          className="bg-white/80 hover:bg-white shadow-md rounded-full w-10 h-10"
+          onClick={scrollRight}
+        >
+          <ChevronRight className="w-6 h-6" />
+        </Button>
+      </div>
+    </>
+  )}
+</div>
                 <AnimatePresence>
                   {isMenuOpen && (
                     <motion.div

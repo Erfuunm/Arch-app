@@ -506,10 +506,10 @@ const projects = [
   },
   {
     id: 22,
-    name: "Urmia Lake Center",
+    name: "NILOUFAR Cancer Caring Center",
     year: "2023",
     location: "URMIA",
-    image: "/images/armaghan.jpg",
+    image: "/images/NILOUFAR Cancer Caring Center/1.jpg",
     type: "Environmental, Research",
     status: "Completed",
     timespan: "2021-2023",
@@ -519,14 +519,12 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/armaghan.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+      "/images/NILOUFAR Cancer Caring Center/1.jpg",
+      "/images/NILOUFAR Cancer Caring Center/2.jpg",
+      "/images/NILOUFAR Cancer Caring Center/3.jpg",
+      "/images/NILOUFAR Cancer Caring Center/4.jpg",
+      "/images/NILOUFAR Cancer Caring Center/5.jpg",
+     
     ],
   },
   {
@@ -718,10 +716,10 @@ const projects = [
   },
   {
     id: 31,
-    name: "Arak Industrial Complex",
+    name: "SHAMS II Residential Complex",
     year: "2024",
     location: "ARAK",
-    image: "/images/grownida.jpg",
+    image: "/images/SHAMS II Residential Complex/2.jpg",
     type: "Industrial, Heavy",
     status: "Under Construction",
     timespan: "2023-2024",
@@ -731,14 +729,12 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/grownida.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+       "/images/SHAMS II Residential Complex/2.jpg",
+       "/images/SHAMS II Residential Complex/3.jpg",
+    "/images/SHAMS II Residential Complex/4.jpg",
+       "/images/SHAMS II Residential Complex/5.jpg",
+     "/images/SHAMS II Residential Complex/6.jpg",
+    
     ],
   },
   {
@@ -791,6 +787,156 @@ const projects = [
       "/placeholder.svg?height=400&width=600",
     ],
   },
+    {
+    id: 34,
+    name: "SHAMS 1 Residential Complex",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/jawaher.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/SHAMS 1 Residential Complex/1.jpg",
+        "/images/SHAMS 1 Residential Complex/2.jpg",
+        "/images/SHAMS 1 Residential Complex/3.jpg",
+       "/images/SHAMS 1 Residential Complex/4.jpg",
+       "/images/SHAMS 1 Residential Complex/5.jpg",
+       "/images/SHAMS 1 Residential Complex/6.jpg",
+
+    ],
+  },
+      {
+    id: 43,
+    name: "CHESHMANDAZ Residential Complex",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/CHESHMANDAZ Residential Complex/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/CHESHMANDAZ Residential Complex/1.jpg",
+      "/images/CHESHMANDAZ Residential Complex/2.jpg",
+      "/images/CHESHMANDAZ Residential Complex/3.jpg",
+      "/images/CHESHMANDAZ Residential Complex/4.jpg",
+      "/images/CHESHMANDAZ Residential Complex/5.jpg",
+      "/images/CHESHMANDAZ Residential Complex/6.jpg",
+
+    ],
+  },
+   {
+    id: 42,
+    name: "Abuzar Residential",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/Abuzar Residential/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/Abuzar Residential/1.jpg",
+      "/images/Abuzar Residential/2.jpg",
+         "/images/Abuzar Residential/3.jpg",
+               "/images/Abuzar Residential/4.jpg",
+                     "/images/Abuzar Residential/5.jpg",
+                           "/images/Abuzar Residential/6.jpg",
+                                 "/images/Abuzar Residential/7.jpg",
+                                     "/images/Abuzar Residential/8.jpg",
+
+    ],
+  },
+     {
+    id: 37,
+    name: "Faregh-al-tahsilan residential",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/Faregh-al-tahsilan residential/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/Faregh-al-tahsilan residential/1.jpg",
+      "/images/Faregh-al-tahsilan residential/2.jpg",
+         "/images/Faregh-al-tahsilan residential/3.jpg",
+
+
+    ],
+  },
+   {
+    id: 39,
+    name: " Bajk Mixed-use Complex",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/Bajk Mixed-use Complex/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/Bajk Mixed-use Complex/1.jpg",
+      "/images/Bajk Mixed-use Complex/2.jpg",
+         "/images/Bajk Mixed-use Complex/3.jpg",
+          "/images/Bajk Mixed-use Complex/4.jpg",
+
+
+    ],
+  },
+
+
+  {
+    id: 40,
+    name: "Ebne Sina (Hasht Behesht) Medical & Office Complex",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/1.jpg",
+      "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/2.jpg",
+         "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/3.jpg",
+          "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/4.jpg",
+
+
+    ],
+  },
+
+
+  
+
+
+ 
 ]
 
 const menuVariants = {
@@ -1001,14 +1147,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
       <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-6" style={{ direction: lang === "fa" ? "rtl" : "ltr" }}>
         <div className="w-full max-w-5xl relative mb-4">
           {/* Main Project Image */}
-          <div className="relative w calc(100% + 2rem) -mx-4 md:-mx-6 lg:mx-0 aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
-            <Image
-              src={project.galleryImages[currentImageIndex] || "/placeholder.svg"}
-              alt={`${getProjectName(project.name)} image ${currentImageIndex + 1}`}
-              fill
-              className="object-cover"
-            />
-          </div>
+   <div className="relative w calc(100% + 2rem) -mx-4 md:-mx-6 lg:mx-0 aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+  <Image
+    src={project.galleryImages[currentImageIndex] || "/placeholder.svg"}
+    alt={`${getProjectName(project.name)} image ${currentImageIndex + 1}`}
+    fill
+    className="object-contain"
+  />
+</div>
 
           {/* Image Navigation Arrows */}
           <Button
