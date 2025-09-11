@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -59,11 +58,8 @@ export default function AboutPage() {
     loadEmployees()
   }, [lang])
 
-  // Sort employees: current first, then former
-  const sortedEmployees = [
-    ...employees.filter((employee) => employee.status === "current"),
-    ...employees.filter((employee) => employee.status === "former")
-  ]
+  // Sort employees by id in ascending order
+  const sortedEmployees = [...employees].sort((a, b) => a.id - b.id)
 
   const EMPLOYEES_PER_PAGE = 12
   const totalEmployeePages = Math.ceil(sortedEmployees.length / EMPLOYEES_PER_PAGE)
@@ -84,7 +80,7 @@ export default function AboutPage() {
   const headerFontFamily = "Inter, sans-serif"
 
   return (
-    <div className="h-screen bg-white flex flex-col md:overflow-hidden" lang={lang} style={{  fontFamily: contentFontFamily }}>
+    <div className="h-screen bg-white flex flex-col md:overflow-hidden" lang={lang} style={{ fontFamily: contentFontFamily }}>
       {/* Header */}
       <header className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 bg-white" style={{ direction: headerTextDirection, fontFamily: headerFontFamily }}>
         <div className="flex items-center gap-2 md:gap-4">
@@ -99,7 +95,6 @@ export default function AboutPage() {
         </div>
         <div className="flex items-center gap-2 md:gap-4">
           <Button
-           
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
             className="text-sm"
           >
@@ -124,7 +119,7 @@ export default function AboutPage() {
         {/* Left Side: Manager Section */}
         <section 
           className="p-8 md:p-12 lg:p-16 md:ml-[-10%] flex flex-col justify-center items-center text-left"
-          style={{  fontFamily: contentFontFamily }}
+          style={{ fontFamily: contentFontFamily }}
         >
           <div className="max-w-md">
             <h1 className="text-2xl md:text-3xl lg:text-2xl font-bold leading-tight mb-6 text-gray-900">
