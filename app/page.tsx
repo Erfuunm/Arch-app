@@ -27,7 +27,7 @@ const translations = {
     timespan: "Time span",
     client: "Client",
     location: "Location",
-    size: "Size",
+    size: "Area",
     projectOverview: "Project Overview",
     projects: "Projects",
     aboutUs: "About Us",
@@ -469,7 +469,7 @@ export default function ProjectsPage() {
                   </AnimatePresence>
                 </div>
                 <div className="px-3 md:px-6 h-auto bg-[#f5f5f5]">
-                  <div className="max-w-7xl mx-auto pb-10 pt-8">
+                  <div className="max-w-8xl mx-auto pb-10 pt-8">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
                         {otherProjects.slice(0, 6).map((project, index) => (
@@ -535,34 +535,42 @@ export default function ProjectsPage() {
                               <div>
                                 <h3 className="font-semibold text-sm mb-4 text-gray-900">{translations[lang].keyInfo}</h3>
                                 <div className="space-y-3 text-sm">
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid grid-cols-4 gap-4">
                                     <div>
-                                      <p className="font-medium text-gray-900">{translations[lang].type}</p>
+                                      <p className="font-bold text-gray-900">{translations[lang].type}</p>
                                       <p className="text-gray-600">{selectedProjectData.type}</p>
                                     </div>
-                                    <div>
-                                      <p className="font-medium text-gray-900">{translations[lang].status}</p>
-                                      <p className="text-gray-600">{selectedProjectData.status}</p>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <p className="font-medium text-gray-900">{translations[lang].timespan}</p>
-                                    <p className="text-gray-600">{selectedProjectData.timespan}</p>
-                                  </div>
-                                  <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                      <p className="font-medium text-gray-900">{translations[lang].client}</p>
+                                      <div>
+                                      <p className="font-bold text-gray-900">{translations[lang].client}</p>
                                       <p className="text-gray-600">{selectedProjectData.client}</p>
                                     </div>
+                                           <div>
+                                    <p className="font-bold text-gray-900">{translations[lang].timespan}</p>
+                                    <p className="text-gray-600">{selectedProjectData.timespan}</p>
+                                  </div>
+                                              <div>
+                                      <p className="font-bold text-gray-900">{translations[lang].status}</p>
+                                      <p className="text-gray-600">{selectedProjectData.status}</p>
+                                    </div>
+                             
+                                  </div>
+                           
+                                  <div className="grid grid-cols-2 gap-4">
+                             
                                     <div>
-                                      <p className="font-medium text-gray-900">{translations[lang].location}</p>
+                                      <p className="font-bold text-gray-900">{translations[lang].location}</p>
                                       <p className="text-gray-600">{selectedProjectData.clientLocation}</p>
                                     </div>
-                                  </div>
-                                  <div>
-                                    <p className="font-medium text-gray-900">{translations[lang].size}</p>
+                                        <div>
+                                    <p className="font-bold text-gray-900">{translations[lang].size}</p>
                                     <p className="text-gray-600">{selectedProjectData.size}</p>
                                   </div>
+                                          <div>
+                                    <p className="font-bold text-gray-900">{translations[lang].size}</p>
+                                    <p className="text-gray-600">{selectedProjectData.size}</p>
+                                  </div>
+                                  </div>
+                              
                                 </div>
                               </div>
                               <div>
