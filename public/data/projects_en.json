@@ -13,6 +13,7 @@
     "clientLocation": "Kolahdooz St, Ahmad Abad, Mashhad",
     "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Hawra Almarei", "Shakilla Sadegian", "Samaneh Iman", "Melika Shariatmadar"],
     "size": "950",
+    "B-Area":"10444",
     "overview": "Located on Kolahdooz St, Ahmad Abad, Mashhad, this office and medical facility by Aseman Investment Group occupies 950 m² of land with 10,444 m² built-up area. Construction began in 2020 and is ongoing."
   },
  {
@@ -46,6 +47,7 @@
     "clientLocation": "Salman Farsi Blvd, Qom",
     "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "size": "4479",
+    "B-Area":"17209",
     "overview": "Located on Salman Farsi Blvd, Qom, this commercial project by the Islamic Revolution Housing Foundation, Qom Province, spans 4,479 m² of land with 17,209 m² built-up area. Currently in the design stage since 2015."
   },
   {
@@ -62,6 +64,7 @@
     "clientLocation": "Taleghani St, Ahmad Abad, Mashhad",
     "Team":  "Fatemeh Mousavinia,Khatereh Morvaj,Mojtaba Pashaei,Peyman Taheri",
     "size": "504",
+    "B-Area":"3400",
     "overview": "Located on Taleghani St, Ahmad Abad, Mashhad, this office building by Cheshmeh Nooshan Khorasan covers 504 m² of land with 3,400 m² built-up area. Completed in 2016, it serves as the company’s main headquarters."
   },
   {
@@ -78,6 +81,7 @@
     "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
     "Team":"Fatemeh Mousavinia,Peyman Taheri,Vahid Mirzaei,Vahid Yousefi,Mojtaba Pashaei, Golnaz Sadeghnejad",
     "size": "4900",
+    "B-Area":"42400"
     "overview": "Located on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation covers 4,900 m² of land with 42,400 m² built-up area. Construction started in 2015 and is ongoing."
   },
   {
@@ -110,6 +114,7 @@
     "clientLocation": "Technology Park, Mashhad",
     "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Aniseh Azizzadeh", "Hawra Almarei", "Shakilla Sadegian", "Samaneh Iman", "Parsa Mousavinia"],
     "size": "2000",
+    "B-Area":"5000",
     "overview": "Situated in Technology Park, Mashhad, this office and industrial complex by Pishgaman Exir Sabz Arvand spans 2,000 m² of land with 5,000 m² built-up area. Construction started in 2020 and is ongoing."
   },
     {
@@ -159,6 +164,7 @@
     "clientLocation": "Niloofar St, Mashhad",
     "Team":  ["Fatemeh Mousavinia", "Golnaz Sadeghnejad", "Vahid Mirzaei", "Mojtaba Pashaei"],
     "size": "3429",
+    "B-Area":"0",
     "overview": "Located on Armaghan St, Mashhad, this residential project by the Islamic Revolution Housing Foundation, Mashhad County, has 3,429 m² of land. Construction is ongoing since 2014."
   },
   {
@@ -225,6 +231,7 @@
     "clientLocation": "Pardis, Tehran",
     "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei"],
     "size": "2975",
+    "B-Area":"2557",
     "overview": "Situated in Pardis, Tehran, this residential project by the Islamic Revolution Housing Foundation, Tehran Province, covers 2,975 m² of land with 2,557 m² built-up area. Completed in 2014."
   },
   {
@@ -257,6 +264,7 @@
     "clientLocation": "Pardisan, Qom",
     "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman", "Mojtaba Pashaei"],
     "size": "0",
+    "B-Area":"0",
     "overview": "Located in Pardisan, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, is completed in 2020."
   },
   {
@@ -273,6 +281,7 @@
     "clientLocation": "Houshyar St, Malek Abad, Mashhad",
     "Team":  ["Fatemeh Mousavinia", "Samaneh Iman", "Mohammad Akbari"],
     "size": "505",
+    "B-Area":"5656",
     "overview": "Situated on Houshyar St, Malek Abad, Mashhad, this residential project by Mr. Kalani occupies 505 m² of land with 5,656 m² built-up area. Construction is ongoing, expected in 2024."
   },
   {
@@ -305,6 +314,7 @@
     "clientLocation": "Pardisan, Qom",
     "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman", "Hawra Almarei"],
     "size": "36007",
+    "B-Area":"69107",
     "overview": "Situated in Pardisan, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, occupies 36,007 m² of land with 69,107 m² built-up area. Construction started in 2022 and is ongoing."
   },
   {
@@ -321,6 +331,7 @@
     "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
     "Team":  "Fatemeh Mousavinia,Foad Bazghandi,Shakilla Sadegian,Samaneh Iman,Mohammad Akbari,Zahra Pashaei",
     "size": "2000",
+     "B-Area":"32000",
     "overview": "Situated on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use project by Aseman Investment Group occupies 2,000 m² of land with 32,000 m² built-up area. Construction began in 2020 and is ongoing."
   },
   {
@@ -337,6 +348,7 @@
     "clientLocation": "Niloofar St, Mashhad",
     "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Shakilla Sadegian", "Samaneh Iman"],
     "size": "543",
+    "B-Area":"4554",
     "overview": "Situated on Niloofar St, Mashhad, this office and medical facility by Asa Gostaran Khorasan covers 543 m² of land with 4,554 m² built-up area. Currently in the design stage for 2024."
   },
   {
@@ -353,6 +365,7 @@
     "clientLocation": "Navab St, Mashhad",
     "Team":  ["Fatemeh Mousavinia", "Vahid Yousefi", "Mojtaba Pashaei", "Peyman Taheri"],
     "size": "3700",
+    "B-Area":"43000",
     "overview": "Located on Navab St, Mashhad, this hospitality project by Shahrsazi Hashtom covers 3,700 m² of land with 43,000 m² built-up area. Construction began in 2016 and is ongoing."
   },
   {
@@ -401,6 +414,7 @@
     "clientLocation": "Khamenei Alley, Andarzgoo St, Mashhad",
     "Team":  ["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
     "size": "1450",
+    "B-Area":"8750",
     "overview": "Situated on Khamenei Alley, Andarzgoo St, Mashhad, this hospitality project by the Islamic Revolution Housing Foundation, Mashhad County, spans 1,450 m² of land with 8,750 m² built-up area. Design stage initiated in 2021."
   },
   {
@@ -512,6 +526,7 @@
     "clientLocation": "Karimi Blvd, Qom",
     "Team":  ["Fatemeh Mousavinia", "Peyman Taheri", "Milad Ghafarian", "Vahid Mirzaei", "Vahid Yousefi", "Mojtaba Pashaei", "Mohammad Akbari", "Sadra Sahebzadeh"],
     "size": "11000",
+    "B-Area":"72000",
     "overview": "Located on Karimi Blvd, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 72,000 m² built-up area. Construction began in 2016 and is ongoing."
   },
 
@@ -610,6 +625,7 @@
     "clientLocation": "Azadi St, Tehran",
     "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman"],
     "size": "3200",
+    "B-Area":"2649",
     "overview": "Located on Azadi St, Tehran, this commercial plaza by Tehran Investment Co. spans 3,200 m² of land with 10,000 m² built-up area. Completed in 2023."
   },
 
