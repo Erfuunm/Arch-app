@@ -486,10 +486,10 @@ const projects = [
   },
   {
     id: 21,
-    name: "Karaj Residential Hub",
+    name: "DANESH Residential Complex",
     year: "2024",
     location: "KARAJ",
-    image: "/images/jawaher.jpg",
+    image: "/images/DANESH Residential Complex/1.jpg",
     type: "Residential, Urban",
     status: "Under Construction",
     timespan: "2023-2024",
@@ -499,14 +499,14 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/jawaher.jpg",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
-      "/placeholder.svg?height=400&width=600",
+      "/images/DANESH Residential Complex/1.jpg",
+   "/images/DANESH Residential Complex/2.jpg",
+      "/images/DANESH Residential Complex/3.jpg",
+         "/images/DANESH Residential Complex/4.jpg",
+            "/images/DANESH Residential Complex/5.jpg",
+               "/images/DANESH Residential Complex/6.jpg",
+                "/images/DANESH Residential Complex/7.jpg",
+
     ],
   },
   {
@@ -818,7 +818,7 @@ const projects = [
   },
 
    {
-    id: 38,
+    id: 47,
     name: "CINAMA GHODS",
     year: "2025",
     location: "KASHAN",
@@ -848,10 +848,10 @@ const projects = [
 
       {
     id: 43,
-    name: "CHESHMANDAZ Residential Complex",
+    name: "Residential No.101 (Mehrabi)",
     year: "2025",
     location: "KASHAN",
-    image: "/images/CHESHMANDAZ Residential Complex/1.jpg",
+    image: "/images/Residential No.101 (Mehrabi)/1.jpg",
     type: "Heritage, Restoration",
     status: "Planning",
     timespan: "2025-2026",
@@ -861,12 +861,14 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/CHESHMANDAZ Residential Complex/1.jpg",
-      "/images/CHESHMANDAZ Residential Complex/2.jpg",
-      "/images/CHESHMANDAZ Residential Complex/3.jpg",
-      "/images/CHESHMANDAZ Residential Complex/4.jpg",
-      "/images/CHESHMANDAZ Residential Complex/5.jpg",
-      "/images/CHESHMANDAZ Residential Complex/6.jpg",
+      "/images/Residential No.101 (Mehrabi)/1.jpg",
+      "/images/Residential No.101 (Mehrabi)/2.jpg",
+      "/images/Residential No.101 (Mehrabi)/3.jpg",
+      "/images/Residential No.101 (Mehrabi)/4.jpg",
+            "/images/Residential No.101 (Mehrabi)/5.jpg",
+      "/images/Residential No.101 (Mehrabi)/6.jpg",
+            "/images/Residential No.101 (Mehrabi)/7.jpg",
+      "/images/Residential No.101 (Mehrabi)/8.jpg",
 
     ],
   },
@@ -944,7 +946,7 @@ const projects = [
 
 
   {
-    id: 40,
+    id: 38,
     name: "Ebne Sina (Hasht Behesht) Medical & Office Complex",
     year: "2025",
     location: "KASHAN",
@@ -985,6 +987,33 @@ const projects = [
     galleryImages: [
       "/images/Shaghayegh Office Building/1.jpg",
   "/images/Shaghayegh Office Building/2.jpg",
+
+
+    ],
+  },
+   {
+    id: 40,
+    name: "CHESHMANDAZ Residential Complex",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/CHESHMANDAZ Residential Complex/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/CHESHMANDAZ Residential Complex/1.jpg",
+          "/images/CHESHMANDAZ Residential Complex/2.jpg",
+              "/images/CHESHMANDAZ Residential Complex/3.jpg",
+                  "/images/CHESHMANDAZ Residential Complex/4.jpg",
+                      "/images/CHESHMANDAZ Residential Complex/5.jpg",
+                          "/images/CHESHMANDAZ Residential Complex/6.jpg",
+
+
 
 
     ],
