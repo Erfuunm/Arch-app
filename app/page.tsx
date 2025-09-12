@@ -28,6 +28,8 @@ const translations = {
     client: "Client",
     location: "Location",
     size: "Area",
+    BArea: "Build Up Area" ,
+    team: "Team",
     projectOverview: "Project Overview",
     projects: "Projects",
     aboutUs: "About Us",
@@ -53,6 +55,8 @@ const translations = {
     client: "مشتری",
     location: "مکان",
     size: "اندازه",
+    BArea: "منطقه ساخت و ساز" ,
+    team: "تیم",
     projectOverview: "نمای کلی پروژه",
     projects: "پروژه‌ها",
     aboutUs: "درباره ما",
@@ -304,7 +308,7 @@ export default function ProjectsPage() {
               <motion.span
                 key={index}
                 variants={letterVariants}
-                className="inline-block"
+                className="inline-block text-lg md:text-4xl"
               >
                 {letter === " " ? "\u00A0" : letter}
               </motion.span>
@@ -348,7 +352,7 @@ export default function ProjectsPage() {
                       />
                     </div>
                   </div>
-                  <div className="hidden lg:flex items-center gap-4">
+                  <div className="hidden lg:flex items-center gap-4 ml-[9.5%]">
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
                       <SelectTrigger className="w-[140px] rounded-full border-gray-300">
                         <SelectValue />
@@ -535,42 +539,42 @@ export default function ProjectsPage() {
                               <div>
                                 <h3 className="font-semibold text-sm mb-4 text-gray-900">{translations[lang].keyInfo}</h3>
                                 <div className="space-y-3 text-sm">
-                                  <div className="grid grid-cols-4 gap-4">
+                                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                                     <div>
                                       <p className="font-bold text-gray-900">{translations[lang].type}</p>
                                       <p className="text-gray-600">{selectedProjectData.type}</p>
                                     </div>
-                                      <div>
+                                    <div>
                                       <p className="font-bold text-gray-900">{translations[lang].client}</p>
                                       <p className="text-gray-600">{selectedProjectData.client}</p>
                                     </div>
-                                           <div>
-                                    <p className="font-bold text-gray-900">{translations[lang].timespan}</p>
-                                    <p className="text-gray-600">{selectedProjectData.timespan}</p>
-                                  </div>
-                                              <div>
+                                    <div>
+                                      <p className="font-bold text-gray-900">{translations[lang].timespan}</p>
+                                      <p className="text-gray-600">{selectedProjectData.timespan}</p>
+                                    </div>
+                                    <div>
                                       <p className="font-bold text-gray-900">{translations[lang].status}</p>
                                       <p className="text-gray-600">{selectedProjectData.status}</p>
                                     </div>
-                             
                                   </div>
-                           
-                                  <div className="grid grid-cols-2 gap-4">
-                             
+                                  <div className="grid grid-cols-3 gap-4">
                                     <div>
                                       <p className="font-bold text-gray-900">{translations[lang].location}</p>
                                       <p className="text-gray-600">{selectedProjectData.clientLocation}</p>
                                     </div>
+                                    <div>
+                                      <p className="font-bold text-gray-900">{translations[lang].size}</p>
+                                      <p className="text-gray-600">{selectedProjectData.size}</p>
+                                    </div>
                                         <div>
-                                    <p className="font-bold text-gray-900">{translations[lang].size}</p>
-                                    <p className="text-gray-600">{selectedProjectData.size}</p>
+                                      <p className="font-bold text-gray-900">{translations[lang].BArea}</p>
+                                      <p className="text-gray-600">{selectedProjectData.BArea}</p>
+                                    </div>
                                   </div>
-                                          <div>
-                                    <p className="font-bold text-gray-900">{translations[lang].size}</p>
-                                    <p className="text-gray-600">{selectedProjectData.size}</p>
+                                  <div>
+                                    <p className="font-bold text-gray-900">{translations[lang].team}</p>
+                                    <p className="text-gray-600">{selectedProjectData.Team?.join(", ") || "N/A"}</p>
                                   </div>
-                                  </div>
-                              
                                 </div>
                               </div>
                               <div>
@@ -670,7 +674,7 @@ export default function ProjectsPage() {
                       />
                     </div>
                   </div>
-                  <div className="hidden lg:flex items-center gap-4">
+                  <div className="hidden lg:flex items-center gap-4 ml-[3.5%]">
                     <Select value={typeFilter} onValueChange={setTypeFilter}>
                       <SelectTrigger className="w-[140px] rounded-full border-gray-300">
                         <SelectValue />
@@ -861,7 +865,6 @@ export default function ProjectsPage() {
                                 } else if (index === 13) {
                                   gridClass = "col-span-1 row-span-1"
                                 } else if (index === 14) {
-                                  
                                   gridClass = "col-span-1 row-span-1 hidden"
                                 } else if (index === 15) {
                                   gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"

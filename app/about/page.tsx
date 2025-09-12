@@ -6,6 +6,8 @@ import Link from "next/link"
 import { ArrowRight, ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import JoinUsModal from "../contact/JoinUsModal"
+
 
 // Translation object for bilingual static text
 const translations = {
@@ -42,6 +44,7 @@ export default function AboutPage() {
   const [lang, setLang] = useState<"en" | "fa">("en")
   const [employees, setEmployees] = useState<any[]>([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [employeePage, setEmployeePage] = useState(0)
 
   // Load employees based on language
@@ -128,7 +131,10 @@ export default function AboutPage() {
             <p className="text-gray-700 mb-8 leading-relaxed text-base md:text-lg">
               {translations[lang].description}
             </p>
-            <Button variant="outline" className="text-base font-medium flex items-center gap-2 mb-12 bg-transparent">
+            <Button 
+              className="text-base font-medium flex items-center gap-2 mb-12 bg-gray-900 text-white hover:bg-gray-800 rounded-lg transition-all duration-300"
+              onClick={() => setIsModalOpen(true)}
+            >
               {translations[lang].joinUs} <ArrowRight className="w-4 h-4" />
             </Button>
             <div className="w-48 h-48 md:w-64 md:h-64 relative overflow-hidden rounded-lg mb-4">
@@ -231,6 +237,9 @@ export default function AboutPage() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Join Us Modal */}
+      <JoinUsModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} lang={lang} />
     </div>
   )
 }
