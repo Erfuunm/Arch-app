@@ -814,7 +814,7 @@ export default function ProjectsPage() {
                         ))}
                       </div>
                     ) : (
-                      <div className="flex flex-row gap-4">
+                      <div className="flex flex-row gap-4 ">
                         {Array.from({ length: totalPages }).map((_, pageIndex) => {
                           const startIndex = pageIndex * PROJECTS_PER_PAGE
                           const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
@@ -861,10 +861,10 @@ export default function ProjectsPage() {
                                 } else if (index === 13) {
                                   gridClass = "col-span-1 row-span-1"
                                 } else if (index === 14) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
+                                  
+                                  gridClass = "col-span-1 row-span-1 hidden"
                                 } else if (index === 15) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-1"
+                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
                                 }
 
                                 if (isPlaceholder) {

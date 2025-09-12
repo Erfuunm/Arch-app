@@ -240,6 +240,11 @@ const projects = [
       "/images/OFOGH Residential Complex Lndscape/3.jpg",
       "/images/OFOGH Residential Complex Lndscape/4.jpg",
       "/images/OFOGH Residential Complex Lndscape/5.jpg",
+         "/images/OFOGH Residential Complex Lndscape/main.jpg",
+      "/images/OFOGH Residential Complex Lndscape/main3.jpg",
+       "/images/OFOGH Residential Complex Lndscape/main4.jpg",
+        "/images/OFOGH Residential Complex Lndscape/main5.jpg",
+
     ],
   },
   {
@@ -391,7 +396,7 @@ const projects = [
     name: "ZEYTON no.1 Residential Complex",
     year: "2024",
     location: "ARDABIL",
-    image: "public/images/ZEYTON no.1 Residential Complex/1.jpg",
+    image: "/images/ZEYTON no.1 Residential Complex/1.jpg",
     type: "Public, Eco-Friendly",
     status: "Completed",
     timespan: "2022-2024",
@@ -811,6 +816,36 @@ const projects = [
 
     ],
   },
+
+   {
+    id: 38,
+    name: "CINAMA GHODS",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/CINAMA GHODS/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/CINAMA GHODS/1.jpg",
+       "/images/CINAMA GHODS/2.jpg",
+         "/images/CINAMA GHODS/3.jpg",
+           "/images/CINAMA GHODS/4.jpg",
+             "/images/CINAMA GHODS/5.jpg",
+               "/images/CINAMA GHODS/6.jpg",
+                "/images/CINAMA GHODS/7.jpg",
+
+
+    ],
+  },
+
+
+
       {
     id: 43,
     name: "CHESHMANDAZ Residential Complex",
@@ -931,6 +966,31 @@ const projects = [
 
     ],
   },
+
+
+    {
+    id: 49,
+    name: "Shaghayegh Office Building",
+    year: "2025",
+    location: "KASHAN",
+    image: "/images/Shaghayegh Office Building/1.jpg",
+    type: "Heritage, Restoration",
+    status: "Planning",
+    timespan: "2025-2026",
+    client: "Kashan Heritage",
+    clientLocation: "Kashan, IR",
+    size: "9,800 m²",
+    overview:
+      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    galleryImages: [
+      "/images/Shaghayegh Office Building/1.jpg",
+  "/images/Shaghayegh Office Building/2.jpg",
+
+
+    ],
+  },
+
+  
 
 
   
