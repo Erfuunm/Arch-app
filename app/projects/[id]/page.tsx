@@ -837,8 +837,7 @@ const projects = [
       "/images/CHESHMANDAZ Residential Complex/3.jpg",
       "/images/CHESHMANDAZ Residential Complex/4.jpg",
       "/images/CHESHMANDAZ Residential Complex/5.jpg",
-         "/images/CHESHMANDAZ Residential Complex/6.jpg",
-
+      "/images/CHESHMANDAZ Residential Complex/6.jpg",
     ],
   },
 
