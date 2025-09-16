@@ -125,7 +125,7 @@ export default function ContactPage() {
 
               <hr className="border-t border-gray-200/50 mb-6" />
 
-              <div className="space-y-4">
+              <div className="space-y-4 mt-8">
                 <motion.div 
                   className="flex items-center gap-4 hover:bg-white/30 p-3 rounded-lg transition-colors"
                   whileHover={{ scale: 1.02 }}
@@ -156,16 +156,7 @@ export default function ContactPage() {
                     <p className="text-base font-medium text-gray-900">{translations[lang].addressValue}</p>
                   </div>
                 </motion.div>
-                <motion.div 
-                  className="flex items-center gap-4 hover:bg-white/30 p-3 rounded-lg transition-colors"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <Instagram className="w-5 h-5 text-gray-600" />
-                  <div style={{ textAlign: lang === "fa" ? "right" : "left" }}>
-                    <p className="text-sm text-gray-600">{translations[lang].instagram}</p>
-                    <p className="text-base font-medium text-gray-900">@pex-office</p>
-                  </div>
-                </motion.div>
+               
               </div>
             </div>
           </motion.div>
@@ -180,17 +171,8 @@ export default function ContactPage() {
             <h2 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4" style={{ textAlign: lang === "fa" ? "right" : "left" }}>
               {translations[lang].address}
             </h2>
-            <div className="flex-1 relative rounded-lg overflow-hidden">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537363153167!3d-37.81627997975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ5JzQ2LjYiUyAxNDTCsDU3JzEzLjUiRQ!5e0!3m2!1sen!2sus!4v1631234567890!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Office Location"
-              ></iframe>
+            <div className="flex-1 relative rounded-lg overflow-hidden mt-12">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1327.6255551101954!2d59.5454023852091!3d36.31376613633289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f6c923e7f586005%3A0x6cada71e4ba9fe92!2sRazavi%20Khorasan%20Province%2C%20Mashhad%2C%20District%201%2C%20Gooya%2C%20Iran!5e0!3m2!1sen!2s!4v1758005639602!5m2!1sen!2s" width="600" height="450"  allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>
             <p className="text-sm text-gray-600 mt-4" style={{ textAlign: lang === "fa" ? "right" : "left" }}>
               {translations[lang].address}: {translations[lang].addressValue}

@@ -35,7 +35,7 @@ const translations = {
     aboutUs: "About Us",
     contact: "Contact",
     pageOf: "Page {current} of {total}",
-    loadingText: "KHAYYATZADEH- AND- ASSOCIATES",
+    loadingText: "KHAYYATZADEH-AND-ASSOCIATES",
   },
   fa: {
     allType: "همه انواع",
@@ -842,15 +842,18 @@ export default function ProjectsPage() {
                                 } else if (index === 3) {
                                   gridClass = "col-span-1 row-span-3"
                                 } else if (index === 4) {
+                                  
                                   gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
                                 } else if (index === 5) {
+                                  
                                   gridClass = "col-span-1 row-span-1"
                                 } else if (index === 6) {
                                   gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
                                 } else if (index === 7) {
                                   gridClass = "col-span-1 row-span-1 hidden"
                                 } else if (index === 8) {
-                                  gridClass = "col-span-1 row-span-1"
+                                  
+                                  gridClass = "col-span-1 row-span-2"
                                 } else if (index === 9) {
                                   gridClass = "col-span-1 row-span-2"
                                 } else if (index === 10) {
@@ -858,7 +861,7 @@ export default function ProjectsPage() {
                                   gridClass = "col-span-1 row-span-1"
                                 } else if (index === 11) {
                                   isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
+                                  gridClass = "col-span-1 row-span-1 hidden"
                                 } else if (index === 12) {
                                   isPlaceholder = true
                                   gridClass = "col-span-1 row-span-1"

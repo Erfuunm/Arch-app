@@ -222,10 +222,10 @@ const projects = [
   },
   {
     id: 9,
-    name: "OFOGH Residential Complex Lndscape",
+    name: "Shaghayegh Office Building",
     year: "2023",
     location: "ISFAHAN",
-    image: "/images/OFOGH Residential Complex Lndscape/1.jpg",
+    image: "/images/Shaghayegh Office Building/1.jpg",
     type: "Hospitality, Heritage",
     status: "Completed",
     timespan: "2021-2023",
@@ -235,24 +235,22 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/OFOGH Residential Complex Lndscape/1.jpg",
-      "/images/OFOGH Residential Complex Lndscape/2.jpg",
-      "/images/OFOGH Residential Complex Lndscape/3.jpg",
-      "/images/OFOGH Residential Complex Lndscape/4.jpg",
-      "/images/OFOGH Residential Complex Lndscape/5.jpg",
-         "/images/OFOGH Residential Complex Lndscape/main.jpg",
-      "/images/OFOGH Residential Complex Lndscape/main3.jpg",
-       "/images/OFOGH Residential Complex Lndscape/main4.jpg",
-        "/images/OFOGH Residential Complex Lndscape/main5.jpg",
+      "/images/Shaghayegh Office Building/3.jpg",
+            "/images/Shaghayegh Office Building/4.jpg",
+                  "/images/Shaghayegh Office Building/5.jpg",
+                        "/images/Shaghayegh Office Building/1.jpg",
+
+                              "/images/Shaghayegh Office Building/2.jpg",
+
 
     ],
   },
   {
     id: 10,
-    name: "ARMAGHAN Residential Complex",
+    name: "Aseman",
     year: "2024",
     location: "SHIRAZ",
-    image: "/images/ARMAGHAN Residential Complex/1.jpg",
+    image: "/images/Aseman/1.jpg",
     type: "Educational, Institutional",
     status: "Under Construction",
     timespan: "2022-2024",
@@ -262,11 +260,11 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/ARMAGHAN Residential Complex/1.jpg",
-      "/images/ARMAGHAN Residential Complex/2.jpg",
-      "/images/ARMAGHAN Residential Complex/3.jpg",
-      "/images/ARMAGHAN Residential Complex/4.jpg",
-      "/images/ARMAGHAN Residential Complex/5.jpg",
+      "/images/Aseman/1.jpg",
+      "/images/Aseman/2.jpg",
+      "/images/Aseman/3.jpg",
+      "/images/Aseman/4.jpg",
+      "/images/Aseman/5.jpg",
     ],
   },
   {
@@ -817,6 +815,33 @@ const projects = [
     ],
   },
 
+    {
+    id: 36,
+     "name": "CHESHMANDAZ Residential Complex",
+    "year": "2015",
+    "location": "MASHHAD",
+    "image": "/images/CHESHMANDAZ Residential Complex/1.jpg",
+    "detailImage": "/images/CHESHMANDAZ Residential Complex/2.jpg",
+       "type": "Residential",
+    "status": "Design Stage",
+    "timespan": "2021-2024",
+    "client": "Pariz Andish Zharf",
+    "clientLocation": "Hashemieh St, Mashhad ",
+     "Team":  ["Mohammad Akbari", "Samaneh Iman", "Mojtaba Pashaei"],
+    "size": "1430 m²",
+    "BArea": "10850 m²",
+    "overview": "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
+    galleryImages: [
+      "/images/CHESHMANDAZ Residential Complex/1.jpg",
+      "/images/CHESHMANDAZ Residential Complex/2.jpg",
+      "/images/CHESHMANDAZ Residential Complex/3.jpg",
+      "/images/CHESHMANDAZ Residential Complex/4.jpg",
+      "/images/CHESHMANDAZ Residential Complex/5.jpg",
+         "/images/CHESHMANDAZ Residential Complex/6.jpg",
+
+    ],
+  },
+
    {
     id: 47,
     name: "CINAMA GHODS",
@@ -972,10 +997,10 @@ const projects = [
 
     {
     id: 49,
-    name: "Shaghayegh Office Building",
+    name: "ARMAGHAN Residential Complex",
     year: "2025",
     location: "KASHAN",
-    image: "/images/Shaghayegh Office Building/1.jpg",
+    image: "/images/ARMAGHAN Residential Complex/1.jpg",
     type: "Heritage, Restoration",
     status: "Planning",
     timespan: "2025-2026",
@@ -985,18 +1010,25 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/Shaghayegh Office Building/1.jpg",
-  "/images/Shaghayegh Office Building/2.jpg",
+      "/images/ARMAGHAN Residential Complex/1.jpg",
+          "/images/ARMAGHAN Residential Complex/2.jpg",
+              "/images/ARMAGHAN Residential Complex/3.jpg",
+                  "/images/ARMAGHAN Residential Complex/4.jpg",
+                      "/images/ARMAGHAN Residential Complex/5.jpg",
+                          "/images/ARMAGHAN Residential Complex/6.jpg",
+                              "/images/ARMAGHAN Residential Complex/7.jpg",
+                                  "/images/ARMAGHAN Residential Complex/8.jpg",
+                                      "/images/ARMAGHAN Residential Complex/9.jpg",
 
 
     ],
   },
    {
     id: 40,
-    name: "CHESHMANDAZ Residential Complex",
+    name: "OFOGH Residential Complex Lndscape",
     year: "2025",
     location: "KASHAN",
-    image: "/images/CHESHMANDAZ Residential Complex/1.jpg",
+    image: "/images/OFOGH Residential Complex Lndscape/1.jpg",
     type: "Heritage, Restoration",
     status: "Planning",
     timespan: "2025-2026",
@@ -1006,12 +1038,15 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/CHESHMANDAZ Residential Complex/1.jpg",
-          "/images/CHESHMANDAZ Residential Complex/2.jpg",
-              "/images/CHESHMANDAZ Residential Complex/3.jpg",
-                  "/images/CHESHMANDAZ Residential Complex/4.jpg",
-                      "/images/CHESHMANDAZ Residential Complex/5.jpg",
-                          "/images/CHESHMANDAZ Residential Complex/6.jpg",
+      "/images/OFOGH Residential Complex Lndscape/main.jpg",
+          "/images/OFOGH Residential Complex Lndscape/2.jpg",
+              "/images/OFOGH Residential Complex Lndscape/3.jpg",
+                  "/images/OFOGH Residential Complex Lndscape/4.jpg",
+                      "/images/OFOGH Residential Complex Lndscape/5.jpg",
+                          "/images/OFOGH Residential Complex Lndscape/1.jpg",
+                           "/images/OFOGH Residential Complex Lndscape/main3.jpg",
+                            "/images/OFOGH Residential Complex Lndscape/main4.jpg",
+                             "/images/OFOGH Residential Complex Lndscape/main5.jpg",
 
 
 

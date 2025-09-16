@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import JoinUsModal from "../contact/JoinUsModal"
 
-
 // Translation object for bilingual static text
 const translations = {
   en: {
@@ -46,6 +45,17 @@ export default function AboutPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [employeePage, setEmployeePage] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640) // sm breakpoint
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   // Load employees based on language
   useEffect(() => {
@@ -67,7 +77,9 @@ export default function AboutPage() {
   const EMPLOYEES_PER_PAGE = 12
   const totalEmployeePages = Math.ceil(sortedEmployees.length / EMPLOYEES_PER_PAGE)
   const startIndex = employeePage * EMPLOYEES_PER_PAGE
-  const employeesDisplay = sortedEmployees.slice(startIndex, startIndex + EMPLOYEES_PER_PAGE)
+  const employeesDisplay = isMobile 
+    ? sortedEmployees // Show all employees on mobile
+    : sortedEmployees.slice(startIndex, startIndex + EMPLOYEES_PER_PAGE)
 
   const handleNextEmployeePage = () => {
     setEmployeePage((prev) => (prev + 1) % totalEmployeePages)
@@ -115,7 +127,7 @@ export default function AboutPage() {
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 relative md:overflow-hidden ">
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 relative md:overflow-hidden mt-[-2%] ">
         {/* Vertical Divider Line (Desktop Only) */}
         <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2" />
 
@@ -174,7 +186,7 @@ export default function AboutPage() {
                   </div>
                 ))}
               </div>
-              {totalEmployeePages > 1 && (
+              {!isMobile && totalEmployeePages > 1 && (
                 <>
                   <Button
                     variant="ghost"
