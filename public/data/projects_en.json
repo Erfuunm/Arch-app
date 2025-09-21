@@ -396,8 +396,8 @@
     "name": "JAVAHER PLAZA Residential & Commerical Complex2",
     "year": "2020",
     "location": "MASHHAD",
-    "image": "/images/JAVAHER PLAZA Residential & Commerical Complex2/1.jpg",
-    "detailImage": "/images/JAVAHER PLAZA Residential & Commerical Complex2/2.jpg",
+    "image": "/images/JAVAHER/3.jpg",
+    "detailImage": "/images/JAVAHER/1.jpg",
     "type": "Residential – Commercial",
     "status": "Under Construction",
     "timespan": "2025-2028",
@@ -446,15 +446,8 @@
     "year": "2025",
     "location": "KISH",
     "image": "/images/armaghan.jpg",
-    "detailImage": "/images/armaghan_detail.jpg",
-    "type": "Hospitality, Island",
-    "isHide":true,
-    "status": "Planning",
-    "timespan": "2025-2027",
-    "client": "Kish Development",
-    "clientLocation": "Kish, IR",
-    "size": "41,200 m²",
-    "overview": "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems."
+    "detailImage": "/images/armaghan_detail.jpg"
+
   },
   {
     "id": 31,
@@ -708,7 +701,7 @@
     "name": "CINAMA GHODS",
     "year": "2024",
     "location": "MASHHAD",
-    "image": "/images/CINAMA GHODS/1.jpg",
+    "image": "/images/CINAMA GHODS/3.jpg",
     "detailImage": "/images/CINAMA GHODS/2.jpg",
     
     "type": "Hospitality",
@@ -737,8 +730,8 @@
     "name": "ARMAGHAN Residential Complex",
     "year": "2014",
     "location": "MASHHAD",
-    "image": "/images/new resize/4-ARMAGHAN Residential Complex.jpg",
-    "detailImage": "/images/new resize/4-ARMAGHAN Residential Complex_detail.jpg",
+    "image": "/images/ARMAGHAN Residential Complex/1.jpg",
+    "detailImage": "/images/ARMAGHAN Residential Complex/2.jpg",
     "type": "Residential",
     "status": "Under Construction",
     "timespan": "2022-2024",
