@@ -97,6 +97,12 @@ const filterVariants = {
   exit: { opacity: 0, y: -10 },
 }
 
+const hoverVariants = {
+  initial: { opacity: 0, scale: 0.98 },
+  animate: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: "easeOut" } },
+  exit: { opacity: 0, scale: 0.98, transition: { duration: 0.3, ease: "easeIn" } },
+}
+
 export default function ProjectsPage() {
   const [lang, setLang] = useState<"en" | "fa">("en")
   const [projects, setProjects] = useState<any[]>([])
@@ -220,7 +226,7 @@ export default function ProjectsPage() {
       const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
       const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
       const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter
-      const isVisibleInMobile = !isMobile || !project.isHide // Show only if not hidden in mobile
+      const isVisibleInMobile = !isMobile || !project.isHide
       return typeMatch && locationMatch && yearMatch && isVisibleInMobile
     })
   }, [projects, typeFilter, locationFilter, yearFilter, isMobile])
@@ -472,29 +478,37 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 h-auto bg-[#f5f5f5]">
-                  <div className="max-w-8xl mx-auto pb-10 pt-8">
+                <div className="px-3 md:px-6 h-auto bg-[#f5f5f5]  flex justify-center items-center">
+                  <div className="w-[90%] mx-auto pb-10 pt-8">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
                         {otherProjects.slice(0, 6).map((project, index) => (
                           <div
                             key={`left-${project.id}-${index}`}
-                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24"
+                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24 group"
                             onClick={() => handleProjectClick(project.id)}
                           >
-                            <div className="relative h-[calc(100%-42px)]">
+                            <div className="relative h-full">
                               <Image
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className="object-cover grayscale transition-all"
+                                className="object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
                               />
-                            </div>
-                            <div className="h-[42px] bg-gray-50 py-4 p-2 flex flex-col justify-center">
-                              <h3 className="font-medium text-xs text-gray-900 leading-tight mb-0.5">{project.name}</h3>
-                              <p className="text-xs text-gray-600">
-                                {project.year} {project.location}
-                              </p>
+                              <motion.div
+                                variants={hoverVariants}
+                                initial="initial"
+                                animate="initial"
+                                whileHover="animate"
+                                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
+                              >
+                                <div className="text-center">
+                                  <h3 className="font-semibold text-base leading-tight mb-1">{project.name}</h3>
+                                  <p className="text-xs font-medium">
+                                    {project.year} {project.location}
+                                  </p>
+                                </div>
+                              </motion.div>
                             </div>
                           </div>
                         ))}
@@ -539,7 +553,7 @@ export default function ProjectsPage() {
                               <div>
                                 <h3 className="font-semibold text-sm mb-4 text-gray-900">{translations[lang].keyInfo}</h3>
                                 <div className="space-y-3 text-sm">
-                                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                                     <div>
                                       <p className="font-bold text-gray-900">{translations[lang].type}</p>
                                       <p className="text-gray-600">{selectedProjectData.type}</p>
@@ -548,10 +562,7 @@ export default function ProjectsPage() {
                                       <p className="font-bold text-gray-900">{translations[lang].client}</p>
                                       <p className="text-gray-600">{selectedProjectData.client}</p>
                                     </div>
-                                    <div>
-                                      <p className="font-bold text-gray-900">{translations[lang].timespan}</p>
-                                      <p className="text-gray-600">{selectedProjectData.timespan}</p>
-                                    </div>
+                             
                                     <div>
                                       <p className="font-bold text-gray-900">{translations[lang].status}</p>
                                       <p className="text-gray-600">{selectedProjectData.status}</p>
@@ -566,7 +577,7 @@ export default function ProjectsPage() {
                                       <p className="font-bold text-gray-900">{translations[lang].size}</p>
                                       <p className="text-gray-600">{selectedProjectData.size}</p>
                                     </div>
-                                        <div>
+                                    <div>
                                       <p className="font-bold text-gray-900">{translations[lang].BArea}</p>
                                       <p className="text-gray-600">{selectedProjectData.BArea}</p>
                                     </div>
@@ -625,22 +636,30 @@ export default function ProjectsPage() {
                         {otherProjects.slice(6, 12).map((project, index) => (
                           <div
                             key={`right-${project.id}-${index}`}
-                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24"
+                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24 group"
                             onClick={() => handleProjectClick(project.id)}
                           >
-                            <div className="relative h-[calc(100%-42px)]">
+                            <div className="relative h-full">
                               <Image
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className="object-cover grayscale transition-all"
+                                className="object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
                               />
-                            </div>
-                            <div className="h-[42px] bg-gray-50 py-4 p-2 flex flex-col justify-center">
-                              <h3 className="font-medium text-xs text-gray-900 leading-tight mb-0.5">{project.name}</h3>
-                              <p className="text-xs text-gray-600">
-                                {project.year} {project.location}
-                              </p>
+                              <motion.div
+                                variants={hoverVariants}
+                                initial="initial"
+                                animate="initial"
+                                whileHover="animate"
+                                className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
+                              >
+                                <div className="text-center">
+                                  <h3 className="font-semibold text-base leading-tight mb-1">{project.name}</h3>
+                                  <p className="text-xs font-medium">
+                                    {project.year} {project.location}
+                                  </p>
+                                </div>
+                              </motion.div>
                             </div>
                           </div>
                         ))}
@@ -808,7 +827,7 @@ export default function ProjectsPage() {
                                 className="object-cover transition-transform group-hover:scale-105"
                               />
                             </div>
-                            <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-center justify-center">
+                            <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-start justify-center">
                               <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
                               <p className="text-xs text-gray-600">
                                 {project.year} {project.location}
@@ -825,8 +844,8 @@ export default function ProjectsPage() {
                           return (
                             <div
                               key={`page-${pageIndex}`}
-                              className={`min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[2%]`}
-                              style={{ height: "calc(100vh - 172px)", overflowY: "hidden" }}
+                              className={`min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[1%]`}
+                              style={{ height: "calc(100vh - 132px)", overflowY: "hidden" }}
                             >
                               {currProjects.map((project, index) => {
                                 let gridClass = "col-span-1 row-span-1"
@@ -842,17 +861,14 @@ export default function ProjectsPage() {
                                 } else if (index === 3) {
                                   gridClass = "col-span-1 row-span-3"
                                 } else if (index === 4) {
-                                  
                                   gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
                                 } else if (index === 5) {
-                                  
                                   gridClass = "col-span-1 row-span-1"
                                 } else if (index === 6) {
                                   gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
                                 } else if (index === 7) {
                                   gridClass = "col-span-1 row-span-1 hidden"
                                 } else if (index === 8) {
-                                  
                                   gridClass = "col-span-1 row-span-2"
                                 } else if (index === 9) {
                                   gridClass = "col-span-1 row-span-2"
@@ -888,19 +904,27 @@ export default function ProjectsPage() {
                                     className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
                                     onClick={() => handleProjectClick(project.id)}
                                   >
-                                    <div className="relative h-[180px] sm:h-[200px] md:h-[220px] lg:h-[calc(100%-55px)]">
+                                    <div className="relative h-full">
                                       <Image
                                         src={project.image || "/placeholder.svg"}
                                         alt={project.name}
                                         fill
-                                        className="object-cover transition-transform group-hover:scale-105"
+                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                                       />
-                                    </div>
-                                    <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-start justify-center">
-                                      <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-                                      <p className="text-xs text-gray-600">
-                                        {project.year} {project.location}
-                                      </p>
+                                      <motion.div
+                                        variants={hoverVariants}
+                                        initial="initial"
+                                        animate="initial"
+                                        whileHover="animate"
+                                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
+                                      >
+                                        <div className="text-center">
+                                          <h3 className="font-semibold text-base leading-tight mb-1">{project.name}</h3>
+                                          <p className="text-xs font-medium">
+                                            {project.year} {project.location}
+                                          </p>
+                                        </div>
+                                      </motion.div>
                                     </div>
                                   </div>
                                 )

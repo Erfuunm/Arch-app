@@ -22,7 +22,8 @@
     "year": "2021",
     "location": "MASHHAD",
     "isHide":true,
-    "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg"
+    "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
 
   },
   {
@@ -54,7 +55,7 @@
     "timespan": "2024-2026",
     "client": "Cheshmeh Nooshan Khorasan",
     "clientLocation": "Taleghani St, Ahmad Abad, Mashhad",
-    "Team":  "Fatemeh Mousavinia,Khatereh Morvaj,Mojtaba Pashaei,Peyman Taheri",
+    "Team":  ["Fatemeh Mousavinia","Khatereh Morvaj","Mojtaba Pashaei","Peyman Taheri"],
     "size": "504 m²",
     "BArea":"3400 m²",
     "overview": "Located on Taleghani St, Ahmad Abad, Mashhad, this office building by Cheshmeh Nooshan Khorasan covers 504 m² of land with 3,400 m² built-up area. Completed in 2016, it serves as the company’s main headquarters."
@@ -71,7 +72,7 @@
     "timespan": "2021-2024",
     "client": "Islamic Revolution Housing Foundation, Mashhad County",
     "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
-    "Team":"Fatemeh Mousavinia,Peyman Taheri,Vahid Mirzaei,Vahid Yousefi,Mojtaba Pashaei, Golnaz Sadeghnejad",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "size": "4900 m²",
     "BArea":"42400 m²",
     "overview": "Located on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation covers 4,900 m² of land with 42,400 m² built-up area. Construction started in 2015 and is ongoing."
@@ -98,8 +99,8 @@
     "name": "GROWNIDA Pishgaman Exir Sabz Research & Innovation Center",
     "year": "2020",
     "location": "MASHHAD",
-    "image": "/images/grownida.jpg",
-   "detailImage": "/images/Grownida Innovation Center/Detail.jpg",
+    "image": "/images/Grownida Innovation Center/1.jpg",
+   "detailImage": "/images/Grownida Innovation Center/2.jpg",
     "type": "Office , Industrial",
     "status": "Under Construction",
     "timespan": "2020-2023",
@@ -117,7 +118,8 @@
     "location": "MASHHAD",
     "isHide": true,
     "image": "/images/new resize/24-SHAMS II Residential Complex.jpg",
-    "detailImage": "/images/SHAMS II Residential Complex/2.jpg"
+    "detailImage": "/images/SHAMS II Residential Complex/2.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
 
   },
 
@@ -166,7 +168,8 @@
     "location": "MASHHAD",
     "isHide":true,
     "image": "/images/new resize/28-JAVAHER PLAZA Residential & Commerical Complex2.jpg",
-    "detailImage": "/images/JAVAHER PLAZA Residential & Commerical Complex2/2.jpg"
+    "detailImage": "/images/JAVAHER PLAZA Residential & Commerical Complex2/2.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
 
   },
   {
@@ -176,6 +179,7 @@
     "location": "QOM",
     "image": "/images/Bajk Mixed-use Complex/1.jpg",
     "detailImage": "/images/Bajk Mixed-use Complex/2.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
 
     "isHide":true
 
@@ -187,7 +191,8 @@
     "location": "QOM",
     "isHide":true,
     "image": "/images/CHESHMANDAZ Residential Complex/1.jpg",
-    "detailImage": "/images/CHESHMANDAZ Residential Complex/2.jpg"
+    "detailImage": "/images/CHESHMANDAZ Residential Complex/2.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
   },
   {
     "id": 15,
@@ -208,19 +213,20 @@
   },
   {
     "id": 16,
-    "name": "Rasht Green Tower",
-    "year": "2024",
-    "location": "RASHT",
-    "image": "/images/jawaher.jpg",
-    "detailImage": "/images/jawaher_detail.jpg",
-    "type": "Residential, Eco-Friendly",
-    "status": "Planning",
-    "timespan": "2024-2027",
-    "isHide":true,
-    "client": "Rasht Development",
-    "clientLocation": "Rasht, IR",
-    "size": "16,900 m²",
-    "overview": "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems."
+    "name": "Fajr 4 Commercial Complex",
+    "year": "2012",
+    "location": "MASHHAD",
+    "image": "/images/new resize/15-Fajr 4 Commercial Complex.jpg",
+    "detailImage": "/images/Fajr 4 Commercial Complex/2.jpg",
+    "type": "Commercial",
+    "status": "Completed",
+    "timespan": "2023-2024",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Imam Ali Blvd, Mashhad",
+    "Team":  ["Ehsan Khatar", "Vahid Mirzaei", "Mojtaba Pashaei"],
+    "size": "3076 m²",
+    "BArea": "8860 m²",
+    "overview": "Located on Imam Ali Blvd, Mashhad, this commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 3,076 m² of land with 8,860 m² built-up area. Completed in 2012."
   },
   {
     "id": 17,
@@ -267,6 +273,7 @@
     "type": "Hospitality, Tourism",
     "status": "Under Construction",
     "timespan": "2023-2024",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "isHide":true,
     "client": "Yazd Tourism Board",
     "clientLocation": "Yazd, IR",
@@ -366,6 +373,7 @@
     "image": "/images/jawaher.jpg",
     "detailImage": "/images/jawaher_detail.jpg",
     "type": "Hospitality, Coastal",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "status": "Planning",
     "isHide":true,
     "timespan": "2024-2026",
@@ -420,6 +428,7 @@
     "isHide":true,
     "timespan": "2023-2024",
     "client": "Sanandaj Municipality",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "clientLocation": "Sanandaj, IR",
     "size": "17,300 m²",
     "overview": "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems."
@@ -432,6 +441,7 @@
     "isHide":true,
     "image": "/images/jawaher.jpg",
     "detailImage": "/images/jawaher_detail.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "type": "Energy, Renewable",
     "status": "Completed",
     "timespan": "2022-2023",
@@ -446,7 +456,8 @@
     "year": "2025",
     "location": "KISH",
     "image": "/images/armaghan.jpg",
-    "detailImage": "/images/armaghan_detail.jpg"
+    "detailImage": "/images/armaghan_detail.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
 
   },
   {
@@ -479,6 +490,7 @@
     "timespan": "2021-2023",
     "client": "Zanjan Mining Corp",
     "clientLocation": "Zanjan, IR",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "size": "48,600 m²",
     "overview": "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems."
   },
@@ -630,7 +642,8 @@
       "isHide":true,
     "year": "2016",
     "location": "QOM",
-    "image": "/images/OFOGH Residential Complex/1.jpg"
+    "image": "/images/OFOGH Residential Complex/1.jpg",
+        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
   },
 
   {
