@@ -7,6 +7,7 @@ import { ChevronLeft, ChevronRight, Menu, ArrowLeft, ArrowRight, X, Filter } fro
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion, AnimatePresence } from "framer-motion"
+import { Variants } from "framer-motion";
 
 // Translation object for bilingual static text
 const translations = {
@@ -97,11 +98,22 @@ const filterVariants = {
   exit: { opacity: 0, y: -10 },
 }
 
-const hoverVariants = {
+
+
+// Animation variants for smooth transitions
+const hoverVariants: Variants = {
   initial: { opacity: 0, scale: 0.98 },
-  animate: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: "easeOut" } },
-  exit: { opacity: 0, scale: 0.98, transition: { duration: 0.3, ease: "easeIn" } },
-}
+  animate: { 
+    opacity: 1, 
+    scale: 1, 
+    transition: { duration: 0.3, ease: "easeOut" } 
+  },
+  exit: { 
+    opacity: 0, 
+    scale: 0.98, 
+    transition: { duration: 0.3, ease: "easeIn" } 
+  },
+};
 
 export default function ProjectsPage() {
   const [lang, setLang] = useState<"en" | "fa">("en")
