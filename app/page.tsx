@@ -128,7 +128,7 @@ export default function ProjectsPage() {
   const [isMobile, setIsMobile] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
-  // Load projects based on language
+
   useEffect(() => {
     const loadProjects = async () => {
       try {
