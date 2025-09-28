@@ -26,42 +26,26 @@
         "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
 
   },
+  
   {
     "id": 3,
-    "name": "PARDISAN 2 Commercial Building",
-    "year": "2015",
+    "name": "ZEYTON no.2 Residential Complex",
+    "year": "2022",
     "location": "QOM",
-    "image": "/images/new resize/5-PARDISAN 2 Commercial Building.jpg",
-    "detailImage": "/images/new resize/5-PARDISAN 2 Commercial Building_detail.jpg",
-    "type": "Commercial",
-    "status": "Design Stage",
-    "timespan": "2022-2025",
+    "image": "/images/new resize/14-ZEYTON no.2 Residential Complex.jpg",
+    "detailImage": "/images/new resize/14-ZEYTON no.2 Residential Complex_detail.jpg",
+    "type": "Residential",
+    "status": "Under Construction",
+    "timespan": "2025-2027",
     "client": "Islamic Revolution Housing Foundation, Qom Province",
-    "clientLocation": "Salman Farsi Blvd, Qom",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
-    "size": "4479 m²",
-    "BArea":"17209 m²",
-    "overview": "Located on Salman Farsi Blvd, Qom, this commercial project by the Islamic Revolution Housing Foundation, Qom Province, spans 4,479 m² of land with 17,209 m² built-up area. Currently in the design stage since 2015."
+    "clientLocation": "Pardisan, Qom",
+    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman", "Hawra Almarei"],
+    "size": "36007 m²",
+    "BArea":"69107 m²",
+    "overview": "Situated in Pardisan, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, occupies 36,007 m² of land with 69,107 m² built-up area. Construction started in 2022 and is ongoing."
   },
-  {
+    {
     "id": 4,
-    "name": "ALIS OFFICE Headquarter Building",
-    "year": "2016",
-    "location": "MASHHAD",
-    "image": "/images/new resize/8(1)-ALIS OFFICE Headquarter Building.jpg",
-    "detailImage": "/images/new resize/8(1)-ALIS OFFICE Headquarter Building_detail.jpg",
-    "type": "Office",
-    "status": "Completed",
-    "timespan": "2024-2026",
-    "client": "Cheshmeh Nooshan Khorasan",
-    "clientLocation": "Taleghani St, Ahmad Abad, Mashhad",
-    "Team":  ["Fatemeh Mousavinia","Khatereh Morvaj","Mojtaba Pashaei","Peyman Taheri"],
-    "size": "504 m²",
-    "BArea":"3400 m²",
-    "overview": "Located on Taleghani St, Ahmad Abad, Mashhad, this office building by Cheshmeh Nooshan Khorasan covers 504 m² of land with 3,400 m² built-up area. Completed in 2016, it serves as the company’s main headquarters."
-  },
-  {
-    "id": 5,
     "name": "Binahayat residential Complex",
     "year": "2015",
     "location": "MASHHAD",
@@ -77,6 +61,25 @@
     "BArea":"42400 m²",
     "overview": "Located on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation covers 4,900 m² of land with 42,400 m² built-up area. Construction started in 2015 and is ongoing."
   },
+
+      {
+    "id": 5,
+    "name": "ARMAGHAN Residential Complex",
+    "year": "2014",
+    "location": "MASHHAD",
+    "image": "/images/ARMAGHAN Residential Complex/1.jpg",
+    "detailImage": "/images/ARMAGHAN Residential Complex/2.jpg",
+    "type": "Residential",
+    "status": "Under Construction",
+    "timespan": "2022-2024",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Niloofar St, Mashhad",
+    "Team":  ["Fatemeh Mousavinia", "Golnaz Sadeghnejad", "Vahid Mirzaei", "Mojtaba Pashaei"],
+    "size": "3429 m²",
+    "BArea":"0 m²",
+    "overview": "Located on Armaghan St, Mashhad, this residential project by the Islamic Revolution Housing Foundation, Mashhad County, has 3,429 m² of land. Construction is ongoing since 2014."
+  },
+
   {
     "id": 6,
     "name": "ASAYESH Residential complex",
@@ -123,43 +126,43 @@
 
   },
 
-        {
+    {
     "id": 9,
-    "name": "Shaghayegh Office Building",
-    "year": "2021",
-    "location": "TEHRAN",
-    "image": "/images/Shaghayegh Office Building/1.jpg",
-    "detailImage": "/images/Shaghayegh Office Building/3.jpg",
-    "type": "Office",
-    "status": "Design Stage",
-    "timespan": "2025-2026",
-    "client": "Islamic Revolution Housing Foundation, Tehran Province",
-    "clientLocation": "",
-    "Team": ["Peyman Taheri", "Mojtaba Pashaei"],
-    "size": "870 m²",
-    "BArea":"4150 m²",
-    "overview": "Shaghayegh Office Building – Located in Tehran, this office building by the Islamic Revolution Housing Foundation, Tehran Province, occupies 870 m² of land with 4,150 m² built-up area. Completed in 2021."
-  },
-
-   {
-    "id": 10,
-    "name": "Aseman Residential Complex ",
-    "year": "2015",
+    "name": "ALIS OFFICE Headquarter Building",
+    "year": "2016",
     "location": "MASHHAD",
-    "image": "/images/Aseman/2.jpg",
-    "detailImage": "/images/Aseman/1.jpg",
-       "type": "Residential",
-    "status": "Design Stage",
-    "timespan": "2021-2024",
-    "client": "Pariz Andish Zharf",
-    "clientLocation": "Hashemieh St, Mashhad ",
-     "Team":  ["Mohammad Akbari", "Samaneh Iman", "Mojtaba Pashaei"],
-    "size": "1430 m²",
-    "BArea": "10850 m²",
-    "overview": "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015."
-
+    "image": "/images/new resize/8(1)-ALIS OFFICE Headquarter Building.jpg",
+    "detailImage": "/images/new resize/8(1)-ALIS OFFICE Headquarter Building_detail.jpg",
+    "type": "Office",
+    "status": "Completed",
+    "timespan": "2024-2026",
+    "client": "Cheshmeh Nooshan Khorasan",
+    "clientLocation": "Taleghani St, Ahmad Abad, Mashhad",
+    "Team":  ["Fatemeh Mousavinia","Khatereh Morvaj","Mojtaba Pashaei","Peyman Taheri"],
+    "size": "504 m²",
+    "BArea":"3400 m²",
+    "overview": "Located on Taleghani St, Ahmad Abad, Mashhad, this office building by Cheshmeh Nooshan Khorasan covers 504 m² of land with 3,400 m² built-up area. Completed in 2016, it serves as the company’s main headquarters."
   },
- 
+
+
+
+  {
+    "id": 10,
+    "name": "JAVAHER PLAZA Residential & Commerical Complex2",
+    "year": "2020",
+    "location": "MASHHAD",
+    "image": "/images/JAVAHER/3.jpg",
+    "detailImage": "/images/JAVAHER/1.jpg",
+    "type": "Residential – Commercial",
+    "status": "Under Construction",
+    "timespan": "2025-2028",
+    "client": "Aseman Investment Group",
+    "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
+    "BArea":"2000 m²",
+    "size": "32000 m²",
+    "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman", "Mohammad Akbari", "Zahra Pashaei"],
+    "overview": "Situated on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use project by Aseman Investment Group occupies 2,000 m² of land with 32,000 m² built-up area. Construction began in 2020 and is ongoing."
+  },
   
   {
     "id": 11,
@@ -218,15 +221,7 @@
     "location": "MASHHAD",
     "image": "/images/new resize/15-Fajr 4 Commercial Complex.jpg",
     "detailImage": "/images/Fajr 4 Commercial Complex/2.jpg",
-    "type": "Commercial",
-    "status": "Completed",
-    "timespan": "2023-2024",
-    "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Imam Ali Blvd, Mashhad",
-    "Team":  ["Ehsan Khatar", "Vahid Mirzaei", "Mojtaba Pashaei"],
-    "size": "3076 m²",
-    "BArea": "8860 m²",
-    "overview": "Located on Imam Ali Blvd, Mashhad, this commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 3,076 m² of land with 8,860 m² built-up area. Completed in 2012."
+    "Team":  ["Ehsan Khatar", "Vahid Mirzaei", "Mojtaba Pashaei"]
   },
   {
     "id": 17,
@@ -234,7 +229,7 @@
     "year": "2020",
   
     "location": "QOM",
-    "image": "/images/ZEYTON no.1 Residential Complex/2.jpg",
+    "image": "/images/ZEYTON no.1 Residential Complex/1.jpg",
     "detailImage": "/images/ZEYTON no.1 Residential Complex/2.jpg",
     "type": "Residential",
     "status": "Completed",
@@ -282,21 +277,15 @@
   },
   {
     "id": 20,
-    "name": "ZEYTON no.2 Residential Complex",
-    "year": "2022",
+    "name": "OFOGH Residential Complex",
+    "year": "2016",
     "location": "QOM",
-    "image": "/images/new resize/14-ZEYTON no.2 Residential Complex.jpg",
-    "detailImage": "/images/new resize/14-ZEYTON no.2 Residential Complex_detail.jpg",
-    "type": "Residential",
-    "status": "Under Construction",
-    "timespan": "2025-2027",
-    "client": "Islamic Revolution Housing Foundation, Qom Province",
-    "clientLocation": "Pardisan, Qom",
-    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman", "Hawra Almarei"],
-    "size": "36007 m²",
-    "BArea":"69107 m²",
-    "overview": "Situated in Pardisan, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, occupies 36,007 m² of land with 69,107 m² built-up area. Construction started in 2022 and is ongoing."
+    "image": "/images/OFOGH Residential Complex/1.jpg",
+    "detailImage": "/images/OFOGH Residential Complex/2.jpg",
+    "Team":  ["Fatemeh Mousavinia", "Peyman Taheri", "Milad Ghafarian", "Vahid Mirzaei", "Vahid Yousefi", "Mojtaba Pashaei", "Mohammad Akbari", "Sadra Sahebzadeh"]
+
   },
+
   {
     "id": 21,
     "name": "DANESH Residential Complex",
@@ -314,23 +303,26 @@
      "BArea":"5000 m²",
     "overview": "Danesh Residential Complex – Located on Danesh St, Mashhad, this residential project by the Islamic Revolution Housing Foundation, Isfahan Province, occupies 800 m² of land with 5,000 m² built-up area. Currently in the design stage for 2024."
   },
-  {
+
+         {
     "id": 22,
-    "name": "NILOUFAR Cancer Caring Center",
-    "year": "2024",
+    "name": "Aseman Residential Complex ",
+    "year": "2015",
     "location": "MASHHAD",
-    "image": "/images/new resize/25-NILOUFAR Cancer Caring Center.jpg",
-    "detailImage": "/images/NILOUFAR Cancer Caring Center/2.jpg",
-    "type": "Office – Medical",
+    "image": "/images/Aseman/2.jpg",
+    "detailImage": "/images/Aseman/1.jpg",
+       "type": "Residential",
     "status": "Design Stage",
-    "timespan": "2021-2023",
-    "client": "Asa Gostaran Khorasan",
-    "clientLocation": "Niloofar St, Mashhad",
-    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Shakilla Sadegian", "Samaneh Iman"],
-    "size": "543 m²",
-    "BArea":"4554 m²",
-    "overview": "Situated on Niloofar St, Mashhad, this office and medical facility by Asa Gostaran Khorasan covers 543 m² of land with 4,554 m² built-up area. Currently in the design stage for 2024."
+    "timespan": "2021-2024",
+    "client": "Pariz Andish Zharf",
+    "clientLocation": "Hashemieh St, Mashhad ",
+     "Team":  ["Mohammad Akbari", "Samaneh Iman", "Mojtaba Pashaei"],
+    "size": "1430 m²",
+    "BArea": "10850 m²",
+    "overview": "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015."
+
   },
+
   {
     "id": 23,
     "name": "EHSAN Hottel",
@@ -348,23 +340,26 @@
     "BArea":"43000 m²",
     "overview": "Located on Navab St, Mashhad, this hospitality project by Shahrsazi Hashtom covers 3,700 m² of land with 43,000 m² built-up area. Construction began in 2016 and is ongoing."
   },
-  {
+
+     {
     "id": 24,
-    "name": "Fajr 4 Commercial Complex",
-    "year": "2012",
-    "location": "MASHHAD",
-    "image": "/images/new resize/15-Fajr 4 Commercial Complex.jpg",
-    "detailImage": "/images/Fajr 4 Commercial Complex/2.jpg",
-    "type": "Commercial",
-    "status": "Completed",
-    "timespan": "2023-2024",
-    "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Imam Ali Blvd, Mashhad",
-    "Team":  ["Ehsan Khatar", "Vahid Mirzaei", "Mojtaba Pashaei"],
-    "size": "3076 m²",
-    "BArea": "8860 m²",
-    "overview": "Located on Imam Ali Blvd, Mashhad, this commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 3,076 m² of land with 8,860 m² built-up area. Completed in 2012."
+    "name": "OFOGH Residential Complex Lndscape",
+    "year": "2025",
+    "location": "QOM",
+    "image": "/images/OFOGH Residential Complex Lndscape/1.jpg",
+    "detailImage": "/images/OFOGH Residential Complex Lndscape/2.jpg",
+    "type": "Landscape",
+    "status": "Under Construction",
+    "timespan": "2021-2023",
+    "client": "Islamic Revolution Housing Foundation, Qom Province",
+    "clientLocation": "Karimi Blvd (Javan Sq), Qom",
+    "Team":  ["Fatemeh Mousavinia", "Faezeh Froudi", "Mohaddeseh Tasbihpour", "Mohammad Akbari", "Foad Bazghandi"],
+    "size": "11000 m²",
+    "BArea": "6000 m²",
+    "overview": "Situated on Karimi Blvd (Javan Sq), Qom, this landscape project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 6,000 m² built-up area. Under construction since 2025."
   },
+
+
   {
     "id": 25,
     "name": "Bushehr Coastal Resort",
@@ -382,40 +377,44 @@
     "size": "29,400 m²",
     "overview": "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems."
   },
-  {
+    {
     "id": 26,
-    "name": "Rezvan Pilgrims’ Residence",
-    "year": "2021",
+    "name": "Abuzar Residential",
+    "year": "2023",
+    "location": "TEHRAN",
+    "image": "/images/Abuzar Residential/1.jpg",
+    "detailImage": "/images/Abuzar Residential/2.jpg",
+    "type": "Commercial",
+    "status": "Completed",
+    "timespan": "2023-2024",
+    "client": "Tehran Investment Co.",
+    "clientLocation": "Azadi St, Tehran",
+    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman"],
+    "size": "3200 m²",
+    "BArea":"2649 m²",
+    "overview": "Located on Azadi St, Tehran, this commercial plaza by Tehran Investment Co. spans 3,200 m² of land with 10,000 m² built-up area. Completed in 2023."
+  },
+
+
+       {
+    "id": 27,
+    "name": "CINAMA GHODS",
+    "year": "2024",
     "location": "MASHHAD",
-    "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg",
-    "detailImage": "/images/new resize/11-Rezvan Pilgrims’ Residence_detail.jpg",
+    "image": "/images/CINAMA GHODS/1.jpg",
+    "detailImage": "/images/CINAMA GHODS/2.jpg",
+    
     "type": "Hospitality",
     "status": "Design Stage",
-    "timespan": "2021-2023",
+    "timespan": "2025-2026",
     "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Khamenei Alley, Andarzgoo St, Mashhad",
-    "Team":  ["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
-    "size": "1450",
-    "BArea":"8750",
-    "overview": "Situated on Khamenei Alley, Andarzgoo St, Mashhad, this hospitality project by the Islamic Revolution Housing Foundation, Mashhad County, spans 1,450 m² of land with 8,750 m² built-up area. Design stage initiated in 2021."
+    "clientLocation": "Pasdaran Blvd (Jannat), Mashhad ",
+    "Team":["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
+    "size": "1450 m²",
+    "BArea": "8750 m²",
+    "overview": "Located on Jomhuri Blvd, Qom, this landscape project by the Islamic Revolution Housing Foundation spans 8,000 m² of land with 5,000 m² built-up area. Currently in the design stage for 2025."
   },
-  {
-    "id": 27,
-    "name": "JAVAHER PLAZA Residential & Commerical Complex2",
-    "year": "2020",
-    "location": "MASHHAD",
-    "image": "/images/JAVAHER/3.jpg",
-    "detailImage": "/images/JAVAHER/1.jpg",
-    "type": "Residential – Commercial",
-    "status": "Under Construction",
-    "timespan": "2025-2028",
-    "client": "Aseman Investment Group",
-    "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
-    "BArea":"2000 m²",
-    "size": "32000 m²",
-    "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman", "Mohammad Akbari", "Zahra Pashaei"],
-    "overview": "Situated on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use project by Aseman Investment Group occupies 2,000 m² of land with 32,000 m² built-up area. Construction began in 2020 and is ongoing."
-  },
+
   {
     "id": 28,
     "name": "Sanandaj Cultural Plaza",
@@ -494,41 +493,43 @@
     "size": "48,600 m²",
     "overview": "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems."
   },
-  {
+      {
     "id": 33,
-    "name": "OFOGH Residential Complex",
-    "year": "2016",
+    "name": "PARDISAN 2 Commercial Building",
+    "year": "2015",
     "location": "QOM",
-    "image": "/images/OFOGH Residential Complex/1.jpg",
-    "detailImage": "/images/OFOGH Residential Complex/2.jpg",
-    "type": "Residential",
-    "status": "Under Construction",
-    "timespan": "2025-2026",
+    "image": "/images/new resize/5-PARDISAN 2 Commercial Building.jpg",
+    "detailImage": "/images/new resize/5-PARDISAN 2 Commercial Building_detail.jpg",
+    "type": "Commercial",
+    "status": "Design Stage",
+    "timespan": "2022-2025",
     "client": "Islamic Revolution Housing Foundation, Qom Province",
-    "clientLocation": "Karimi Blvd, Qom",
-    "Team":  ["Fatemeh Mousavinia", "Peyman Taheri", "Milad Ghafarian", "Vahid Mirzaei", "Vahid Yousefi", "Mojtaba Pashaei", "Mohammad Akbari", "Sadra Sahebzadeh"],
-    "size": "11000 m²",
-    "BArea":"72000 m²",
-    "overview": "Located on Karimi Blvd, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 72,000 m² built-up area. Construction began in 2016 and is ongoing."
+    "clientLocation": "Salman Farsi Blvd, Qom",
+    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
+    "size": "4479 m²",
+    "BArea":"17209 m²",
+    "overview": "Located on Salman Farsi Blvd, Qom, this commercial project by the Islamic Revolution Housing Foundation, Qom Province, spans 4,479 m² of land with 17,209 m² built-up area. Currently in the design stage since 2015."
   },
 
-   {
+         {
     "id": 34,
-    "name": "SHAMS 1 Residential Complex ",
-    "year": "2017",
-    "location": "MASHHAD",
-    "image": "/images/SHAMS 1 Residential Complex/1.jpg",
-    "detailImage": "/images/SHAMS 1 Residential Complex/2.jpg",
-    "type": "Residential",
-    "status": "Completed",
-    "timespan": "2023-2026",
-    "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Hejab St, Mashhad  ",
-    "Team":   ["Vahid Mirzaei", "Peyman Taheri", "Vahid Yousefi", "Mojtaba Pashaei"],
-    "size": "4970 m²",
-     "BArea":"18188 m²",
-    "overview": "Shams 1 Residential Complex – Located on Hejab St, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 4,970 m² of land with 18,166 m² built-up area. Completed in 2017."
+    "name": "Shaghayegh Office Building",
+    "year": "2021",
+    "location": "TEHRAN",
+    "image": "/images/Shaghayegh Office Building/1.jpg",
+    "detailImage": "/images/Shaghayegh Office Building/3.jpg",
+    "type": "Office",
+    "status": "Design Stage",
+    "timespan": "2025-2026",
+    "client": "Islamic Revolution Housing Foundation, Tehran Province",
+    "clientLocation": "",
+    "Team": ["Peyman Taheri", "Mojtaba Pashaei"],
+    "size": "870 m²",
+    "BArea":"4150 m²",
+    "overview": "Shaghayegh Office Building – Located in Tehran, this office building by the Islamic Revolution Housing Foundation, Tehran Province, occupies 870 m² of land with 4,150 m² built-up area. Completed in 2021."
   },
+
+
   {
     "id": 35,
     "name": "PARAND Residential Tower",
@@ -538,22 +539,24 @@
     "image": "/images/new resize/35-PARAND Residential Tower.jpg"
 
   },
-    {
+
+
+  {
     "id": 36,
-    "name": "CHESHMANDAZ Residential Complex",
-    "year": "2019",
-    "location": "Isfahan",
-    "image": "/images/CHESHMANDAZ Residential Complex/1.jpg",
-    "detailImage": "/images/CHESHMANDAZ Residential Complex/2.jpg",
-    "type": "Residential",
-    "status": "Design Stage",
-    "timespan": "2025-2026",
-    "client": "Islamic Revolution Housing Foundation, Isfahan Province",
-    "clientLocation": "Bagh Bahadoran, Isfahan ",
-    "Team":   ["Fatemeh Mousavinia", "Dr. Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Mojtaba Pashaei", "Hawra Almarei", "Shakilla Sadegian", "Samaneh Iman", "Parsa Mousavinia"],
-    "size": "8193 m²", 
-    "BArea" : "141500 m²",
-    "overview": "Cheshmandaz Residential Complex – Situated in Bagh Bahadoran, Isfahan, this residential project by the Islamic Revolution Housing Foundation, Isfahan Province, covers 8,193 m² of land with 14,500 m² built-up area. Design stage started in 2019."
+    "name": "Fajr 4 Commercial Complex",
+    "year": "2012",
+    "location": "MASHHAD",
+    "image": "/images/new resize/15-Fajr 4 Commercial Complex.jpg",
+    "detailImage": "/images/Fajr 4 Commercial Complex/2.jpg",
+    "type": "Commercial",
+    "status": "Completed",
+    "timespan": "2023-2024",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Imam Ali Blvd, Mashhad",
+    "Team":  ["Ehsan Khatar", "Vahid Mirzaei", "Mojtaba Pashaei"],
+    "size": "3076 m²",
+    "BArea": "8860 m²",
+    "overview": "Located on Imam Ali Blvd, Mashhad, this commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 3,076 m² of land with 8,860 m² built-up area. Completed in 2012."
   },
 
 
@@ -598,41 +601,40 @@
   },
 
 
-  {
+      {
     "id": 39,
-    "name": "Bajk Mixed-use Complex",
-    "year": "2017",
-    "location": "QOM",
-    "image": "/images/Bajk Mixed-use Complex/1.jpg",
-    "detailImage": "/images/Bajk Mixed-use Complex/2.jpg",
-    "type": "Commercial – Office – Hospitality",
-    "status": "Under Construction",
-    "timespan": "2022-2025",
-    "client": "Islamic Revolution Housing Foundation, Qom Province",
-    "clientLocation": "19th Day St (Bajek), Qom  ",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Golnaz Sadeghnejad"],
-    "size": "201 m²",
-    "BArea": "1010 m²",
-    "overview": "Situated on 19th Day St (Bajek), Qom, this mixed-use commercial, office, and hospitality project by the Islamic Revolution Housing Foundation, Qom Province, occupies 201 m² of land with 1,010 m² built-up area. Completed in 2017."
+    "name": "CHESHMANDAZ Residential Complex",
+    "year": "2019",
+    "location": "Isfahan",
+    "image": "/images/CHESHMANDAZ Residential Complex/1.jpg",
+    "detailImage": "/images/CHESHMANDAZ Residential Complex/2.jpg",
+    "type": "Residential",
+    "status": "Design Stage",
+    "timespan": "2025-2026",
+    "client": "Islamic Revolution Housing Foundation, Isfahan Province",
+    "clientLocation": "Bagh Bahadoran, Isfahan ",
+    "Team":   ["Fatemeh Mousavinia", "Dr. Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Mojtaba Pashaei", "Hawra Almarei", "Shakilla Sadegian", "Samaneh Iman", "Parsa Mousavinia"],
+    "size": "8193 m²", 
+    "BArea" : "141500 m²",
+    "overview": "Cheshmandaz Residential Complex – Situated in Bagh Bahadoran, Isfahan, this residential project by the Islamic Revolution Housing Foundation, Isfahan Province, covers 8,193 m² of land with 14,500 m² built-up area. Design stage started in 2019."
   },
 
-
-   {
+  {
     "id": 40,
-    "name": "OFOGH Residential Complex Lndscape",
-    "year": "2025",
-    "location": "QOM",
-    "image": "/images/OFOGH Residential Complex Lndscape/1.jpg",
-    "detailImage": "/images/OFOGH Residential Complex Lndscape/2.jpg",
-    "type": "Landscape",
-    "status": "Under Construction",
+    "name": "NILOUFAR Cancer Caring Center",
+    "year": "2024",
+    "location": "MASHHAD",
+    "image": "/images/new resize/25-NILOUFAR Cancer Caring Center.jpg",
+    "detailImage": "/images/NILOUFAR Cancer Caring Center/2.jpg",
+    "type": "Office – Medical",
+    "status": "Design Stage",
     "timespan": "2021-2023",
-    "client": "Islamic Revolution Housing Foundation, Qom Province",
-    "clientLocation": "Karimi Blvd (Javan Sq), Qom",
-    "Team":  ["Fatemeh Mousavinia", "Faezeh Froudi", "Mohaddeseh Tasbihpour", "Mohammad Akbari", "Foad Bazghandi"],
-    "size": "11000 m²",
-    "BArea": "6000 m²",
-    "overview": "Situated on Karimi Blvd (Javan Sq), Qom, this landscape project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 6,000 m² built-up area. Under construction since 2025."
+    "client": "Asa Gostaran Khorasan",
+    "clientLocation": "Niloofar St, Mashhad",
+    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Shakilla Sadegian", "Samaneh Iman"],
+    "size": "543 m²",
+    "BArea":"4554 m²",
+    "overview": "Situated on Niloofar St, Mashhad, this office and medical facility by Asa Gostaran Khorasan covers 543 m² of land with 4,554 m² built-up area. Currently in the design stage for 2024."
   },
 
 
@@ -646,22 +648,23 @@
         "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
   },
 
-  {
+
+      {
     "id": 42,
-    "name": "Abuzar Residential",
-    "year": "2023",
-    "location": "TEHRAN",
-    "image": "/images/Abuzar Residential/1.jpg",
-    "detailImage": "/images/Abuzar Residential/2.jpg",
-    "type": "Commercial",
+    "name": "SHAMS 1 Residential Complex ",
+    "year": "2017",
+    "location": "MASHHAD",
+    "image": "/images/SHAMS 1 Residential Complex/1.jpg",
+    "detailImage": "/images/SHAMS 1 Residential Complex/2.jpg",
+    "type": "Residential",
     "status": "Completed",
-    "timespan": "2023-2024",
-    "client": "Tehran Investment Co.",
-    "clientLocation": "Azadi St, Tehran",
-    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman"],
-    "size": "3200 m²",
-    "BArea":"2649 m²",
-    "overview": "Located on Azadi St, Tehran, this commercial plaza by Tehran Investment Co. spans 3,200 m² of land with 10,000 m² built-up area. Completed in 2023."
+    "timespan": "2023-2026",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Hejab St, Mashhad  ",
+    "Team":   ["Vahid Mirzaei", "Peyman Taheri", "Vahid Yousefi", "Mojtaba Pashaei"],
+    "size": "4970 m²",
+     "BArea":"18188 m²",
+    "overview": "Shams 1 Residential Complex – Located on Hejab St, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 4,970 m² of land with 18,166 m² built-up area. Completed in 2017."
   },
 
   
@@ -709,24 +712,27 @@
 
   },
 
-       {
+    {
     "id": 47,
-    "name": "CINAMA GHODS",
-    "year": "2024",
-    "location": "MASHHAD",
-    "image": "/images/CINAMA GHODS/3.jpg",
-    "detailImage": "/images/CINAMA GHODS/2.jpg",
-    
-    "type": "Hospitality",
-    "status": "Design Stage",
-    "timespan": "2025-2026",
-    "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Pasdaran Blvd (Jannat), Mashhad ",
-    "Team":["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
-    "size": "1450 m²",
-    "BArea": "8750 m²",
-    "overview": "Located on Jomhuri Blvd, Qom, this landscape project by the Islamic Revolution Housing Foundation spans 8,000 m² of land with 5,000 m² built-up area. Currently in the design stage for 2025."
+    "name": "Bajk Mixed-use Complex",
+    "year": "2017",
+    "location": "QOM",
+    "image": "/images/Bajk Mixed-use Complex/1.jpg",
+    "detailImage": "/images/Bajk Mixed-use Complex/2.jpg",
+    "type": "Commercial – Office – Hospitality",
+    "status": "Under Construction",
+    "timespan": "2022-2025",
+    "client": "Islamic Revolution Housing Foundation, Qom Province",
+    "clientLocation": "19th Day St (Bajek), Qom  ",
+    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Golnaz Sadeghnejad"],
+    "size": "201 m²",
+    "BArea": "1010 m²",
+    "overview": "Situated on 19th Day St (Bajek), Qom, this mixed-use commercial, office, and hospitality project by the Islamic Revolution Housing Foundation, Qom Province, occupies 201 m² of land with 1,010 m² built-up area. Completed in 2017."
   },
+
+
+
+
     
       {
     "id": 48,
@@ -737,22 +743,25 @@
     "image": "/images/CHESHMANDAZ Residential Complex/1.jpg"
   },
 
-
-    {
+ 
+  {
     "id": 49,
-    "name": "ARMAGHAN Residential Complex",
-    "year": "2014",
+    "name": "Rezvan Pilgrims’ Residence",
+    "year": "2021",
     "location": "MASHHAD",
-    "image": "/images/ARMAGHAN Residential Complex/1.jpg",
-    "detailImage": "/images/ARMAGHAN Residential Complex/2.jpg",
-    "type": "Residential",
-    "status": "Under Construction",
-    "timespan": "2022-2024",
+    "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg",
+    "detailImage": "/images/new resize/11-Rezvan Pilgrims’ Residence_detail.jpg",
+    "type": "Hospitality",
+    "status": "Design Stage",
+    "timespan": "2021-2023",
     "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Niloofar St, Mashhad",
-    "Team":  ["Fatemeh Mousavinia", "Golnaz Sadeghnejad", "Vahid Mirzaei", "Mojtaba Pashaei"],
-    "size": "3429 m²",
-    "BArea":"0 m²",
-    "overview": "Located on Armaghan St, Mashhad, this residential project by the Islamic Revolution Housing Foundation, Mashhad County, has 3,429 m² of land. Construction is ongoing since 2014."
+    "clientLocation": "Khamenei Alley, Andarzgoo St, Mashhad",
+    "Team":  ["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
+    "size": "1450",
+    "BArea":"8750",
+    "overview": "Situated on Khamenei Alley, Andarzgoo St, Mashhad, this hospitality project by the Islamic Revolution Housing Foundation, Mashhad County, spans 1,450 m² of land with 8,750 m² built-up area. Design stage initiated in 2021."
   }
+   
+
+
 ]

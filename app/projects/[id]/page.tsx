@@ -90,7 +90,7 @@ const projects = [
     ],
   },
   {
-    id: 3,
+    id: 20,
     name: "Grownida Innovation Center",
     year: "2025",
     location: "MASHHAD",
@@ -110,7 +110,7 @@ const projects = [
     ],
   },
   {
-    id: 4,
+    id: 9,
     name: "ALIS OFFICE Headquarter Building",
     year: "2025",
     location: "MASHHAD",
@@ -131,7 +131,7 @@ const projects = [
     ],
   },
   {
-    id: 5,
+  id: 4,
     name: "Binahayat residential Complex",
     year: "2024",
     location: "MASHHAD",
@@ -221,7 +221,7 @@ const projects = [
     ],
   },
   {
-    id: 9,
+    id: 42,
     name: "Shaghayegh Office Building",
     year: "2023",
     location: "ISFAHAN",
@@ -246,7 +246,7 @@ const projects = [
     ],
   },
   {
-    id: 10,
+    id: 22,
     name: "Aseman",
     year: "2024",
     location: "SHIRAZ",
@@ -460,7 +460,7 @@ const projects = [
     ],
   },
   {
-    id: 20,
+    id: 3,
     name: "ZEYTON no.2 Residential Complex",
     year: "2025",
     location: "HAMADAN",
@@ -508,7 +508,7 @@ const projects = [
     ],
   },
   {
-    id: 22,
+    id: 40,
     name: "NILOUFAR Cancer Caring Center",
     year: "2023",
     location: "URMIA",
@@ -553,7 +553,7 @@ const projects = [
     ],
   },
   {
-    id: 24,
+    id: 36,
     name: "Fajr 4 Commercial Complex",
     year: "2024",
     location: "GORGAN",
@@ -601,7 +601,7 @@ const projects = [
     ],
   },
   {
-    id: 26,
+    id: 49,
     name: "Rezvan Pilgrims’ Residence",
     year: "2023",
     location: "SEMNAN",
@@ -621,7 +621,7 @@ const projects = [
     ],
   },
   {
-    id: 27,
+    id: 10,
     name: "JAVAHER PLAZA Residential & Commerical Complex2",
     year: "2025",
     location: "ILAM",
@@ -816,7 +816,7 @@ const projects = [
   },
 
     {
-    id: 36,
+    id: 39,
      "name": "CHESHMANDAZ Residential Complex",
     "year": "2015",
     "location": "MASHHAD",
@@ -842,7 +842,7 @@ const projects = [
   },
 
    {
-    id: 47,
+    id: 27,
     name: "CINAMA GHODS",
     year: "2025",
     location: "KASHAN",
@@ -897,7 +897,7 @@ const projects = [
     ],
   },
    {
-    id: 42,
+    id: 26,
     name: "Abuzar Residential",
     year: "2025",
     location: "KASHAN",
@@ -945,7 +945,7 @@ const projects = [
     ],
   },
    {
-    id: 39,
+    id: 47,
     name: " Bajk Mixed-use Complex",
     year: "2025",
     location: "KASHAN",
@@ -995,7 +995,7 @@ const projects = [
 
 
     {
-    id: 49,
+    id: 5,
     name: "ARMAGHAN Residential Complex",
     year: "2025",
     location: "KASHAN",
@@ -1023,7 +1023,7 @@ const projects = [
     ],
   },
    {
-    id: 40,
+    id: 24,
     name: "OFOGH Residential Complex Lndscape",
     year: "2025",
     location: "KASHAN",
@@ -1037,15 +1037,15 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/OFOGH Residential Complex Lndscape/main.jpg",
+      "/images/OFOGH Residential Complex Lndscape/1.jpg",
           "/images/OFOGH Residential Complex Lndscape/2.jpg",
               "/images/OFOGH Residential Complex Lndscape/3.jpg",
                   "/images/OFOGH Residential Complex Lndscape/4.jpg",
                       "/images/OFOGH Residential Complex Lndscape/5.jpg",
-                          "/images/OFOGH Residential Complex Lndscape/1.jpg",
-                           "/images/OFOGH Residential Complex Lndscape/main3.jpg",
-                            "/images/OFOGH Residential Complex Lndscape/main4.jpg",
-                             "/images/OFOGH Residential Complex Lndscape/main5.jpg",
+                          "/images/OFOGH Residential Complex Lndscape/6.jpg",
+                           "/images/OFOGH Residential Complex Lndscape/7.jpg",
+                            "/images/OFOGH Residential Complex Lndscape/8.jpg",
+                             "/images/OFOGH Residential Complex Lndscape/9.jpg",
 
 
 

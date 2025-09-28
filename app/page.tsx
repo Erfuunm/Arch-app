@@ -821,7 +821,7 @@ export default function ProjectsPage() {
                   <div
                     ref={scrollContainerRef}
                     className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-y-auto' : 'overflow-x-auto overflow-y-hidden'}`}
-                    style={{ height: isMobile ? "auto" : "calc(100vh - 92px)", scrollBehavior: "smooth" }}
+                    style={{ height: isMobile ? "auto" : "calc(100vh - 132px)", scrollBehavior: "smooth" }}
                   >
                     {isMobile ? (
                       <div className="grid grid-cols-1 gap-3">
@@ -857,7 +857,7 @@ export default function ProjectsPage() {
                             <div
                               key={`page-${pageIndex}`}
                               className={`min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[1%]`}
-                              style={{ height: "calc(100vh - 132px)", overflowY: "hidden" }}
+                              style={{ height: "calc(100vh - 172px)", overflowY: "hidden" }}
                             >
                               {currProjects.map((project, index) => {
                                 let gridClass = "col-span-1 row-span-1"
