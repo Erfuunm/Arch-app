@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, Menu, ArrowLeft, ArrowRight, X, Filter } fro
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion, AnimatePresence } from "framer-motion"
-import { Variants } from "framer-motion";
+import { Variants } from "framer-motion"
 
 // Translation object for bilingual static text
 const translations = {
@@ -98,9 +98,6 @@ const filterVariants = {
   exit: { opacity: 0, y: -10 },
 }
 
-
-
-// Animation variants for smooth transitions
 const hoverVariants: Variants = {
   initial: { opacity: 0, scale: 0.98 },
   animate: { 
@@ -113,7 +110,7 @@ const hoverVariants: Variants = {
     scale: 0.98, 
     transition: { duration: 0.3, ease: "easeIn" } 
   },
-};
+}
 
 export default function ProjectsPage() {
   const [lang, setLang] = useState<"en" | "fa">("en")
@@ -127,7 +124,6 @@ export default function ProjectsPage() {
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -143,7 +139,6 @@ export default function ProjectsPage() {
     loadProjects()
   }, [lang])
 
-  // Handle loading screen timing
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false)
@@ -151,7 +146,6 @@ export default function ProjectsPage() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Detect mobile
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768)
@@ -161,7 +155,6 @@ export default function ProjectsPage() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  // Handle mouse movement for horizontal scrolling (desktop only)
   useEffect(() => {
     if (isMobile) return
     const scrollContainer = scrollContainerRef.current
@@ -202,7 +195,6 @@ export default function ProjectsPage() {
     }
   }, [isMobile])
 
-  // Handle mouse wheel for horizontal scrolling (desktop only)
   useEffect(() => {
     if (isMobile) return
     const container = scrollContainerRef.current
@@ -218,7 +210,6 @@ export default function ProjectsPage() {
     return () => container.removeEventListener("wheel", handleWheel)
   }, [isMobile])
 
-  // Handle arrow button scrolling
   const scrollLeft = () => {
     const container = scrollContainerRef.current
     if (container) {
@@ -233,22 +224,21 @@ export default function ProjectsPage() {
     }
   }
 
-  const filteredProjects = useMemo(() => {
-    return projects.filter((project) => {
-      const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
-      const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
-      const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter
-      const isVisibleInMobile = !isMobile || !project.isHide
-      return typeMatch && locationMatch && yearMatch && isVisibleInMobile
-    })
-  }, [projects, typeFilter, locationFilter, yearFilter, isMobile])
+  const isProjectFiltered = (project: any) => {
+    const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
+    const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
+    const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter
+    const isVisibleInMobile = !isMobile || !project.isHide
+    return typeMatch && locationMatch && yearMatch && isVisibleInMobile
+  }
 
   const PROJECTS_PER_PAGE = 16
-  const totalProjects = Math.min(filteredProjects.length, PROJECTS_PER_PAGE * 3)
-  const totalPages = Math.min(Math.ceil(totalProjects / PROJECTS_PER_PAGE), 3)
+  const totalPages = Math.min(Math.ceil(projects.length / PROJECTS_PER_PAGE), 3)
 
-  const handleProjectClick = (projectId: number) => {
-    setSelectedProject(projectId)
+  const handleProjectClick = (projectId: number, isFiltered: boolean) => {
+    if (isFiltered) {
+      setSelectedProject(projectId)
+    }
   }
 
   const handleBackToGrid = () => {
@@ -257,6 +247,7 @@ export default function ProjectsPage() {
 
   const handlePreviousProject = () => {
     if (selectedProject) {
+      const filteredProjects = projects.filter(isProjectFiltered)
       const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject)
       if (currentIndex === -1) return
       const previousIndex = currentIndex > 0 ? currentIndex - 1 : filteredProjects.length - 1
@@ -266,6 +257,7 @@ export default function ProjectsPage() {
 
   const handleNextProject = () => {
     if (selectedProject) {
+      const filteredProjects = projects.filter(isProjectFiltered)
       const currentIndex = filteredProjects.findIndex((p) => p.id === selectedProject)
       if (currentIndex === -1) return
       const nextIndex = currentIndex < filteredProjects.length - 1 ? currentIndex + 1 : 0
@@ -273,8 +265,8 @@ export default function ProjectsPage() {
     }
   }
 
-  const selectedProjectData = filteredProjects.find((p) => p.id === selectedProject)
-  const otherProjects = filteredProjects.filter((p) => p.id !== selectedProject)
+  const selectedProjectData = projects.find((p) => p.id === selectedProject)
+  const otherProjects = projects.filter((p) => p.id !== selectedProject)
 
   const contentTextDirection = lang === "fa" ? "rtl" : "ltr"
   const contentFontFamily = lang === "fa" ? "Vazirmatn, sans-serif" : "Inter, sans-serif"
@@ -490,28 +482,28 @@ export default function ProjectsPage() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="px-3 md:px-6 h-auto bg-[#f5f5f5]  flex justify-center items-center">
+                <div className="px-3 md:px-6 h-auto bg-[#f5f5f5] flex justify-center items-center">
                   <div className="w-[90%] mx-auto pb-10 pt-8">
                     <div className="grid grid-cols-1 lg:grid-cols-7 gap-4 mb-8">
                       <div className="hidden lg:block lg:col-span-2 lg:space-y-3 order-2 lg:order-1">
                         {otherProjects.slice(0, 6).map((project, index) => (
                           <div
                             key={`left-${project.id}-${index}`}
-                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24 group"
-                            onClick={() => handleProjectClick(project.id)}
+                            className={`relative overflow-hidden rounded-lg transition-all bg-gray-100 shadow-sm border border-gray-200 h-24 group ${!isProjectFiltered(project) ? 'opacity-50 grayscale cursor-not-allowed' : 'cursor-pointer hover:scale-[1.02]'}`}
+                            onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
                           >
                             <div className="relative h-full">
                               <Image
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className="object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
+                                className={`object-cover transition-all duration-300 ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
                               />
                               <motion.div
                                 variants={hoverVariants}
                                 initial="initial"
                                 animate="initial"
-                                whileHover="animate"
+                                whileHover={isProjectFiltered(project) ? "animate" : "initial"}
                                 className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
                               >
                                 <div className="text-center">
@@ -574,7 +566,6 @@ export default function ProjectsPage() {
                                       <p className="font-bold text-gray-900">{translations[lang].client}</p>
                                       <p className="text-gray-600">{selectedProjectData.client}</p>
                                     </div>
-                             
                                     <div>
                                       <p className="font-bold text-gray-900">{translations[lang].status}</p>
                                       <p className="text-gray-600">{selectedProjectData.status}</p>
@@ -648,21 +639,21 @@ export default function ProjectsPage() {
                         {otherProjects.slice(6, 12).map((project, index) => (
                           <div
                             key={`right-${project.id}-${index}`}
-                            className="relative overflow-hidden rounded-lg cursor-pointer transition-all hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 h-24 group"
-                            onClick={() => handleProjectClick(project.id)}
+                            className={`relative overflow-hidden rounded-lg transition-all bg-gray-100 shadow-sm border border-gray-200 h-24 group ${!isProjectFiltered(project) ? 'opacity-50 grayscale cursor-not-allowed' : 'cursor-pointer hover:scale-[1.02]'}`}
+                            onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
                           >
                             <div className="relative h-full">
                               <Image
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className="object-cover grayscale transition-all duration-300 group-hover:grayscale-0 group-hover:scale-105"
+                                className={`object-cover transition-all duration-300 ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
                               />
                               <motion.div
                                 variants={hoverVariants}
                                 initial="initial"
                                 animate="initial"
-                                whileHover="animate"
+                                whileHover={isProjectFiltered(project) ? "animate" : "initial"}
                                 className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
                               >
                                 <div className="text-center">
@@ -825,18 +816,18 @@ export default function ProjectsPage() {
                   >
                     {isMobile ? (
                       <div className="grid grid-cols-1 gap-3">
-                        {filteredProjects.map((project, index) => (
+                        {projects.map((project, index) => (
                           <div
                             key={`grid-${project.id}`}
-                            className="group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200"
-                            onClick={() => handleProjectClick(project.id)}
+                            className={`group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 ${!isProjectFiltered(project) ? 'opacity-50 grayscale cursor-not-allowed' : 'cursor-pointer hover:scale-[1.02]'}`}
+                            onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
                           >
                             <div className="relative h-[180px]">
                               <Image
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className="object-cover transition-transform group-hover:scale-105"
+                                className={`object-cover transition-transform ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:scale-105'}`}
                               />
                             </div>
                             <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-start justify-center">
@@ -849,10 +840,10 @@ export default function ProjectsPage() {
                         ))}
                       </div>
                     ) : (
-                      <div className="flex flex-row gap-4 ">
+                      <div className="flex flex-row gap-4">
                         {Array.from({ length: totalPages }).map((_, pageIndex) => {
                           const startIndex = pageIndex * PROJECTS_PER_PAGE
-                          const currProjects = filteredProjects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
+                          const currProjects = projects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
                           return (
                             <div
                               key={`page-${pageIndex}`}
@@ -913,21 +904,21 @@ export default function ProjectsPage() {
                                 return (
                                   <div
                                     key={`grid-${project.id}`}
-                                    className={`group relative overflow-hidden rounded-lg cursor-pointer transition-transform hover:scale-[1.02] bg-gray-100 shadow-sm border border-gray-200 ${gridClass}`}
-                                    onClick={() => handleProjectClick(project.id)}
+                                    className={`group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 ${gridClass} ${!isProjectFiltered(project) ? 'opacity-50 grayscale cursor-not-allowed' : 'cursor-pointer hover:scale-[1.02]'}`}
+                                    onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
                                   >
                                     <div className="relative h-full">
                                       <Image
                                         src={project.image || "/placeholder.svg"}
                                         alt={project.name}
                                         fill
-                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                        className={`object-cover transition-transform duration-300 ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:scale-105'}`}
                                       />
                                       <motion.div
                                         variants={hoverVariants}
                                         initial="initial"
                                         animate="initial"
-                                        whileHover="animate"
+                                        whileHover={isProjectFiltered(project) ? "animate" : "initial"}
                                         className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
                                       >
                                         <div className="text-center">
