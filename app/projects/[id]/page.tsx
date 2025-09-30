@@ -40,7 +40,7 @@ const translations = {
 // Re-defining projects data for this page for demonstration purposes.
 const projects = [
   {
-    id: 1,
+    id: 5,
     name: "ASPIRIN Medical Complex",
     year: "2025",
     location: "MASHHAD",
@@ -221,7 +221,7 @@ const projects = [
     ],
   },
   {
-    id: 42,
+    id: 47,
     name: "Shaghayegh Office Building",
     year: "2023",
     location: "ISFAHAN",
@@ -621,7 +621,7 @@ const projects = [
     ],
   },
   {
-    id: 10,
+    id: 42,
     name: "JAVAHER PLAZA Residential & Commerical Complex2",
     year: "2025",
     location: "ILAM",
@@ -923,7 +923,7 @@ const projects = [
     ],
   },
      {
-    id: 37,
+    id: 38,
     name: "Faregh-al-tahsilan residential",
     year: "2025",
     location: "KASHAN",
@@ -945,7 +945,7 @@ const projects = [
     ],
   },
    {
-    id: 47,
+    id: 10,
     name: " Bajk Mixed-use Complex",
     year: "2025",
     location: "KASHAN",
@@ -959,10 +959,15 @@ const projects = [
     overview:
       "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
     galleryImages: [
-      "/images/Bajk Mixed-use Complex/1.jpg",
-      "/images/Bajk Mixed-use Complex/2.jpg",
-         "/images/Bajk Mixed-use Complex/3.jpg",
-          "/images/Bajk Mixed-use Complex/4.jpg",
+      "/images/JAVAHER2/1.jpg",
+      "/images/JAVAHER2/2.jpg",
+         "/images/JAVAHER2/3.jpg",
+          "/images/JAVAHER2/4.jpg",
+           "/images/JAVAHER2/5.jpg",
+            "/images/JAVAHER2/6.jpg",
+             "/images/JAVAHER2/7.jpg",
+              "/images/JAVAHER2/8.jpg",
+               "/images/JAVAHER2/9.jpg",
 
 
     ],
@@ -970,7 +975,7 @@ const projects = [
 
 
   {
-    id: 38,
+    id: 37,
     name: "Ebne Sina (Hasht Behesht) Medical & Office Complex",
     year: "2025",
     location: "KASHAN",
@@ -995,7 +1000,7 @@ const projects = [
 
 
     {
-    id: 5,
+    id: 1,
     name: "ARMAGHAN Residential Complex",
     year: "2025",
     location: "KASHAN",

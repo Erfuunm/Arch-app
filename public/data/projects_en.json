@@ -1,21 +1,24 @@
 [
-  {
+
+
+     {
     "id": 1,
-    "name": "ASPIRIN Medical Complex",
-    "year": "2020",
+    "name": "ARMAGHAN Residential Complex",
+    "year": "2014",
     "location": "MASHHAD",
-    "image": "images/new resize/1-ASPIRIN Medical Complex.jpg",
-    "detailImage": "images/new resize/1-ASPIRIN Medical Complex_detail.jpg",
-    "type": "Office – Medical",
+    "image": "/images/ARMAGHAN Residential Complex/1.jpg",
+    "detailImage": "/images/ARMAGHAN Residential Complex/2.jpg",
+    "type": "Residential",
     "status": "Under Construction",
-    "timespan": "2020-2025",
-    "client": "Aseman Investment Group",
-    "clientLocation": "Kolahdooz St, Ahmad Abad, Mashhad",
-    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Hawra Almarei", "Shakilla Sadegian", "Samaneh Iman", "Melika Shariatmadar"],
-    "size": "950 m²",
-    "BArea":"10444 m²",
-    "overview": "Located on Kolahdooz St, Ahmad Abad, Mashhad, this office and medical facility by Aseman Investment Group occupies 950 m² of land with 10,444 m² built-up area. Construction began in 2020 and is ongoing."
+    "timespan": "2022-2024",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Niloofar St, Mashhad",
+    "Team":  ["Fatemeh Mousavinia", "Golnaz Sadeghnejad", "Vahid Mirzaei", "Mojtaba Pashaei"],
+    "size": "3429 m²",
+    "BArea":"0 m²",
+    "overview": "Located on Armaghan St, Mashhad, this residential project by the Islamic Revolution Housing Foundation, Mashhad County, has 3,429 m² of land. Construction is ongoing since 2014."
   },
+
  {
     "id": 2,
     "name": "Rezvan Pilgrims’ Residence",
@@ -49,7 +52,7 @@
     "name": "Binahayat residential Complex",
     "year": "2015",
     "location": "MASHHAD",
-    "image": "/images/new resize/9-Binahayat residential Complex.jpg",
+    "image": "/images/Binahayat residential Complex/main.jpg",
     "detailImage": "/images/new resize/9-Binahayat residential Complex_detail.jpg",
     "type": "Residential – Commercial",
     "status": "Under Construction",
@@ -62,23 +65,25 @@
     "overview": "Located on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation covers 4,900 m² of land with 42,400 m² built-up area. Construction started in 2015 and is ongoing."
   },
 
-      {
+    {
     "id": 5,
-    "name": "ARMAGHAN Residential Complex",
-    "year": "2014",
+    "name": "ASPIRIN Medical Complex",
+    "year": "2020",
     "location": "MASHHAD",
-    "image": "/images/ARMAGHAN Residential Complex/1.jpg",
-    "detailImage": "/images/ARMAGHAN Residential Complex/2.jpg",
-    "type": "Residential",
+    "image": "images/new resize/1-ASPIRIN Medical Complex.jpg",
+    "detailImage": "images/new resize/1-ASPIRIN Medical Complex_detail.jpg",
+    "type": "Office – Medical",
     "status": "Under Construction",
-    "timespan": "2022-2024",
-    "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Niloofar St, Mashhad",
-    "Team":  ["Fatemeh Mousavinia", "Golnaz Sadeghnejad", "Vahid Mirzaei", "Mojtaba Pashaei"],
-    "size": "3429 m²",
-    "BArea":"0 m²",
-    "overview": "Located on Armaghan St, Mashhad, this residential project by the Islamic Revolution Housing Foundation, Mashhad County, has 3,429 m² of land. Construction is ongoing since 2014."
+    "timespan": "2020-2025",
+    "client": "Aseman Investment Group",
+    "clientLocation": "Kolahdooz St, Ahmad Abad, Mashhad",
+    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Hawra Almarei", "Shakilla Sadegian", "Samaneh Iman", "Melika Shariatmadar"],
+    "size": "950 m²",
+    "BArea":"10444 m²",
+    "overview": "Located on Kolahdooz St, Ahmad Abad, Mashhad, this office and medical facility by Aseman Investment Group occupies 950 m² of land with 10,444 m² built-up area. Construction began in 2020 and is ongoing."
   },
+
+   
 
   {
     "id": 6,
@@ -146,14 +151,15 @@
 
 
 
-  {
+ 
+      {
     "id": 10,
-    "name": "JAVAHER PLAZA Residential & Commerical Complex2",
+     "name": "JAVAHER PLAZA Residential & Commerical Complex Redesign",
     "year": "2020",
     "location": "MASHHAD",
-    "image": "/images/JAVAHER/3.jpg",
-    "detailImage": "/images/JAVAHER/1.jpg",
-    "type": "Residential – Commercial",
+    "image": "/images/JAVAHER2/1.jpg",
+    "detailImage": "/images/JAVAHER2/2.jpg",
+     "type": "Residential – Commercial",
     "status": "Under Construction",
     "timespan": "2025-2028",
     "client": "Aseman Investment Group",
@@ -315,9 +321,10 @@
     "id": 22,
     "name": "Aseman Residential Complex ",
     "year": "2015",
+    
     "location": "MASHHAD",
-    "image": "/images/Aseman/2.jpg",
-    "detailImage": "/images/Aseman/1.jpg",
+    "image": "/images/Aseman/1.jpg",
+    "detailImage": "/images/Aseman/2.jpg",
        "type": "Residential",
     "status": "Design Stage",
     "timespan": "2021-2024",
@@ -567,8 +574,31 @@
   },
 
 
+
+
+
+
   {
     "id": 37,
+    "name": "Ebne Sina (Hasht Behesht) Medical & Office Complex",
+    "year": "2025",
+    "location": "MASHHAD",
+    "image": "/images/Ebne Sina/main.jpg",
+    "detailImage": "/images/Ebne Sina/2.jpg",
+    "type": "Office – Medical",
+    "status": "Design Stage",
+    "timespan": "2024-2026",
+    "client": "Khane Gostar Yekom",
+    "clientLocation": "Ibn Sina St, Mashhad ",
+    "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman"],
+    "size": "1950 m²",
+    "BArea":"17050 m²",
+    "overview": " Located on Ibn Sina St, Mashhad, this office and medical facility by Khane Gostar Yekom covers 1,950 m² of land with 17,050 m² built-up area. Currently in the design stage for 2025."
+  },
+
+
+  {
+    "id": 38,
     "name": "Faregh-al-tahsilan residential",
     "year": "2022",
     "location": "MASHHAD",
@@ -585,27 +615,6 @@
     "overview": "Situated on Faregholtaselin St, Mashhad, this residential project was completed in 2022."
 },
   
-
-
-
-
-  {
-    "id": 38,
-    "name": "Ebne Sina (Hasht Behesht) Medical & Office Complex",
-    "year": "2025",
-    "location": "MASHHAD",
-    "image": "/images/Ebne Sina/1.jpg",
-    "detailImage": "/images/Ebne Sina/2.jpg",
-    "type": "Office – Medical",
-    "status": "Design Stage",
-    "timespan": "2024-2026",
-    "client": "Khane Gostar Yekom",
-    "clientLocation": "Ibn Sina St, Mashhad ",
-    "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman"],
-    "size": "1950 m²",
-    "BArea":"17050 m²",
-    "overview": " Located on Ibn Sina St, Mashhad, this office and medical facility by Khane Gostar Yekom covers 1,950 m² of land with 17,050 m² built-up area. Currently in the design stage for 2025."
-  },
 
 
       {
@@ -655,24 +664,27 @@
         "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"]
   },
 
-
-      {
+   {
     "id": 42,
-    "name": "SHAMS 1 Residential Complex ",
-    "year": "2017",
+    "name": "JAVAHER PLAZA Residential & Commerical Complex",
+    "year": "2020",
     "location": "MASHHAD",
-    "image": "/images/SHAMS 1 Residential Complex/1.jpg",
-    "detailImage": "/images/SHAMS 1 Residential Complex/2.jpg",
-    "type": "Residential",
-    "status": "Completed",
-    "timespan": "2023-2026",
-    "client": "Islamic Revolution Housing Foundation, Mashhad County",
-    "clientLocation": "Hejab St, Mashhad  ",
-    "Team":   ["Vahid Mirzaei", "Peyman Taheri", "Vahid Yousefi", "Mojtaba Pashaei"],
-    "size": "4970 m²",
-     "BArea":"18188 m²",
-    "overview": "Shams 1 Residential Complex – Located on Hejab St, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 4,970 m² of land with 18,166 m² built-up area. Completed in 2017."
+    "image": "/images/JAVAHER/3.jpg",
+    "detailImage": "/images/JAVAHER/1.jpg",
+    "type": "Residential – Commercial",
+    "status": "Under Construction",
+    "timespan": "2025-2028",
+    "client": "Aseman Investment Group",
+    "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
+    "BArea":"2000 m²",
+    "size": "32000 m²",
+    "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman", "Mohammad Akbari", "Zahra Pashaei"],
+    "overview": "Situated on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use project by Aseman Investment Group occupies 2,000 m² of land with 32,000 m² built-up area. Construction began in 2020 and is ongoing."
   },
+
+
+
+
 
   
   {
@@ -719,25 +731,23 @@
 
   },
 
-    {
+      {
     "id": 47,
-    "name": "Bajk Mixed-use Complex",
+    "name": "SHAMS 1 Residential Complex ",
     "year": "2017",
-    "location": "QOM",
-    "image": "/images/Bajk Mixed-use Complex/1.jpg",
-    "detailImage": "/images/Bajk Mixed-use Complex/2.jpg",
-    "type": "Commercial – Office – Hospitality",
-    "status": "Under Construction",
-    "timespan": "2022-2025",
-    "client": "Islamic Revolution Housing Foundation, Qom Province",
-    "clientLocation": "19th Day St (Bajek), Qom  ",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Golnaz Sadeghnejad"],
-    "size": "201 m²",
-    "BArea": "1010 m²",
-    "overview": "Situated on 19th Day St (Bajek), Qom, this mixed-use commercial, office, and hospitality project by the Islamic Revolution Housing Foundation, Qom Province, occupies 201 m² of land with 1,010 m² built-up area. Completed in 2017."
+    "location": "MASHHAD",
+    "image": "/images/SHAMS 1 Residential Complex/1.jpg",
+    "detailImage": "/images/SHAMS 1 Residential Complex/2.jpg",
+    "type": "Residential",
+    "status": "Completed",
+    "timespan": "2023-2026",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Hejab St, Mashhad  ",
+    "Team":   ["Vahid Mirzaei", "Peyman Taheri", "Vahid Yousefi", "Mojtaba Pashaei"],
+    "size": "4970 m²",
+     "BArea":"18188 m²",
+    "overview": "Shams 1 Residential Complex – Located on Hejab St, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation, Mashhad County, spans 4,970 m² of land with 18,166 m² built-up area. Completed in 2017."
   },
-
-
 
 
     
