@@ -181,7 +181,7 @@ export default function AboutPage() {
                         className="object-cover grayscale"
                       />
                     </div>
-                  <div className="flex flex-col justify-start items-start">
+                  <div className={`${lang === 'fa' ? 'flex flex-col justify-end items-end' : 'flex flex-col justify-start items-start'}`}>
                       <h3 className="text-xs md:text-base font-medium text-gray-900 leading-tight">{employee.name}</h3>
                     <p className="text-xs md:text-xs text-gray-600">{employee.title}</p>
                     <p className="text-xs md:text-xs text-gray-600">{employee.grade}</p>

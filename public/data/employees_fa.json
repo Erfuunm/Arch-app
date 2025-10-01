@@ -1,128 +1,157 @@
 [
   {
     "id": 1,
-    "name": "مهناز دولت‌آبادی",
-    "title": "مدیر پروژه",
-    "image": "/images/employee-5.jpeg",
-    "status": "current"
+    "name": "فاطمه موسویان",
+    "title": "معمار",
+    "grade": "دکتری: UI",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
+    "status": "سابق"
   },
   {
     "id": 2,
-    "name": "سمانه ایمان",
-    "title": "معمار",
-    "image": "/images/employee-4.jpeg",
-    "status": "current"
+    "name": "محمد اکبری",
+    "title": "مهندس سازه",
+    "grade": "MArch: دانشگاه بیرجند",
+    "image": "/images/new resize/Mohammad.Akbari (edit) copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 3,
-    "name": "آنیسه عزیززاده",
-    "title": "معمار",
-    "image": "/images/employee-3.jpeg",
-    "status": "current"
+    "name": "سمانه ایمان",
+    "title": "طراح شهری",
+    "grade": "کارشناسی ارشد معماری: دانشگاه خیام",
+    "image": "/images/new resize/Samaneh.Iman edit copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 4,
-    "name": "لیندا میریان",
+    "name": "فواد بازغندی",
     "title": "معمار",
-    "image": "/images/employee-2.jpeg",
-    "status": "current"
+    "grade": "کارشناسی ارشد معماری: UT",
+    "image": "/images/new resize/foad.bazghandi copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 5,
-    "name": "فاطمه شیبانی",
-    "title": "معمار",
-    "image": "/images/employee-9.jpeg",
-    "status": "current"
+    "name": "شکیلا صادقیان",
+    "title": "مهندس عمران",
+    "grade": "MArch: دانشگاه خیام",
+    "image": "/images/new resize/Shakilla.Sadeghian(edit2) copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 6,
-    "name": "فواد بازغندی",
-    "title": "معمار",
-    "image": "/images/employee-7.jpeg",
-    "status": "current"
+    "name": "محدثه تسبیح‌پور",
+    "title": "برنامه‌ریز شهری",
+    "grade": "کارشناسی معماری: FUM",
+    "image": "/images/new resize/Mohaddeseh Tasbihpour copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 7,
-    "name": "هما امینی",
+    "name": "فائزه فورودی",
     "title": "معمار",
-    "image": "/images/employee-8.jpeg",
-    "status": "current"
+    "grade": "کارشناسی معماری: FUM",
+    "image": "/images/new resize/Faezeh.Fouroudi copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 8,
-    "name": "شکیلا صادقیان",
-    "title": "معمار",
-    "image": "/images/employee-1.jpeg",
-    "status": "current"
+    "name": "زهرا پاشایی",
+    "title": "مشاور پایداری",
+    "grade": "MArch: دانشگاه خیام",
+    "image": "/images/new resize/Zahra Pashaei copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 9,
-    "name": "علی رضایی",
-    "title": "طراح",
-    "image": "/images/employee-7.jpeg",
-    "status": "current"
+    "name": "مجتبی پاشایی",
+    "title": "2008-2023",
+    "image": "/images/new resize/Mojtaba.Pashaei copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 10,
-    "name": "سارا احمدی",
-    "title": "برنامه‌ریز شهری",
-    "image": "/images/employee-5.jpeg",
-    "status": "former"
+    "name": "احسان ختار",
+    "title": "معمار",
+    "image": "/images/new resize/Ehsan Khattar copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 11,
-    "name": "محمد کریمی",
-    "title": "مهندس سازه",
-    "image": "/images/employee-8.jpeg",
-    "status": "former"
+    "name": "ملیکا شریعتمدار",
+    "title": "2023-2025",
+    "image": "/images/new resize/Melika Shariatmadar copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 12,
-    "name": "نرگس حسینی",
-    "title": "طراح داخلی",
-    "image": "/images/employee-4.jpeg",
-    "status": "former"
+    "name": "گلناز صادق‌نژاد",
+    "title": "2014-2017",
+    "image": "/images/new resize/Golnaz Sadeghnejad copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 13,
-    "name": "کیانوش صادقی",
-    "title": "معمار منظر",
-    "image": "/images/employee-1.jpeg",
-    "status": "former"
+    "name": "پیمان طاهری",
+    "title": "2009-2022",
+    "image": "/images/new resize/Peyman Taheri copy.jpg",
+    "status": "سابق"
   },
   {
     "id": 14,
-    "name": "پریسا نظری",
-    "title": "طراح شهری",
-    "image": "/images/employee-3.jpeg",
-    "status": "former"
+    "name": "انیسه عزیززاده",
+    "title": "2023-2025",
+    "image": "/images/new resize/Aniseh.Azizzadeh copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 15,
-    "name": "رضا قاسمی",
-    "title": "مهندس عمران",
-    "image": "/images/employee-2.jpeg",
-    "status": "former"
+    "name": "فهیمه فیاض",
+    "title": "2019-2021",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
+    "status": "فعلی"
   },
   {
     "id": 16,
-    "name": "زهرا کریمی",
-    "title": "مورخ معماری",
-    "image": "/images/employee-9.jpeg",
-    "status": "former"
+    "name": "حورا المرعی",
+    "title": "2021-2024",
+    "image": "/images/new resize/Hawra.Almarei copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 17,
-    "name": "امیر حسینی",
-    "title": "متخصص BIM",
-    "image": "/images/employee-7.jpeg",
-    "status": "former"
+    "name": "خاطره مروج",
+    "title": "2009-2021",
+    "image": "/images/new resize/Khatereh Moravvej copy.jpg",
+    "status": "فعلی"
   },
   {
     "id": 18,
-    "name": "لیلا احمدی",
-    "title": "مشاور پایداری",
-    "image": "/images/employee-5.jpeg",
-    "status": "former"
+    "name": "پارسا موسوی‌نیا",
+    "title": "2021-2023",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
+    "status": "فعلی"
+  },
+  {
+    "id": 19,
+    "name": "وحید میرزایی",
+    "title": "متخصص BIM",
+    "image": "/images/new resize/Vahid Mirzaei copy.jpg",
+    "status": "سابق"
+  },
+  {
+    "id": 20,
+    "name": "وحید یوسفی",
+    "title": "2008-2023",
+    "image": "/images/new resize/Vahid.Usefi copy.jpg",
+    "status": "سابق"
+  },
+  {
+    "id": 21,
+    "name": "الهام یوسفی",
+    "title": "معمار",
+    "image": "/images/new resize/Elham Yousefi copy.jpg",
+    "status": "فعلی"
   }
 ]
