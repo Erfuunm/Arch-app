@@ -4,6 +4,7 @@
     "id": 1,
     "name": "Fatemeh Mousavian",
     "title": "Architect",
+    "grade": "PhD: UI" ,
     "image": "/images/new resize/OUR PICTURES copy 2.jpg",
     "status": "former"
   },
@@ -11,6 +12,7 @@
     "id": 2,
     "name": "Mohammad Akbari",
     "title": "Structural Engineer",
+    "grade" : "MArch: University of Birjand",
     "image": "/images/new resize/Mohammad.Akbari (edit) copy.jpg",
     "status": "former"
   },
@@ -18,6 +20,7 @@
     "id": 3,
     "name": "Samaneh Iman",
     "title": "Urban Designer",
+    "grade" : "MArch: Khayyam University",
     "image": "/images/new resize/Samaneh.Iman edit copy.jpg",
     "status": "former"
   },
@@ -25,6 +28,7 @@
     "id": 4,
     "name": "Foad Bazghandi",
     "title": "Architect",
+    "grade" : "MArch: UT",
     "image": "/images/new resize/foad.bazghandi copy.jpg",
     "status": "current"
   },
@@ -32,6 +36,7 @@
     "id": 5,
     "name": "Shakilla Sadeghian",
     "title": "Civil Engineer",
+    "grade" : "MArch: Khayyam University",
     "image": "/images/new resize/Shakilla.Sadeghian(edit2) copy.jpg",
     "status": "former"
   },
@@ -39,6 +44,7 @@
     "id": 6,
     "name": "Mohaddeseh Tasbihpour",
     "title": "Urban Planner",
+    "grade": "BArch: FUM",
     "image": "/images/new resize/Mohaddeseh Tasbihpour copy.jpg",
     "status": "former"
   },
@@ -46,6 +52,7 @@
     "id": 7,
     "name": "Faezeh Fouroudi",
     "title": "Architect",
+     "grade": "BArch: FUM",
     "image": "/images/new resize/Faezeh.Fouroudi copy.jpg",
     "status": "current"
   },
@@ -53,13 +60,14 @@
     "id": 8,
     "name": "Zahra Pashaei",
     "title": "Sustainability Consultant",
+    "grade" : "MArch: Khayyam University",
     "image": "/images/new resize/Zahra Pashaei copy.jpg",
     "status": "former"
   },
     {
     "id": 9,
     "name": "Mojtaba Pashaei",
-    "title": "Interior Designer",
+    "title": "2008-2023",
     "image": "/images/new resize/Mojtaba.Pashaei copy.jpg",
     "status": "former"
   },
@@ -73,14 +81,14 @@
     {
     "id": 11,
     "name": "Melika Shariatmadar",
-    "title": "Designer",
+    "title": "2023-2025",
     "image": "/images/new resize/Melika Shariatmadar copy.jpg",
     "status": "current"
   },
     {
     "id": 12,
     "name": "Golnaz Sadeghnejad",
-    "title": "Architect",
+    "title": "2014-2017",
     "image": "/images/new resize/Golnaz Sadeghnejad copy.jpg",
     "status": "current"
   },
@@ -88,7 +96,7 @@
   {
     "id": 13,
     "name": "Peyman Taheri",
-    "title": "Landscape Architect",
+    "title": "2009-2022",
     "image": "/images/new resize/Peyman Taheri copy.jpg",
     "status": "former"
   },
@@ -96,7 +104,7 @@
     {
     "id": 14,
     "name": "Aniseh Azizzadeh",
-    "title": "Project Manager",
+    "title": "2023-2025",
     "image": "/images/new resize/Aniseh.Azizzadeh copy.jpg",
     "status": "current"
   },
@@ -104,28 +112,28 @@
       {
     "id": 15,
     "name": "Fahimeh Fayyaz",
-    "title": "Project Manager",
+    "title": "2019-2021",
     "image": "/images/new resize/OUR PICTURES copy 2.jpg",
     "status": "current"
   },
     {
     "id": 16,
     "name": "Hawra Almarei",
-    "title": "Architect",
+    "title": "2021-2024",
     "image": "/images/new resize/Hawra.Almarei copy.jpg",
     "status": "current"
   },
     {
     "id": 17,
     "name": "Khatereh Moravvej",
-    "title": "Architect",
+    "title": "2009-2021",
     "image": "/images/new resize/Khatereh Moravvej copy.jpg",
     "status": "current"
   },
       {
     "id": 18,
     "name": "Parsa Mousavinia",
-    "title": "Architect",
+    "title": "2021-2023",
     "image": "/images/new resize/OUR PICTURES copy 2.jpg",
     "status": "current"
   },
@@ -142,7 +150,7 @@
   {
     "id": 20,
     "name": "Vahid Usefi",
-    "title": "Architectural Historian",
+    "title": "2008-2023",
     "image": "/images/new resize/Vahid.Usefi copy.jpg",
     "status": "former"
   },

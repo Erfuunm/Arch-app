@@ -173,7 +173,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                 {employeesDisplay.map((employee) => (
                   <div key={employee.id} className="flex flex-col items-center text-center">
-                    <div className="w-32 h-32 md:w-40 md:h-40 relative overflow-hidden rounded-lg mb-3">
+                    <div className="w-32 h-32 md:w-32 md:h-32 relative overflow-hidden rounded-lg mb-3">
                       <Image
                         src={employee.image || "/placeholder.svg"}
                         alt={employee.name}
@@ -181,8 +181,11 @@ export default function AboutPage() {
                         className="object-cover grayscale"
                       />
                     </div>
-                    <h3 className="text-sm md:text-base font-medium text-gray-900 leading-tight">{employee.name}</h3>
-                    <p className="text-xs md:text-sm text-gray-600">{employee.title}</p>
+                  <div className="flex flex-col justify-start items-start">
+                      <h3 className="text-xs md:text-base font-medium text-gray-900 leading-tight">{employee.name}</h3>
+                    <p className="text-xs md:text-xs text-gray-600">{employee.title}</p>
+                    <p className="text-xs md:text-xs text-gray-600">{employee.grade}</p>
+                    </div>
                   </div>
                 ))}
               </div>

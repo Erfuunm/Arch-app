@@ -17,7 +17,7 @@ const translations = {
     commercial: "COMMERCIAL",
     mixedUse: "MIXED USE",
     allLocations: "ALL LOCATIONS",
-    allYears: "ALL YEARS",
+    allstatus: "ALL STATUS",
     back: "Back",
     moreInfo: "MORE INFO",
     previousProject: "PREVIOUS PROJECT",
@@ -44,7 +44,7 @@ const translations = {
     commercial: "تجاری",
     mixedUse: "چندمنظوره",
     allLocations: "همه مکان‌ها",
-    allYears: "همه سال‌ها",
+    allstatus: "همه وضعیت ها",
     back: "بازگشت",
     moreInfo: "اطلاعات بیشتر",
     previousProject: "پروژه قبلی",
@@ -117,7 +117,7 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<any[]>([])
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
   const [locationFilter, setLocationFilter] = useState("ALL LOCATIONS")
-  const [yearFilter, setYearFilter] = useState("ALL YEARS")
+  const [statusFilter, setStatusFilter] = useState("ALL STATUS")
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -227,7 +227,7 @@ export default function ProjectsPage() {
   const isProjectFiltered = (project: any) => {
     const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
     const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
-    const yearMatch = yearFilter === "ALL YEARS" || project.year.toString() === yearFilter
+    const yearMatch = statusFilter === "ALL STATUS" || project.status === statusFilter
     const isVisibleInMobile = !isMobile || !project.isHide
     return typeMatch && locationMatch && yearMatch && isVisibleInMobile
   }
@@ -286,11 +286,15 @@ export default function ProjectsPage() {
       { value: "TEHRAN", label: lang === "fa" ? "تهران" : "TEHRAN" },
       { value: "ISFAHAN", label: lang === "fa" ? "اصفهان" : "ISFAHAN" },
     ],
-    year: [
-      { value: "ALL YEARS", label: translations[lang].allYears },
-      { value: "2025", label: "2025" },
-      { value: "2024", label: "2024" },
-      { value: "2023", label: "2023" },
+    status: [
+      { value: "ALL STATUS", label: translations[lang].allstatus },
+        { value: "Completed", label: lang === "fa" ? "ساخته شده" : "Completed" },
+      { value: "Under Construction", label: lang === "fa" ? "در حال ساخت" : "Under Construction" },
+    
+      { value: "Design Stage", label: lang === "fa" ? "مرحله طراحی" : "Design Stage" },
+        { value: "Planning", label: lang === "fa" ? "در حال برنامه ریزی" : "Planning" },
+
+      
     ],
   }
 
@@ -387,12 +391,12 @@ export default function ProjectsPage() {
                         ))}
                       </SelectContent>
                     </Select>
-                    <Select value={yearFilter} onValueChange={setYearFilter}>
+                    <Select value={statusFilter} onValueChange={setStatusFilter}>
                       <SelectTrigger className="w-[140px] rounded-full border-gray-300">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {filterOptions.year.map((option) => (
+                        {filterOptions.status.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}
                           </SelectItem>
@@ -466,12 +470,12 @@ export default function ProjectsPage() {
                             ))}
                           </SelectContent>
                         </Select>
-                        <Select value={yearFilter} onValueChange={setYearFilter}>
+                        <Select value={statusFilter} onValueChange={setStatusFilter}>
                           <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            {filterOptions.year.map((option) => (
+                            {filterOptions.status.map((option) => (
                               <SelectItem key={option.value} value={option.value}>
                                 {option.label}
                               </SelectItem>
@@ -721,12 +725,12 @@ export default function ProjectsPage() {
                         ))}
                       </SelectContent>
                     </Select>
-                    <Select value={yearFilter} onValueChange={setYearFilter}>
+                    <Select value={statusFilter} onValueChange={setStatusFilter}>
                       <SelectTrigger className="w-[140px] rounded-full border-gray-300">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        {filterOptions.year.map((option) => (
+                        {filterOptions.status.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}
                           </SelectItem>
@@ -793,12 +797,12 @@ export default function ProjectsPage() {
                           ))}
                         </SelectContent>
                       </Select>
-                      <Select value={yearFilter} onValueChange={setYearFilter}>
+                      <Select value={statusFilter} onValueChange={setStatusFilter}>
                         <SelectTrigger className="w-full sm:w-[140px] rounded-full border-gray-300">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {filterOptions.year.map((option) => (
+                          {filterOptions.status.map((option) => (
                             <SelectItem key={option.value} value={option.value}>
                               {option.label}
                             </SelectItem>
