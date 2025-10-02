@@ -276,9 +276,12 @@ export default function ProjectsPage() {
   const filterOptions = {
     type: [
       { value: "ALL TYPE", label: translations[lang].allType },
-      { value: "RESIDENTIAL", label: translations[lang].residential },
-      { value: "COMMERCIAL", label: translations[lang].commercial },
-      { value: "MIXED USE", label: translations[lang].mixedUse },
+      { value: "Residential", label: translations[lang].residential },
+      { value: "Commercial", label: translations[lang].commercial },
+      { value: "Hospitality", label: lang === "fa" ? "مهمانسرا" : "Hospitality" },
+      { value: "Office", label: lang === "fa" ? "دفتر" : "Office" },
+
+      
     ],
     location: [
       { value: "ALL LOCATIONS", label: translations[lang].allLocations },
@@ -288,11 +291,11 @@ export default function ProjectsPage() {
     ],
     status: [
       { value: "ALL STATUS", label: translations[lang].allstatus },
-        { value: "Completed", label: lang === "fa" ? "ساخته شده" : "Completed" },
-      { value: "Under Construction", label: lang === "fa" ? "در حال ساخت" : "Under Construction" },
+        { value: "Completed", label: lang === "fa" ? "ساخته شده" : "COMPLETED" },
+      { value: "Under Construction", label: lang === "fa" ? "در حال ساخت" : "UNDER CONSTRUCTION" },
     
-      { value: "Design Stage", label: lang === "fa" ? "مرحله طراحی" : "Design Stage" },
-        { value: "Planning", label: lang === "fa" ? "در حال برنامه ریزی" : "Planning" },
+      { value: "Design Stage", label: lang === "fa" ? "مرحله طراحی" : "DESIGN STAGE" },
+        { value: "Planning", label: lang === "fa" ? "در حال برنامه ریزی" : "PLANNING" },
 
       
     ],
@@ -501,7 +504,7 @@ export default function ProjectsPage() {
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className={`object-cover transition-all duration-300 ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
+                                className={`object-cover transition-all duration-300 grayscale ${!isProjectFiltered(project) ? '' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
                               />
                               <motion.div
                                 variants={hoverVariants}
@@ -651,7 +654,7 @@ export default function ProjectsPage() {
                                 src={project.image || "/placeholder.svg"}
                                 alt={project.name}
                                 fill
-                                className={`object-cover transition-all duration-300 ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
+                                className={`object-cover transition-all duration-300 grayscale ${!isProjectFiltered(project) ? '' : 'group-hover:grayscale-0 group-hover:scale-105'}`}
                               />
                               <motion.div
                                 variants={hoverVariants}
