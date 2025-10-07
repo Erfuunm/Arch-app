@@ -11,7 +11,7 @@
     {
     "id": 2,
     "name": "Mohammad Akbari",
-    "title": "Structural Engineer",
+    "title": "Architect",
     "grade" : "MArch: University of Birjand",
     "image": "/images/new resize/Mohammad.Akbari (edit) copy.jpg",
     "status": "former"
@@ -19,7 +19,7 @@
   {
     "id": 3,
     "name": "Samaneh Iman",
-    "title": "Urban Designer",
+    "title": "Architect",
     "grade" : "MArch: Khayyam University",
     "image": "/images/new resize/Samaneh.Iman edit copy.jpg",
     "status": "former"
@@ -35,7 +35,7 @@
     {
     "id": 5,
     "name": "Shakilla Sadeghian",
-    "title": "Civil Engineer",
+    "title": "Architect",
     "grade" : "MArch: Khayyam University",
     "image": "/images/new resize/Shakilla.Sadeghian(edit2) copy.jpg",
     "status": "former"
@@ -43,7 +43,7 @@
     {
     "id": 6,
     "name": "Mohaddeseh Tasbihpour",
-    "title": "Urban Planner",
+    "title": "Architect",
     "grade": "BArch: FUM",
     "image": "/images/new resize/Mohaddeseh Tasbihpour copy.jpg",
     "status": "former"
@@ -59,7 +59,7 @@
     {
     "id": 8,
     "name": "Zahra Pashaei",
-    "title": "Sustainability Consultant",
+    "title": "Architect",
     "grade" : "MArch: Khayyam University",
     "image": "/images/new resize/Zahra Pashaei copy.jpg",
     "status": "former"
@@ -74,7 +74,7 @@
     {
     "id": 10,
     "name": "Ehsan Khattar",
-    "title": "Architect",
+    "title": "2014-2016",
     "image": "/images/new resize/Ehsan Khattar copy.jpg",
     "status": "current"
   },

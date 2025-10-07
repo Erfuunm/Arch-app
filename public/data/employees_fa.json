@@ -10,7 +10,7 @@
   {
     "id": 2,
     "name": "محمد اکبری",
-    "title": "مهندس سازه",
+    "title": "معمار",
     "grade": "MArch: دانشگاه بیرجند",
     "image": "/images/new resize/Mohammad.Akbari (edit) copy.jpg",
     "status": "سابق"
@@ -18,14 +18,14 @@
   {
     "id": 3,
     "name": "سمانه ایمان",
-    "title": "طراح شهری",
+    "title": "معمار",
     "grade": "کارشناسی ارشد معماری: دانشگاه خیام",
     "image": "/images/new resize/Samaneh.Iman edit copy.jpg",
     "status": "سابق"
   },
   {
     "id": 4,
-    "name": "فواد بازغندی",
+    "name": "فواد بازقندی",
     "title": "معمار",
     "grade": "کارشناسی ارشد معماری: UT",
     "image": "/images/new resize/foad.bazghandi copy.jpg",
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "name": "شکیلا صادقیان",
-    "title": "مهندس عمران",
+    "title": "معمار",
     "grade": "MArch: دانشگاه خیام",
     "image": "/images/new resize/Shakilla.Sadeghian(edit2) copy.jpg",
     "status": "سابق"
@@ -42,14 +42,14 @@
   {
     "id": 6,
     "name": "محدثه تسبیح‌پور",
-    "title": "برنامه‌ریز شهری",
+    "title": "معمار",
     "grade": "کارشناسی معماری: FUM",
     "image": "/images/new resize/Mohaddeseh Tasbihpour copy.jpg",
     "status": "سابق"
   },
   {
     "id": 7,
-    "name": "فائزه فورودی",
+    "name": "فائزه فرودی",
     "title": "معمار",
     "grade": "کارشناسی معماری: FUM",
     "image": "/images/new resize/Faezeh.Fouroudi copy.jpg",
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "name": "زهرا پاشایی",
-    "title": "مشاور پایداری",
+    "title": "معمار",
     "grade": "MArch: دانشگاه خیام",
     "image": "/images/new resize/Zahra Pashaei copy.jpg",
     "status": "سابق"
@@ -73,7 +73,7 @@
   {
     "id": 10,
     "name": "احسان ختار",
-    "title": "معمار",
+    "title": "2014-2017",
     "image": "/images/new resize/Ehsan Khattar copy.jpg",
     "status": "فعلی"
   },
