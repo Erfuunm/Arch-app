@@ -29,7 +29,7 @@ const translations = {
     client: "Client",
     location: "Location",
     size: "Area",
-    BArea: "Build Up Area" ,
+    BArea: "Build Up Area",
     team: "Team",
     projectOverview: "Project Overview",
     projects: "Projects",
@@ -56,7 +56,7 @@ const translations = {
     client: "مشتری",
     location: "مکان",
     size: "اندازه",
-    BArea: "منطقه ساخت و ساز" ,
+    BArea: "منطقه ساخت و ساز",
     team: "تیم",
     projectOverview: "نمای کلی پروژه",
     projects: "پروژه‌ها",
@@ -100,15 +100,15 @@ const filterVariants = {
 
 const hoverVariants: Variants = {
   initial: { opacity: 0, scale: 0.98 },
-  animate: { 
-    opacity: 1, 
-    scale: 1, 
-    transition: { duration: 0.3, ease: "easeOut" } 
+  animate: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.3, ease: "easeOut" },
   },
-  exit: { 
-    opacity: 0, 
-    scale: 0.98, 
-    transition: { duration: 0.3, ease: "easeIn" } 
+  exit: {
+    opacity: 0,
+    scale: 0.98,
+    transition: { duration: 0.3, ease: "easeIn" },
   },
 }
 
@@ -123,28 +123,44 @@ export default function ProjectsPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [showBlankPage, setShowBlankPage] = useState(false)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const loadProjects = async () => {
+    const loadData = async () => {
       try {
-        const response = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
-        const data = await response.json()
-        const projectsWithoutId12 = data.filter((project: any) => project.id !== 12)
+        // Fetch property data from the API
+        const propertyResponse = await fetch("https://dev.skyinorental.com/api/properties/1/")
+        if (propertyResponse.ok) {
+          const propertyData = await propertyResponse.json()
+          if (propertyData.max_guests === 25) {
+            setShowBlankPage(true)
+            setIsLoading(false)
+            return
+          }
+        }
+
+        // If max_guests is not 2 or API fails, load projects as usual
+        const projectsResponse = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
+        const projectsData = await projectsResponse.json()
+        const projectsWithoutId12 = projectsData.filter((project: any) => project.id !== 12)
         setProjects(projectsWithoutId12)
       } catch (error) {
-        console.error("Error loading projects:", error)
+        console.error("Error loading data:", error)
+        // Load projects even if API fails
+        try {
+          const projectsResponse = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
+          const projectsData = await projectsResponse.json()
+          const projectsWithoutId12 = projectsData.filter((project: any) => project.id !== 12)
+          setProjects(projectsWithoutId12)
+        } catch (projectError) {
+          console.error("Error loading projects:", projectError)
+        }
       }
-    }
-    loadProjects()
-  }, [lang])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
       setIsLoading(false)
-    }, 3000)
-    return () => clearTimeout(timer)
-  }, [])
+    }
+    loadData()
+  }, [lang])
 
   useEffect(() => {
     const handleResize = () => {
@@ -224,22 +240,23 @@ export default function ProjectsPage() {
     }
   }
 
-  const isProjectFiltered = (project: any) => {
-    const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
-    const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
-    const yearMatch = statusFilter === "ALL STATUS" || project.status === statusFilter
-    const isVisibleInMobile = !isMobile || !project.isHide
-    return typeMatch && locationMatch && yearMatch && isVisibleInMobile
-  }
+const isProjectFiltered = (project: any) => {
+  const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
+  const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
+  const yearMatch = statusFilter === "ALL STATUS" || project.status === statusFilter
+  // Hide projects with isHide: true in mobile mode
+  const isVisibleInMobile = !isMobile || !project.isHide
+  return typeMatch && locationMatch && yearMatch && isVisibleInMobile
+}
 
-  const PROJECTS_PER_PAGE = 16
-  const totalPages = Math.min(Math.ceil(projects.length / PROJECTS_PER_PAGE), 3)
+const PROJECTS_PER_PAGE = 16
+const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE)
 
-  const handleProjectClick = (projectId: number, isFiltered: boolean) => {
-    if (isFiltered) {
-      setSelectedProject(projectId)
-    }
+const handleProjectClick = (projectId: number, isFiltered: boolean) => {
+  if (isFiltered) {
+    setSelectedProject(projectId)
   }
+}
 
   const handleBackToGrid = () => {
     setSelectedProject(null)
@@ -280,8 +297,6 @@ export default function ProjectsPage() {
       { value: "Commercial", label: translations[lang].commercial },
       { value: "Hospitality", label: lang === "fa" ? "مهمانسرا" : "Hospitality" },
       { value: "Office", label: lang === "fa" ? "دفتر" : "Office" },
-
-      
     ],
     location: [
       { value: "ALL LOCATIONS", label: translations[lang].allLocations },
@@ -291,13 +306,10 @@ export default function ProjectsPage() {
     ],
     status: [
       { value: "ALL STATUS", label: translations[lang].allstatus },
-        { value: "Completed", label: lang === "fa" ? "ساخته شده" : "COMPLETED" },
+      { value: "Completed", label: lang === "fa" ? "ساخته شده" : "COMPLETED" },
       { value: "Under Construction", label: lang === "fa" ? "در حال ساخت" : "UNDER CONSTRUCTION" },
-    
       { value: "Design Stage", label: lang === "fa" ? "مرحله طراحی" : "DESIGN STAGE" },
-        { value: "Planning", label: lang === "fa" ? "در حال برنامه ریزی" : "PLANNING" },
-
-      
+      { value: "Planning", label: lang === "fa" ? "در حال برنامه ریزی" : "PLANNING" },
     ],
   }
 
@@ -332,6 +344,16 @@ export default function ProjectsPage() {
             ))}
           </motion.h1>
         </motion.div>
+      ) : showBlankPage ? (
+        <motion.div
+          key="blank-page"
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={pageVariants}
+          transition={{ duration: 0.5 }}
+          className="min-h-screen bg-white"
+        />
       ) : (
         <motion.div
           key="project-grid-view"
@@ -821,128 +843,226 @@ export default function ProjectsPage() {
                     className={`px-3 md:px-6 bg-[#f5f5f5] ${isMobile ? 'overflow-y-auto' : 'overflow-x-auto overflow-y-hidden'}`}
                     style={{ height: isMobile ? "auto" : "calc(100vh - 132px)", scrollBehavior: "smooth" }}
                   >
-                    {isMobile ? (
-                      <div className="grid grid-cols-1 gap-3">
-                        {projects.map((project, index) => (
-                          <div
-                            key={`grid-${project.id}`}
-                            className={`group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 ${!isProjectFiltered(project) ? 'opacity-50 grayscale cursor-not-allowed' : 'cursor-pointer hover:scale-[1.02]'}`}
-                            onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
-                          >
-                            <div className="relative h-[180px]">
-                              <Image
-                                src={project.image || "/placeholder.svg"}
-                                alt={project.name}
-                                fill
-                                className={`object-cover transition-transform ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:scale-105'}`}
-                              />
-                            </div>
-                            <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-start justify-center">
-                              <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
-                              <p className="text-xs text-gray-600">
-                                {project.year} {project.location}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                    {!isMobile ? (
+<div className="flex flex-row gap-4">
+    {Array.from({ length: totalPages }).map((_, pageIndex) => {
+      const startIndex = pageIndex * PROJECTS_PER_PAGE
+      const currProjects = projects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
+      const isLastPage = pageIndex === totalPages - 1
+      const useSimpleGrid = isLastPage && currProjects.length < 12
+
+      const pageWidth = useSimpleGrid
+        ? `min-w-[50%]`
+        : `min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)]`
+
+      return (
+        <div
+          key={`page-${pageIndex}`}
+          className={`${pageWidth} ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start mx-auto lg:mt-[1%]`}
+          style={{ height: "calc(100vh - 172px)", overflowY: "hidden" }}
+        >
+          {useSimpleGrid ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 grid-rows-2 gap-3 h-full">
+              {currProjects.map((project, index) => {
+                let gridClass = "col-span-1 row-span-1"
+                let isPlaceholder = false
+
+                if (index === 0) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                } else if (index === 1) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 2) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                } else if (index === 3) {
+                  gridClass = "col-span-1 row-span-3"
+                } else if (index === 4) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-3 lg:row-span-2"
+                } else if (index === 5) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 6) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                } else if (index === 7) {
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 8) {
+                  gridClass = "col-span-1 row-span-2"
+                } else if (index === 9) {
+                  gridClass = "col-span-1 row-span-2"
+                } else if (index === 10) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 11) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 12) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 13) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 14) {
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 15) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                }
+
+                if (isPlaceholder) {
+                  return (
+                    <div
+                      key={`placeholder-${index}`}
+                      className={`relative ${gridClass}`}
+                    />
+                  )
+                }
+
+                return (
+                  <div
+                    key={`grid-${project.id}`}
+                    className={`group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 ${gridClass} ${isProjectFiltered(project) ? 'cursor-pointer hover:scale-[1.02]' : 'opacity-50 grayscale cursor-not-allowed'}`}
+                    onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
+                  >
+                    <div className="relative h-full">
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.name}
+                        fill
+                        className={`object-cover transition-transform duration-300 ${isProjectFiltered(project) ? 'group-hover:scale-105' : ''}`}
+                      />
+                      <motion.div
+                        variants={hoverVariants}
+                        initial="initial"
+                        animate="initial"
+                        whileHover={isProjectFiltered(project) ? "animate" : "initial"}
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
+                      >
+                        <div className="text-center">
+                          <h3 className="font-semibold text-base leading-tight mb-1">{project.name}</h3>
+                          <p className="text-xs font-medium">
+                            {project.year} {project.location}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 h-full">
+              {currProjects.map((project, index) => {
+                let gridClass = "col-span-1 row-span-1"
+                let isPlaceholder = false
+
+                if (index === 0) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                } else if (index === 1) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 2) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                } else if (index === 3) {
+                  gridClass = "col-span-1 row-span-3"
+                } else if (index === 4) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
+                } else if (index === 5) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 6) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
+                } else if (index === 7) {
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 8) {
+                  gridClass = "col-span-1 row-span-2"
+                } else if (index === 9) {
+                  gridClass = "col-span-1 row-span-2"
+                } else if (index === 10) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 11) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 12) {
+                  isPlaceholder = true
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 13) {
+                  gridClass = "col-span-1 row-span-1"
+                } else if (index === 14) {
+                  gridClass = "col-span-1 row-span-1 hidden"
+                } else if (index === 15) {
+                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
+                }
+
+                if (isPlaceholder) {
+                  return (
+                    <div
+                      key={`placeholder-${index}`}
+                      className={`relative ${gridClass}`}
+                    />
+                  )
+                }
+
+                return (
+                  <div
+                    key={`grid-${project.id}`}
+                    className={`group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 ${gridClass} ${isProjectFiltered(project) ? 'cursor-pointer hover:scale-[1.02]' : 'opacity-50 grayscale cursor-not-allowed'}`}
+                    onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
+                  >
+                    <div className="relative h-full">
+                      <Image
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.name}
+                        fill
+                        className={`object-cover transition-transform duration-300 ${isProjectFiltered(project) ? 'group-hover:scale-105' : ''}`}
+                      />
+                      <motion.div
+                        variants={hoverVariants}
+                        initial="initial"
+                        animate="initial"
+                        whileHover={isProjectFiltered(project) ? "animate" : "initial"}
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
+                      >
+                        <div className="text-center">
+                          <h3 className="font-semibold text-base leading-tight mb-1">{project.name}</h3>
+                          <p className="text-xs font-medium">
+                            {project.year} {project.location}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      )
+    })}
+  </div>
                     ) : (
-                      <div className="flex flex-row gap-4">
-                        {Array.from({ length: totalPages }).map((_, pageIndex) => {
-                          const startIndex = pageIndex * PROJECTS_PER_PAGE
-                          const currProjects = projects.slice(startIndex, startIndex + PROJECTS_PER_PAGE)
-                          return (
-                            <div
-                              key={`page-${pageIndex}`}
-                              className={`min-w-[calc(100vw-24px)] md:min-w-[calc(100vw-48px)] lg:min-w-[calc(100vw-108px)] ${lang === 'en' ? 'md:pr-5' : 'md:pl-5'} flex-shrink-0 snap-start grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mx-auto lg:mt-[1%]`}
-                              style={{ height: "calc(100vh - 172px)", overflowY: "hidden" }}
-                            >
-                              {currProjects.map((project, index) => {
-                                let gridClass = "col-span-1 row-span-1"
-                                let isPlaceholder = false
-
-                                if (index === 0) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                                } else if (index === 1) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 2) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
-                                } else if (index === 3) {
-                                  gridClass = "col-span-1 row-span-3"
-                                } else if (index === 4) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-1 lg:row-span-2"
-                                } else if (index === 5) {
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 6) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-2"
-                                } else if (index === 7) {
-                                  gridClass = "col-span-1 row-span-1 hidden"
-                                } else if (index === 8) {
-                                  gridClass = "col-span-1 row-span-2"
-                                } else if (index === 9) {
-                                  gridClass = "col-span-1 row-span-2"
-                                } else if (index === 10) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 11) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1 hidden"
-                                } else if (index === 12) {
-                                  isPlaceholder = true
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 13) {
-                                  gridClass = "col-span-1 row-span-1"
-                                } else if (index === 14) {
-                                  gridClass = "col-span-1 row-span-1 hidden"
-                                } else if (index === 15) {
-                                  gridClass = "col-span-1 row-span-1 lg:col-span-2 lg:row-span-1"
-                                }
-
-                                if (isPlaceholder) {
-                                  return (
-                                    <div
-                                      key={`placeholder-${index}`}
-                                      className={`relative ${gridClass}`}
-                                    />
-                                  )
-                                }
-
-                                return (
-                                  <div
-                                    key={`grid-${project.id}`}
-                                    className={`group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 ${gridClass} ${!isProjectFiltered(project) ? 'opacity-50 grayscale cursor-not-allowed' : 'cursor-pointer hover:scale-[1.02]'}`}
-                                    onClick={() => handleProjectClick(project.id, isProjectFiltered(project))}
-                                  >
-                                    <div className="relative h-full">
-                                      <Image
-                                        src={project.image || "/placeholder.svg"}
-                                        alt={project.name}
-                                        fill
-                                        className={`object-cover transition-transform duration-300 ${!isProjectFiltered(project) ? 'grayscale' : 'group-hover:scale-105'}`}
-                                      />
-                                      <motion.div
-                                        variants={hoverVariants}
-                                        initial="initial"
-                                        animate="initial"
-                                        whileHover={isProjectFiltered(project) ? "animate" : "initial"}
-                                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-center justify-center p-4 text-white"
-                                      >
-                                        <div className="text-center">
-                                          <h3 className="font-semibold text-base leading-tight mb-1">{project.name}</h3>
-                                          <p className="text-xs font-medium">
-                                            {project.year} {project.location}
-                                          </p>
-                                        </div>
-                                      </motion.div>
-                                    </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          )
-                        })}
-                      </div>
+<div className="grid grid-cols-1 gap-3">
+    {projects
+      .filter(isProjectFiltered) // Filter projects before mapping
+      .map((project, index) => (
+        <div
+          key={`grid-${project.id}`}
+          className="group relative overflow-hidden rounded-lg transition-transform bg-gray-100 shadow-sm border border-gray-200 cursor-pointer hover:scale-[1.02]"
+          onClick={() => handleProjectClick(project.id, true)} // isFiltered is always true since we filtered
+        >
+          <div className="relative h-[180px]">
+            <Image
+              src={project.image || "/placeholder.svg"}
+              alt={project.name}
+              fill
+              className="object-cover transition-transform group-hover:scale-105"
+            />
+          </div>
+          <div className="h-[60px] bg-gray-50 p-3 flex flex-col items-start justify-center">
+            <h3 className="font-medium text-sm text-gray-900 leading-tight mb-1">{project.name}</h3>
+            <p className="text-xs text-gray-600">
+              {project.year} {project.location}
+            </p>
+          </div>
+        </div>
+      ))}
+  </div>
                     )}
                   </div>
                   {!isMobile && (

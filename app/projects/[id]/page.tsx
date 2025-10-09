@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter } from 'next/navigation'; // Import useRouter
+import { useRouter } from 'next/navigation';
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight, Menu, X } from "lucide-react"
@@ -18,9 +18,6 @@ const translations = {
     aboutUs: "About Us",
     contact: "Contact",
     showDocument: "Show Document",
-    projectOverview: "Project Overview",
-    specifications: "Specifications",
-    clientInfo: "Client Information",
     page: "Page",
     of: "of",
   },
@@ -29,30 +26,20 @@ const translations = {
     aboutUs: "درباره ما",
     contact: "تماس",
     showDocument: "نمایش سند",
-    projectOverview: "بررسی پروژه",
-    specifications: "مشخصات",
-    clientInfo: "اطلاعات مشتری",
     page: "صفحه",
     of: "از",
   },
 }
 
-// Re-defining projects data for this page for demonstration purposes.
+// Updated projects data with Page 1, Page 2, Page 3 fields
 const projects = [
   {
     id: 5,
     name: "ASPIRIN Medical Complex",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/ASPIRIN Medical Complex/1.jpg",
-    type: "Living, Sustainability",
-    status: "Completed",
-    timespan: "2020-2025",
-    client: "Armaghan Development",
-    clientLocation: "Rotterdam, NL",
-    size: "7,970 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "The ASPIRIN Medical Complex is a state-of-the-art healthcare facility in Mashhad, designed to integrate advanced medical technologies with sustainable architecture. It features a 40-story glass tower with a double-skin facade system.",
+    "Page 2": "Type: Living, Sustainability | Status: Completed | Timespan: 2020-2025 | Size: 7,970 m²",
+    "Page 3": "Client: Armaghan Development | Client Location: Rotterdam, NL",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ASPIRIN Medical Complex/1.jpg",
       "/images/ASPIRIN Medical Complex/2.jpg",
@@ -67,17 +54,10 @@ const projects = [
   {
     id: 2,
     name: "Ershad Twin Towers",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/ershad.jpg",
-    type: "Residential, Mixed-Use",
-    status: "Under Construction",
-    timespan: "2023-2025",
-    client: "Ershad Holdings",
-    clientLocation: "Tehran, IR",
-    size: "12,450 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Ershad Twin Towers is a residential and mixed-use development in Mashhad, featuring modern architectural design with a focus on urban living and sustainability.",
+    "Page 2": "Type: Residential, Mixed-Use | Status: Under Construction | Timespan: 2023-2025 | Size: 12,450 m²",
+    "Page 3": "Client: Ershad Holdings | Client Location: Tehran, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ershad.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -92,17 +72,10 @@ const projects = [
   {
     id: 20,
     name: "Grownida Innovation Center",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/PARDISAN 2 Commercial Building/1.jpg",
-    type: "Commercial, Innovation",
-    status: "Completed",
-    timespan: "2022-2025",
-    client: "Grownida Tech",
-    clientLocation: "Mashhad, IR",
-    size: "8,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "The Grownida Innovation Center is a hub for technological advancement in Mashhad, designed to foster innovation with cutting-edge facilities.",
+    "Page 2": "Type: Commercial, Innovation | Status: Completed | Timespan: 2022-2025 | Size: 8,500 m²",
+    "Page 3": "Client: Grownida Tech | Client Location: Mashhad, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/PARDISAN 2 Commercial Building/1.jpg",
       "/images/PARDISAN 2 Commercial Building/2.jpg",
@@ -112,17 +85,10 @@ const projects = [
   {
     id: 9,
     name: "ALIS OFFICE Headquarter Building",
-    year: "2025",
-    location: "MASHHAD",
-    image: "/images/ALIS OFFICE Headquarter Building/1.jpg",
-    type: "Commercial, Office",
-    status: "Planning",
-    timespan: "2024-2026",
-    client: "Javaher Group",
-    clientLocation: "Isfahan, IR",
-    size: "15,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "ALIS OFFICE Headquarter Building is a modern commercial office space in Mashhad, designed to accommodate corporate needs with sustainable design.",
+    "Page 2": "Type: Commercial, Office | Status: Planning | Timespan: 2024-2026 | Size: 15,200 m²",
+    "Page 3": "Client: Javaher Group | Client Location: Isfahan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ALIS OFFICE Headquarter Building/2.jpg",
       "/images/ALIS OFFICE Headquarter Building/3.jpg",
@@ -131,19 +97,12 @@ const projects = [
     ],
   },
   {
-  id: 4,
+    id: 4,
     name: "Binahayat residential Complex",
-    year: "2024",
-    location: "MASHHAD",
-    image: "/images/Binahayat residential Complex/1.jpg",
-    type: "Cultural, Public",
-    status: "Completed",
-    timespan: "2021-2024",
-    client: "Mashhad Municipality",
-    clientLocation: "Mashhad, IR",
-    size: "6,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Binahayat Residential Complex is a cultural and public project in Mashhad, designed to enhance community living with modern amenities.",
+    "Page 2": "Type: Cultural, Public | Status: Completed | Timespan: 2021-2024 | Size: 6,800 m²",
+    "Page 3": "Client: Mashhad Municipality | Client Location: Mashhad, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Binahayat residential Complex/2.jpg",
       "/images/Binahayat residential Complex/3.jpg",
@@ -154,17 +113,10 @@ const projects = [
   {
     id: 6,
     name: "ASAYESH Residential complex",
-    year: "2024",
-    location: "TEHRAN",
-    image: "/images/ASAYESH Residential complex/1.jpg",
-    type: "Commercial, Retail",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Pardis Development",
-    clientLocation: "Tehran, IR",
-    size: "18,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "ASAYESH Residential Complex in Tehran is a commercial and retail development focused on luxury living and shopping experiences.",
+    "Page 2": "Type: Commercial, Retail | Status: Under Construction | Timespan: 2023-2024 | Size: 18,500 m²",
+    "Page 3": "Client: Pardis Development | Client Location: Tehran, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ASAYESH Residential complex/1.jpg",
       "/images/ASAYESH Residential complex/2.jpg",
@@ -176,17 +128,10 @@ const projects = [
   {
     id: 7,
     name: "Grownida Innovation Center",
-    year: "2023",
-    location: "MASHHAD",
-    image: "/images/Grownida Innovation Center/1.jpg",
-    type: "Healthcare, Institutional",
-    status: "Completed",
-    timespan: "2020-2023",
-    client: "Khorasan Health Ministry",
-    clientLocation: "Mashhad, IR",
-    size: "22,300 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "The Grownida Innovation Center is a healthcare and institutional project in Mashhad, designed to advance medical research and services.",
+    "Page 2": "Type: Healthcare, Institutional | Status: Completed | Timespan: 2020-2023 | Size: 22,300 m²",
+    "Page 3": "Client: Khorasan Health Ministry | Client Location: Mashhad, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Grownida Innovation Center/1.jpg",
       "/images/Grownida Innovation Center/2.jpg",
@@ -198,17 +143,10 @@ const projects = [
   {
     id: 8,
     name: "Tehran Business District",
-    year: "2024",
-    location: "TEHRAN",
-    image: "/images/armaghan.jpg",
-    type: "Commercial, Mixed-Use",
-    status: "Planning",
-    timespan: "2024-2027",
-    client: "Tehran Development Corp",
-    clientLocation: "Tehran, IR",
-    size: "45,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Tehran Business District is a mixed-use commercial project aimed at creating a vibrant business hub in Tehran.",
+    "Page 2": "Type: Commercial, Mixed-Use | Status: Planning | Timespan: 2024-2027 | Size: 45,200 m²",
+    "Page 3": "Client: Tehran Development Corp | Client Location: Tehran, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/armaghan.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -223,42 +161,25 @@ const projects = [
   {
     id: 47,
     name: "Shaghayegh Office Building",
-    year: "2023",
-    location: "ISFAHAN",
-    image: "/images/Shaghayegh Office Building/1.jpg",
-    type: "Hospitality, Heritage",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Isfahan Tourism Board",
-    clientLocation: "Isfahan, IR",
-    size: "12,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Shaghayegh Office Building in Isfahan combines hospitality and heritage, preserving cultural elements while offering modern office spaces.",
+    "Page 2": "Type: Hospitality, Heritage | Status: Completed | Timespan: 2021-2023 | Size: 12,800 m²",
+    "Page 3": "Client: Isfahan Tourism Board | Client Location: Isfahan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Shaghayegh Office Building/3.jpg",
-            "/images/Shaghayegh Office Building/4.jpg",
-                  "/images/Shaghayegh Office Building/5.jpg",
-                        "/images/Shaghayegh Office Building/1.jpg",
-
-                              "/images/Shaghayegh Office Building/2.jpg",
-
-
+      "/images/Shaghayegh Office Building/4.jpg",
+      "/images/Shaghayegh Office Building/5.jpg",
+      "/images/Shaghayegh Office Building/1.jpg",
+      "/images/Shaghayegh Office Building/2.jpg",
     ],
   },
   {
     id: 22,
     name: "Aseman",
-    year: "2024",
-    location: "SHIRAZ",
-    image: "/images/Aseman/1.jpg",
-    type: "Educational, Institutional",
-    status: "Under Construction",
-    timespan: "2022-2024",
-    client: "Shiraz University",
-    clientLocation: "Shiraz, IR",
-    size: "28,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Aseman is an educational and institutional project in Shiraz, designed to support academic excellence and community engagement.",
+    "Page 2": "Type: Educational, Institutional | Status: Under Construction | Timespan: 2022-2024 | Size: 28,600 m²",
+    "Page 3": "Client: Shiraz University | Client Location: Shiraz, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Aseman/1.jpg",
       "/images/Aseman/2.jpg",
@@ -270,17 +191,10 @@ const projects = [
   {
     id: 11,
     name: "Tabriz Convention Center",
-    year: "2024",
-    location: "TABRIZ",
-    image: "/images/jawaher.jpg",
-    type: "Convention, Commercial",
-    status: "Planning",
-    timespan: "2024-2026",
-    client: "Tabriz Municipality",
-    clientLocation: "Tabriz, IR",
-    size: "19,400 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Tabriz Convention Center is a commercial project designed to host large-scale events and conferences in Tabriz.",
+    "Page 2": "Type: Convention, Commercial | Status: Planning | Timespan: 2024-2026 | Size: 19,400 m²",
+    "Page 3": "Client: Tabriz Municipality | Client Location: Tabriz, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/jawaher.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -295,17 +209,10 @@ const projects = [
   {
     id: 13,
     name: "Kerman Solar Complex",
-    year: "2023",
-    location: "KERMAN",
-    image: "/images/armaghan.jpg",
-    type: "Industrial, Sustainability",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Kerman Energy Corp",
-    clientLocation: "Kerman, IR",
-    size: "35,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Kerman Solar Complex is a sustainability-focused industrial project aimed at harnessing solar energy in Kerman.",
+    "Page 2": "Type: Industrial, Sustainability | Status: Completed | Timespan: 2021-2023 | Size: 35,600 m²",
+    "Page 3": "Client: Kerman Energy Corp | Client Location: Kerman, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/armaghan.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -320,17 +227,10 @@ const projects = [
   {
     id: 14,
     name: "Qom Religious Center",
-    year: "2024",
-    location: "QOM",
-    image: "/images/grownida.jpg",
-    type: "Religious, Cultural",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Qom Religious Authority",
-    clientLocation: "Qom, IR",
-    size: "14,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Qom Religious Center is a cultural and religious project designed to serve the spiritual needs of the community in Qom.",
+    "Page 2": "Type: Religious, Cultural | Status: Under Construction | Timespan: 2023-2024 | Size: 14,200 m²",
+    "Page 3": "Client: Qom Religious Authority | Client Location: Qom, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/grownida.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -345,17 +245,10 @@ const projects = [
   {
     id: 15,
     name: "PARDIS Villa complex",
-    year: "2023",
-    location: "AHVAZ",
-    image: "/images/PARDIS Villa complex/1.jpg",
-    type: "Sports, Recreation",
-    status: "Completed",
-    timespan: "2020-2023",
-    client: "Ahvaz Sports Federation",
-    clientLocation: "Ahvaz, IR",
-    size: "42,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "PARDIS Villa Complex in Ahvaz is a sports and recreation project designed to promote active lifestyles and community engagement.",
+    "Page 2": "Type: Sports, Recreation | Status: Completed | Timespan: 2020-2023 | Size: 42,800 m²",
+    "Page 3": "Client: Ahvaz Sports Federation | Client Location: Ahvaz, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/PARDIS Villa complex/1.jpg",
       "/images/PARDIS Villa complex/2.jpg",
@@ -367,17 +260,10 @@ const projects = [
   {
     id: 16,
     name: "Rasht Green Tower",
-    year: "2024",
-    location: "RASHT",
-    image: "/images/jawaher.jpg",
-    type: "Residential, Eco-Friendly",
-    status: "Planning",
-    timespan: "2024-2027",
-    client: "Rasht Development",
-    clientLocation: "Rasht, IR",
-    size: "16,900 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Rasht Green Tower is an eco-friendly residential project in Rasht, designed with sustainable materials and energy-efficient systems.",
+    "Page 2": "Type: Residential, Eco-Friendly | Status: Planning | Timespan: 2024-2027 | Size: 16,900 m²",
+    "Page 3": "Client: Rasht Development | Client Location: Rasht, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/jawaher.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -392,40 +278,25 @@ const projects = [
   {
     id: 17,
     name: "ZEYTON no.1 Residential Complex",
-    year: "2024",
-    location: "ARDABIL",
-    image: "/images/ZEYTON no.1 Residential Complex/1.jpg",
-    type: "Public, Eco-Friendly",
-    status: "Completed",
-    timespan: "2022-2024",
-    client: "Ardabil Municipality",
-    clientLocation: "Ardabil, IR",
-    size: "11,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "ZEYTON no.1 Residential Complex in Ardabil is a public eco-friendly project aimed at sustainable urban living.",
+    "Page 2": "Type: Public, Eco-Friendly | Status: Completed | Timespan: 2022-2024 | Size: 11,500 m²",
+    "Page 3": "Client: Ardabil Municipality | Client Location: Ardabil, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ZEYTON no.1 Residential Complex/1.jpg",
       "/images/ZEYTON no.1 Residential Complex/2.jpg",
       "/images/ZEYTON no.1 Residential Complex/3.jpg",
       "/images/ZEYTON no.1 Residential Complex/4.jpg",
       "/images/ZEYTON no.1 Residential Complex/5.jpg",
-
     ],
   },
   {
     id: 18,
     name: "Houshyar Residential Complex",
-    year: "2025",
-    location: "BANDAR ABBAS",
-    image: "/images/Houshyar Residential/1.jpg",
-    type: "Industrial, Maritime",
-    status: "Planning",
-    timespan: "2025-2028",
-    client: "Ports Authority",
-    clientLocation: "Bandar Abbas, IR",
-    size: "58,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Houshyar Residential Complex in Bandar Abbas is an industrial and maritime project designed to support coastal development.",
+    "Page 2": "Type: Industrial, Maritime | Status: Planning | Timespan: 2025-2028 | Size: 58,200 m²",
+    "Page 3": "Client: Ports Authority | Client Location: Bandar Abbas, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Houshyar Residential/1.jpg",
       "/images/Houshyar Residential/2.jpg",
@@ -437,17 +308,10 @@ const projects = [
   {
     id: 19,
     name: "Yazd Desert Resort",
-    year: "2024",
-    location: "YAZD",
-    image: "/images/grownida.jpg",
-    type: "Hospitality, Tourism",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Yazd Tourism Board",
-    clientLocation: "Yazd, IR",
-    size: "21,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Yazd Desert Resort is a hospitality and tourism project designed to offer a unique desert experience in Yazd.",
+    "Page 2": "Type: Hospitality, Tourism | Status: Under Construction | Timespan: 2023-2024 | Size: 21,500 m²",
+    "Page 3": "Client: Yazd Tourism Board | Client Location: Yazd, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/grownida.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -462,88 +326,57 @@ const projects = [
   {
     id: 3,
     name: "ZEYTON no.2 Residential Complex",
-    year: "2025",
-    location: "HAMADAN",
-    image:  "/images/ZEYTON no.2 Residential Complex/1.jpg",
-    type: "Technology, Innovation",
-    status: "Planning",
-    timespan: "2025-2027",
-    client: "Hamadan Tech Authority",
-    clientLocation: "Hamadan, IR",
-    size: "33,400 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "ZEYTON no.2 Residential Complex in Hamadan is a technology and innovation project aimed at fostering cutting-edge urban solutions.",
+    "Page 2": "Type: Technology, Innovation | Status: Planning | Timespan: 2025-2027 | Size: 33,400 m²",
+    "Page 3": "Client: Hamadan Tech Authority | Client Location: Hamadan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ZEYTON no.2 Residential Complex/1.jpg",
       "/images/ZEYTON no.2 Residential Complex/4.jpg",
       "/images/ZEYTON no.2 Residential Complex/5.jpg",
-     "/images/ZEYTON no.2 Residential Complex/2.jpg",
-       "/images/ZEYTON no.2 Residential Complex/3.jpg",
-
+      "/images/ZEYTON no.2 Residential Complex/2.jpg",
+      "/images/ZEYTON no.2 Residential Complex/3.jpg",
     ],
   },
   {
     id: 21,
     name: "DANESH Residential Complex",
-    year: "2024",
-    location: "KARAJ",
-    image: "/images/DANESH Residential Complex/1.jpg",
-    type: "Residential, Urban",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Karaj Development",
-    clientLocation: "Karaj, IR",
-    size: "26,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "DANESH Residential Complex in Karaj is an urban residential project designed to enhance modern living standards.",
+    "Page 2": "Type: Residential, Urban | Status: Under Construction | Timespan: 2023-2024 | Size: 26,800 m²",
+    "Page 3": "Client: Karaj Development | Client Location: Karaj, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/DANESH Residential Complex/1.jpg",
-   "/images/DANESH Residential Complex/2.jpg",
+      "/images/DANESH Residential Complex/2.jpg",
       "/images/DANESH Residential Complex/3.jpg",
-         "/images/DANESH Residential Complex/4.jpg",
-            "/images/DANESH Residential Complex/5.jpg",
-               "/images/DANESH Residential Complex/6.jpg",
-                "/images/DANESH Residential Complex/7.jpg",
-
+      "/images/DANESH Residential Complex/4.jpg",
+      "/images/DANESH Residential Complex/5.jpg",
+      "/images/DANESH Residential Complex/6.jpg",
+      "/images/DANESH Residential Complex/7.jpg",
     ],
   },
   {
     id: 40,
     name: "NILOUFAR Cancer Caring Center",
-    year: "2023",
-    location: "URMIA",
-    image: "/images/NILOUFAR Cancer Caring Center/1.jpg",
-    type: "Environmental, Research",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Environmental Ministry",
-    clientLocation: "Urmia, IR",
-    size: "18,900 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "NILOUFAR Cancer Caring Center in Urmia is an environmental and research facility dedicated to advancing cancer care.",
+    "Page 2": "Type: Environmental, Research | Status: Completed | Timespan: 2021-2023 | Size: 18,900 m²",
+    "Page 3": "Client: Environmental Ministry | Client Location: Urmia, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/NILOUFAR Cancer Caring Center/1.jpg",
       "/images/NILOUFAR Cancer Caring Center/2.jpg",
       "/images/NILOUFAR Cancer Caring Center/3.jpg",
       "/images/NILOUFAR Cancer Caring Center/4.jpg",
       "/images/NILOUFAR Cancer Caring Center/5.jpg",
-     
     ],
   },
   {
     id: 23,
     name: "Zahedan Border Complex",
-    year: "2025",
-    location: "ZAHEDAN",
-    image: "/images/EHSAN Hottel/1.jpg",
-    type: "Government, Security",
-    status: "Planning",
-    timespan: "2025-2027",
-    client: "Border Authority",
-    clientLocation: "Zahedan, IR",
-    size: "31,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Zahedan Border Complex is a government and security project designed to enhance border infrastructure in Zahedan.",
+    "Page 2": "Type: Government, Security | Status: Planning | Timespan: 2025-2027 | Size: 31,200 m²",
+    "Page 3": "Client: Border Authority | Client Location: Zahedan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/EHSAN Hottel/1.jpg",
       "/images/EHSAN Hottel/2.jpg",
@@ -555,40 +388,25 @@ const projects = [
   {
     id: 36,
     name: "Fajr 4 Commercial Complex",
-    year: "2024",
-    location: "GORGAN",
-    image: "/images/Fajr 4 Commercial Complex/1.jpg",
-    type: "Agricultural, Research",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Agriculture Ministry",
-    clientLocation: "Gorgan, IR",
-    size: "24,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Fajr 4 Commercial Complex in Gorgan is an agricultural research facility aimed at advancing sustainable farming practices.",
+    "Page 2": "Type: Agricultural, Research | Status: Under Construction | Timespan: 2023-2024 | Size: 24,600 m²",
+    "Page 3": "Client: Agriculture Ministry | Client Location: Gorgan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Fajr 4 Commercial Complex/1.jpg",
       "/images/Fajr 4 Commercial Complex/2.jpg",
       "/images/Fajr 4 Commercial Complex/3.jpg",
-       "/images/Fajr 4 Commercial Complex/4.jpg",
-       "/images/Fajr 4 Commercial Complex/5.jpg",
-   
+      "/images/Fajr 4 Commercial Complex/4.jpg",
+      "/images/Fajr 4 Commercial Complex/5.jpg",
     ],
   },
   {
     id: 25,
     name: "Bushehr Coastal Resort",
-    year: "2024",
-    location: "BUSHEHR",
-    image: "/images/jawaher.jpg",
-    type: "Hospitality, Coastal",
-    status: "Planning",
-    timespan: "2024-2026",
-    client: "Bushehr Tourism",
-    clientLocation: "Bushehr, IR",
-    size: "29,400 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Bushehr Coastal Resort is a hospitality project designed to offer a luxurious coastal experience in Bushehr.",
+    "Page 2": "Type: Hospitality, Coastal | Status: Planning | Timespan: 2024-2026 | Size: 29,400 m²",
+    "Page 3": "Client: Bushehr Tourism | Client Location: Bushehr, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/jawaher.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -603,17 +421,10 @@ const projects = [
   {
     id: 49,
     name: "Rezvan Pilgrims’ Residence",
-    year: "2023",
-    location: "SEMNAN",
-    image: "/images/Rezvan Pilgrims’ Residence/1.jpg",
-    type: "Industrial, Manufacturing",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Semnan Industries",
-    clientLocation: "Semnan, IR",
-    size: "52,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Rezvan Pilgrims’ Residence in Semnan is an industrial manufacturing project designed to support local industries.",
+    "Page 2": "Type: Industrial, Manufacturing | Status: Completed | Timespan: 2021-2023 | Size: 52,800 m²",
+    "Page 3": "Client: Semnan Industries | Client Location: Semnan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Rezvan Pilgrims’ Residence/1.jpg",
       "/images/Rezvan Pilgrims’ Residence/2.jpg",
@@ -623,17 +434,10 @@ const projects = [
   {
     id: 42,
     name: "JAVAHER PLAZA Residential & Commerical Complex2",
-    year: "2025",
-    location: "ILAM",
-    image: "/images/JAVAHER PLAZA Residential & Commerical Complex2/1.jpg",
-    type: "Educational, Campus",
-    status: "Planning",
-    timespan: "2025-2028",
-    client: "Ilam University",
-    clientLocation: "Ilam, IR",
-    size: "38,700 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "JAVAHER PLAZA in Ilam is an educational campus project aimed at expanding academic facilities.",
+    "Page 2": "Type: Educational, Campus | Status: Planning | Timespan: 2025-2028 | Size: 38,700 m²",
+    "Page 3": "Client: Ilam University | Client Location: Ilam, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/JAVAHER PLAZA Residential & Commerical Complex2/1.jpg",
       "/images/JAVAHER PLAZA Residential & Commerical Complex2/2.jpg",
@@ -645,17 +449,10 @@ const projects = [
   {
     id: 28,
     name: "Sanandaj Cultural Plaza",
-    year: "2024",
-    location: "SANANDAJ",
-    image: "/images/ershad.jpg",
-    type: "Cultural, Community",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Sanandaj Municipality",
-    clientLocation: "Sanandaj, IR",
-    size: "17,300 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Sanandaj Cultural Plaza is a community-focused cultural project in Sanandaj, designed to promote local arts and culture.",
+    "Page 2": "Type: Cultural, Community | Status: Under Construction | Timespan: 2023-2024 | Size: 17,300 m²",
+    "Page 3": "Client: Sanandaj Municipality | Client Location: Sanandaj, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ershad.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -670,17 +467,10 @@ const projects = [
   {
     id: 29,
     name: "Birjand Solar Farm",
-    year: "2023",
-    location: "BIRJAND",
-    image: "/images/jawaher.jpg",
-    type: "Energy, Renewable",
-    status: "Completed",
-    timespan: "2022-2023",
-    client: "Renewable Energy Corp",
-    clientLocation: "Birjand, IR",
-    size: "67,500 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Birjand Solar Farm is a renewable energy project aimed at harnessing solar power in Birjand.",
+    "Page 2": "Type: Energy, Renewable | Status: Completed | Timespan: 2022-2023 | Size: 67,500 m²",
+    "Page 3": "Client: Renewable Energy Corp | Client Location: Birjand, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/jawaher.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -695,17 +485,10 @@ const projects = [
   {
     id: 30,
     name: "Kish Island Resort",
-    year: "2025",
-    location: "KISH",
-    image: "/images/armaghan.jpg",
-    type: "Hospitality, Island",
-    status: "Planning",
-    timespan: "2025-2027",
-    client: "Kish Development",
-    clientLocation: "Kish, IR",
-    size: "41,200 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Kish Island Resort is a hospitality project designed to offer a luxurious island getaway in Kish.",
+    "Page 2": "Type: Hospitality, Island | Status: Planning | Timespan: 2025-2027 | Size: 41,200 m²",
+    "Page 3": "Client: Kish Development | Client Location: Kish, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/armaghan.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -720,40 +503,25 @@ const projects = [
   {
     id: 31,
     name: "SHAMS II Residential Complex",
-    year: "2024",
-    location: "ARAK",
-    image: "/images/SHAMS II Residential Complex/2.jpg",
-    type: "Industrial, Heavy",
-    status: "Under Construction",
-    timespan: "2023-2024",
-    client: "Arak Industries",
-    clientLocation: "Arak, IR",
-    size: "73,900 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "SHAMS II Residential Complex in Arak is an industrial project designed to support heavy industry development.",
+    "Page 2": "Type: Industrial, Heavy | Status: Under Construction | Timespan: 2023-2024 | Size: 73,900 m²",
+    "Page 3": "Client: Arak Industries | Client Location: Arak, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
-       "/images/SHAMS II Residential Complex/2.jpg",
-       "/images/SHAMS II Residential Complex/3.jpg",
-    "/images/SHAMS II Residential Complex/4.jpg",
-       "/images/SHAMS II Residential Complex/5.jpg",
-     "/images/SHAMS II Residential Complex/6.jpg",
-    
+      "/images/SHAMS II Residential Complex/2.jpg",
+      "/images/SHAMS II Residential Complex/3.jpg",
+      "/images/SHAMS II Residential Complex/4.jpg",
+      "/images/SHAMS II Residential Complex/5.jpg",
+      "/images/SHAMS II Residential Complex/6.jpg",
     ],
   },
   {
     id: 32,
     name: "Zanjan Mining Center",
-    year: "2023",
-    location: "ZANJAN",
-    image: "/images/ershad.jpg",
-    type: "Mining, Industrial",
-    status: "Completed",
-    timespan: "2021-2023",
-    client: "Zanjan Mining Corp",
-    clientLocation: "Zanjan, IR",
-    size: "48,600 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Zanjan Mining Center is an industrial project focused on mining operations in Zanjan.",
+    "Page 2": "Type: Mining, Industrial | Status: Completed | Timespan: 2021-2023 | Size: 48,600 m²",
+    "Page 3": "Client: Zanjan Mining Corp | Client Location: Zanjan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ershad.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -768,17 +536,10 @@ const projects = [
   {
     id: 33,
     name: "Kashan Historical Renovation",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/jawaher.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Kashan Historical Renovation is a heritage project aimed at preserving and restoring historical structures in Kashan.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/jawaher.jpg",
       "/placeholder.svg?height=400&width=600",
@@ -790,47 +551,29 @@ const projects = [
       "/placeholder.svg?height=400&width=600",
     ],
   },
-    {
+  {
     id: 34,
     name: "SHAMS 1 Residential Complex",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/jawaher.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "SHAMS 1 Residential Complex in Kashan is a heritage restoration project focused on sustainable residential development.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/SHAMS 1 Residential Complex/1.jpg",
-        "/images/SHAMS 1 Residential Complex/2.jpg",
-        "/images/SHAMS 1 Residential Complex/3.jpg",
-       "/images/SHAMS 1 Residential Complex/4.jpg",
-       "/images/SHAMS 1 Residential Complex/5.jpg",
-       "/images/SHAMS 1 Residential Complex/6.jpg",
-
+      "/images/SHAMS 1 Residential Complex/2.jpg",
+      "/images/SHAMS 1 Residential Complex/3.jpg",
+      "/images/SHAMS 1 Residential Complex/4.jpg",
+      "/images/SHAMS 1 Residential Complex/5.jpg",
+      "/images/SHAMS 1 Residential Complex/6.jpg",
     ],
   },
-
-    {
+  {
     id: 39,
-     "name": "CHESHMANDAZ Residential Complex",
-    "year": "2015",
-    "location": "MASHHAD",
-    "image": "/images/CHESHMANDAZ Residential Complex/1.jpg",
-    "detailImage": "/images/CHESHMANDAZ Residential Complex/2.jpg",
-       "type": "Residential",
-    "status": "Design Stage",
-    "timespan": "2021-2024",
-    "client": "Pariz Andish Zharf",
-    "clientLocation": "Hashemieh St, Mashhad ",
-     "Team":  ["Mohammad Akbari", "Samaneh Iman", "Mojtaba Pashaei"],
-    "size": "1430 m²",
-    "BArea": "10850 m²",
-    "overview": "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
+    name: "CHESHMANDAZ Residential Complex",
+    "Page 1": "CHESHMANDAZ Residential Complex in Mashhad is a modern residential project designed for urban living with a focus on aesthetics and functionality.",
+    "Page 2": "Type: Residential | Status: Design Stage | Timespan: 2021-2024 | Size: 1,430 m² | Built-up Area: 10,850 m²",
+    "Page 3": "Client: Pariz Andish Zharf | Client Location: Hashemieh St, Mashhad | Team: Mohammad Akbari, Samaneh Iman, Mojtaba Pashaei",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/CHESHMANDAZ Residential Complex/1.jpg",
       "/images/CHESHMANDAZ Residential Complex/2.jpg",
@@ -840,232 +583,143 @@ const projects = [
       "/images/CHESHMANDAZ Residential Complex/6.jpg",
     ],
   },
-
-   {
+  {
     id: 27,
     name: "CINAMA GHODS",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/CINAMA GHODS/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "CINAMA GHODS in Kashan is a heritage restoration project aimed at preserving cultural landmarks through modern design.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/CINAMA GHODS/1.jpg",
-       "/images/CINAMA GHODS/2.jpg",
-         "/images/CINAMA GHODS/3.jpg",
-           "/images/CINAMA GHODS/4.jpg",
-             "/images/CINAMA GHODS/5.jpg",
-               "/images/CINAMA GHODS/6.jpg",
-                "/images/CINAMA GHODS/7.jpg",
-
-
+      "/images/CINAMA GHODS/2.jpg",
+      "/images/CINAMA GHODS/3.jpg",
+      "/images/CINAMA GHODS/4.jpg",
+      "/images/CINAMA GHODS/5.jpg",
+      "/images/CINAMA GHODS/6.jpg",
+      "/images/CINAMA GHODS/7.jpg",
     ],
   },
-
-
-
-      {
+  {
     id: 43,
     name: "Residential No.101 (Mehrabi)",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/Residential No.101 (Mehrabi)/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Residential No.101 (Mehrabi) in Kashan is a heritage restoration project focused on sustainable residential development.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Residential No.101 (Mehrabi)/1.jpg",
       "/images/Residential No.101 (Mehrabi)/2.jpg",
       "/images/Residential No.101 (Mehrabi)/3.jpg",
       "/images/Residential No.101 (Mehrabi)/4.jpg",
-            "/images/Residential No.101 (Mehrabi)/5.jpg",
+      "/images/Residential No.101 (Mehrabi)/5.jpg",
       "/images/Residential No.101 (Mehrabi)/6.jpg",
-            "/images/Residential No.101 (Mehrabi)/7.jpg",
+      "/images/Residential No.101 (Mehrabi)/7.jpg",
       "/images/Residential No.101 (Mehrabi)/8.jpg",
-
     ],
   },
-   {
+  {
     id: 26,
     name: "Abuzar Residential",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/Abuzar Residential/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Abuzar Residential in Kashan is a heritage restoration project designed to preserve historical architecture while enhancing modern living.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Abuzar Residential/1.jpg",
       "/images/Abuzar Residential/2.jpg",
-         "/images/Abuzar Residential/3.jpg",
-               "/images/Abuzar Residential/4.jpg",
-                     "/images/Abuzar Residential/5.jpg",
-                           "/images/Abuzar Residential/6.jpg",
-                                 "/images/Abuzar Residential/7.jpg",
-                                     "/images/Abuzar Residential/8.jpg",
-
+      "/images/Abuzar Residential/3.jpg",
+      "/images/Abuzar Residential/4.jpg",
+      "/images/Abuzar Residential/5.jpg",
+      "/images/Abuzar Residential/6.jpg",
+      "/images/Abuzar Residential/7.jpg",
+      "/images/Abuzar Residential/8.jpg",
     ],
   },
-     {
+  {
     id: 38,
     name: "Faregh-al-tahsilan residential",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/Faregh-al-tahsilan residential/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Faregh-al-tahsilan Residential in Kashan is a heritage restoration project aimed at sustainable urban development.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Faregh-al-tahsilan residential/1.jpg",
       "/images/Faregh-al-tahsilan residential/2.jpg",
-         "/images/Faregh-al-tahsilan residential/3.jpg",
-
-
+      "/images/Faregh-al-tahsilan residential/3.jpg",
     ],
   },
-   {
+  {
     id: 10,
-    name: " Bajk Mixed-use Complex",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/Bajk Mixed-use Complex/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    name: "Bajk Mixed-use Complex",
+    "Page 1": "Bajk Mixed-use Complex in Kashan is a heritage restoration project combining residential and commercial spaces.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/JAVAHER2/1.jpg",
       "/images/JAVAHER2/2.jpg",
-         "/images/JAVAHER2/3.jpg",
-          "/images/JAVAHER2/4.jpg",
-           "/images/JAVAHER2/5.jpg",
-            "/images/JAVAHER2/6.jpg",
-             "/images/JAVAHER2/7.jpg",
-              "/images/JAVAHER2/8.jpg",
-               "/images/JAVAHER2/9.jpg",
-
-
+      "/images/JAVAHER2/3.jpg",
+      "/images/JAVAHER2/4.jpg",
+      "/images/JAVAHER2/5.jpg",
+      "/images/JAVAHER2/6.jpg",
+      "/images/JAVAHER2/7.jpg",
+      "/images/JAVAHER2/8.jpg",
+      "/images/JAVAHER2/9.jpg",
     ],
   },
-
-
   {
     id: 37,
     name: "Ebne Sina (Hasht Behesht) Medical & Office Complex",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "Ebne Sina Medical & Office Complex in Kashan is a heritage restoration project integrating medical and office facilities.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/1.jpg",
       "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/2.jpg",
-         "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/3.jpg",
-          "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/4.jpg",
-
-
+      "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/3.jpg",
+      "/images/Ebne Sina (Hasht Behesht) Medical & Office Complex/4.jpg",
     ],
   },
-
-
-    {
+  {
     id: 1,
     name: "ARMAGHAN Residential Complex",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/ARMAGHAN Residential Complex/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "ARMAGHAN Residential Complex in Kashan is a heritage restoration project focused on sustainable residential development.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/ARMAGHAN Residential Complex/1.jpg",
-          "/images/ARMAGHAN Residential Complex/2.jpg",
-              "/images/ARMAGHAN Residential Complex/3.jpg",
-                  "/images/ARMAGHAN Residential Complex/4.jpg",
-                      "/images/ARMAGHAN Residential Complex/5.jpg",
-                          "/images/ARMAGHAN Residential Complex/6.jpg",
-                              "/images/ARMAGHAN Residential Complex/7.jpg",
-                                  "/images/ARMAGHAN Residential Complex/8.jpg",
-                                      "/images/ARMAGHAN Residential Complex/9.jpg",
-
-
+      "/images/ARMAGHAN Residential Complex/2.jpg",
+      "/images/ARMAGHAN Residential Complex/3.jpg",
+      "/images/ARMAGHAN Residential Complex/4.jpg",
+      "/images/ARMAGHAN Residential Complex/5.jpg",
+      "/images/ARMAGHAN Residential Complex/6.jpg",
+      "/images/ARMAGHAN Residential Complex/7.jpg",
+      "/images/ARMAGHAN Residential Complex/8.jpg",
+      "/images/ARMAGHAN Residential Complex/9.jpg",
     ],
   },
-   {
+  {
     id: 24,
     name: "OFOGH Residential Complex Lndscape",
-    year: "2025",
-    location: "KASHAN",
-    image: "/images/OFOGH Residential Complex Lndscape/1.jpg",
-    type: "Heritage, Restoration",
-    status: "Planning",
-    timespan: "2025-2026",
-    client: "Kashan Heritage",
-    clientLocation: "Kashan, IR",
-    size: "9,800 m²",
-    overview:
-      "This 40-story glass tower represents the pinnacle of sustainable urban architecture. The building features a revolutionary double-skin facade system that reduces energy consumption by 35% while maximizing natural light penetration. The design incorporates advanced smart building technologies and green roof systems.",
+    "Page 1": "OFOGH Residential Complex Landscape in Kashan is a heritage restoration project with a focus on sustainable landscaping.",
+    "Page 2": "Type: Heritage, Restoration | Status: Planning | Timespan: 2025-2026 | Size: 9,800 m²",
+    "Page 3": "Client: Kashan Heritage | Client Location: Kashan, IR",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
     galleryImages: [
       "/images/OFOGH Residential Complex Lndscape/1.jpg",
-          "/images/OFOGH Residential Complex Lndscape/2.jpg",
-              "/images/OFOGH Residential Complex Lndscape/3.jpg",
-                  "/images/OFOGH Residential Complex Lndscape/4.jpg",
-                      "/images/OFOGH Residential Complex Lndscape/5.jpg",
-                          "/images/OFOGH Residential Complex Lndscape/6.jpg",
-                           "/images/OFOGH Residential Complex Lndscape/7.jpg",
-                            "/images/OFOGH Residential Complex Lndscape/8.jpg",
-                             "/images/OFOGH Residential Complex Lndscape/9.jpg",
-                             
-
-
-
-
+      "/images/OFOGH Residential Complex Lndscape/2.jpg",
+      "/images/OFOGH Residential Complex Lndscape/3.jpg",
+      "/images/OFOGH Residential Complex Lndscape/4.jpg",
+      "/images/OFOGH Residential Complex Lndscape/5.jpg",
+      "/images/OFOGH Residential Complex Lndscape/6.jpg",
+      "/images/OFOGH Residential Complex Lndscape/7.jpg",
+      "/images/OFOGH Residential Complex Lndscape/8.jpg",
+      "/images/OFOGH Residential Complex Lndscape/9.jpg",
     ],
   },
-
-  
-
-
-  
-
-
- 
 ]
 
 const menuVariants = {
@@ -1075,29 +729,25 @@ const menuVariants = {
 }
 
 export default function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  // Unwrap the params Promise using React.use()
   const resolvedParams = use(params)
   const projectId = Number.parseInt(resolvedParams.id)
   const project = projects.find((p) => p.id === projectId)
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [lang, setLang] = useState<"en" | "fa">("en") // Language state
+  const [lang, setLang] = useState<"en" | "fa">("en")
   const [modalPage, setModalPage] = useState(1)
-  const totalModalPages = 3 // Adjust based on number of pages
+  const totalModalPages = 3
   const router = useRouter();
 
-  // Default filters for display, not functional on this page
   const [typeFilter, setTypeFilter] = useState("ALL TYPE")
   const [locationFilter, setLocationFilter] = useState("ALL LOCATIONS")
   const [yearFilter, setYearFilter] = useState("ALL YEARS")
 
   useEffect(() => {
     if (!project) {
-      // Handle case where project is not found
       return
     }
-    // Reset image index when project changes
     setCurrentImageIndex(0)
   }, [project])
 
@@ -1163,29 +813,22 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
       case 1:
         return (
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">{translations[lang].projectOverview}</h3>
-            <p className="text-gray-600"><strong>Name:</strong> {getProjectName(project.name)}</p>
-            <p className="text-gray-600"><strong>Year:</strong> {project.year}</p>
-            <p className="text-gray-600"><strong>Location:</strong> {project.location}</p>
-            <p className="text-gray-600">{project.overview}</p>
+            <h3 className="text-xl font-bold">Page 1</h3>
+            <p className="text-gray-600">{project["Page 1"]}</p>
           </div>
         )
       case 2:
         return (
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">{translations[lang].specifications}</h3>
-            <p className="text-gray-600"><strong>Type:</strong> {project.type}</p>
-            <p className="text-gray-600"><strong>Status:</strong> {project.status}</p>
-            <p className="text-gray-600"><strong>Timespan:</strong> {project.timespan}</p>
-            <p className="text-gray-600"><strong>Size:</strong> {project.size}</p>
+            <h3 className="text-xl font-bold">Page 2</h3>
+            <p className="text-gray-600">{project["Page 2"]}</p>
           </div>
         )
       case 3:
         return (
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">{translations[lang].clientInfo}</h3>
-            <p className="text-gray-600"><strong>Client:</strong> {project.client}</p>
-            <p className="text-gray-600"><strong>Client Location:</strong> {project.clientLocation}</p>
+            <h3 className="text-xl font-bold">Page 3</h3>
+            <p className="text-gray-600">{project["Page 3"]}</p>
           </div>
         )
       default:
@@ -1209,11 +852,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
           <div className="hidden sm:block text-sm md:text-base text-gray-600 ml-4">
             {translations[lang].projects} / {getProjectName(project.name)}
           </div>
-          
         </div>
 
         {/* Filters in Header for Desktop */}
-        <div className="hidden lg:ml-[-18%]  items-center gap-4">
+        <div className="hidden lg:ml-[-18%] items-center gap-4">
           <Select value={typeFilter} onValueChange={setTypeFilter}>
             <SelectTrigger className="w-[140px] rounded-full border-gray-300">
               <SelectValue />
@@ -1248,19 +890,17 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
               <SelectItem value="2024">2024</SelectItem>
               <SelectItem value="2023">2023</SelectItem>
             </SelectContent>
-          </Select> 
+          </Select>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
-                    <Button
-            
-            onClick={() => router.push('/')} // Navigate to root path
+          <Button
+            onClick={() => router.push('/')}
             className="text-sm"
           >
             {lang === "en" ? "Back" : "بازگشت"}
           </Button>
           <Button
-            
             onClick={() => setLang(lang === "en" ? "fa" : "en")}
             className="text-sm"
           >
@@ -1276,14 +916,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
       <main className="flex-1 flex flex-col items-center justify-center p-4 md:p-6" style={{ direction: lang === "fa" ? "rtl" : "ltr" }}>
         <div className="w-full max-w-5xl relative mb-4">
           {/* Main Project Image */}
-   <div className="relative w calc(100% + 2rem) -mx-4 md:-mx-6 lg:mx-0 aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
-  <Image
-    src={project.galleryImages[currentImageIndex] || "/placeholder.svg"}
-    alt={`${getProjectName(project.name)} image ${currentImageIndex + 1}`}
-    fill
-    className="object-contain"
-  />
-</div>
+          <div className="relative w calc(100% + 2rem) -mx-4 md:-mx-6 lg:mx-0 aspect-[16/9] bg-gray-100 rounded-lg overflow-hidden">
+            <Image
+              src={project.galleryImages[currentImageIndex] || "/placeholder.svg"}
+              alt={`${getProjectName(project.name)} image ${currentImageIndex + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
 
           {/* Image Navigation Arrows */}
           <Button
