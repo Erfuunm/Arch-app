@@ -3,7 +3,7 @@
     "id": 1,
     "name": "فاطمه موسویان",
     "title": "معمار",
-    "grade": "دکتری: UI",
+    "grade": "دکترای معماری: داشنگاه اصفهان",
     "image": "/images/new resize/OUR PICTURES copy 2.jpg",
     "status": "سابق"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "name": "محمد اکبری",
     "title": "معمار",
-    "grade": "MArch: دانشگاه بیرجند",
+    "grade": "کارشناسی ارشد معماری: دانشگاه بیرجند",
     "image": "/images/new resize/Mohammad.Akbari (edit) copy.jpg",
     "status": "سابق"
   },
@@ -35,12 +35,20 @@
     "id": 5,
     "name": "شکیلا صادقیان",
     "title": "معمار",
-    "grade": "MArch: دانشگاه خیام",
+    "grade": "کارشناسی ارشد معماری: دانشگاه بیرجند",
     "image": "/images/new resize/Shakilla.Sadeghian(edit2) copy.jpg",
     "status": "سابق"
   },
   {
     "id": 6,
+    "name": "انیسه عزیززاده",
+    "title": "معمار",
+    "grade": "کارشناسی ارشد مدریت پروژه: داشنگاه تهران ",
+    "image": "/images/new resize/Aniseh.Azizzadeh copy.jpg",
+    "status": "فعلی"
+  },
+  {
+    "id": 7,
     "name": "محدثه تسبیح‌پور",
     "title": "معمار",
     "grade": "کارشناسی معماری: FUM",
@@ -48,7 +56,7 @@
     "status": "سابق"
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "فائزه فرودی",
     "title": "معمار",
     "grade": "کارشناسی معماری: FUM",
@@ -56,7 +64,7 @@
     "status": "فعلی"
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "زهرا پاشایی",
     "title": "معمار",
     "grade": "MArch: دانشگاه خیام",
@@ -64,46 +72,39 @@
     "status": "سابق"
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "مجتبی پاشایی",
     "title": "2008-2023",
     "image": "/images/new resize/Mojtaba.Pashaei copy.jpg",
     "status": "سابق"
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "احسان ختار",
     "title": "2014-2017",
     "image": "/images/new resize/Ehsan Khattar copy.jpg",
     "status": "فعلی"
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "ملیکا شریعتمدار",
     "title": "2023-2025",
     "image": "/images/new resize/Melika Shariatmadar copy.jpg",
     "status": "فعلی"
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "گلناز صادق‌نژاد",
     "title": "2014-2017",
     "image": "/images/new resize/Golnaz Sadeghnejad copy.jpg",
     "status": "فعلی"
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "پیمان طاهری",
     "title": "2009-2022",
     "image": "/images/new resize/Peyman Taheri copy.jpg",
     "status": "سابق"
-  },
-  {
-    "id": 14,
-    "name": "انیسه عزیززاده",
-    "title": "2023-2025",
-    "image": "/images/new resize/Aniseh.Azizzadeh copy.jpg",
-    "status": "فعلی"
   },
   {
     "id": 15,
@@ -149,6 +150,13 @@
   },
   {
     "id": 21,
+    "name": "خاطره مروج ",
+    "title": "2024-2025",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
+    "status": "فعلی"
+  },
+  {
+    "id": 22,
     "name": "الهام یوسفی",
     "title": "2024-2025",
     "image": "/images/new resize/Elham Yousefi copy.jpg",

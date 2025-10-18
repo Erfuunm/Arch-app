@@ -40,8 +40,17 @@
     "image": "/images/new resize/Shakilla.Sadeghian(edit2) copy.jpg",
     "status": "former"
   },
-    {
+      {
     "id": 6,
+    "name": "Aniseh Azizzadeh",
+    "grade" : "M.Sc. in Project Management: UT",
+    "title": "Architect",
+    "image": "/images/new resize/Aniseh.Azizzadeh copy.jpg",
+    "status": "current"
+  },
+
+    {
+    "id": 7,
     "name": "Mohaddeseh Tasbihpour",
     "title": "Architect",
     "grade": "BArch: FUM",
@@ -49,7 +58,7 @@
     "status": "former"
   },
     {
-    "id": 7,
+    "id": 8,
     "name": "Faezeh Fouroudi",
     "title": "Architect",
      "grade": "BArch: FUM",
@@ -57,7 +66,7 @@
     "status": "current"
   },
     {
-    "id": 8,
+    "id": 9,
     "name": "Zahra Pashaei",
     "title": "Architect",
     "grade" : "MArch: Khayyam University",
@@ -65,28 +74,28 @@
     "status": "former"
   },
     {
-    "id": 9,
+    "id": 10,
     "name": "Mojtaba Pashaei",
     "title": "2008-2023",
     "image": "/images/new resize/Mojtaba.Pashaei copy.jpg",
     "status": "former"
   },
     {
-    "id": 10,
+    "id": 11,
     "name": "Ehsan Khattar",
     "title": "2014-2016",
     "image": "/images/new resize/Ehsan Khattar copy.jpg",
     "status": "current"
   },
     {
-    "id": 11,
+    "id": 12,
     "name": "Melika Shariatmadar",
     "title": "2023-2025",
     "image": "/images/new resize/Melika Shariatmadar copy.jpg",
     "status": "current"
   },
     {
-    "id": 12,
+    "id": 13,
     "name": "Golnaz Sadeghnejad",
     "title": "2014-2017",
     "image": "/images/new resize/Golnaz Sadeghnejad copy.jpg",
@@ -94,19 +103,11 @@
   },
   
   {
-    "id": 13,
+    "id": 14,
     "name": "Peyman Taheri",
     "title": "2009-2022",
     "image": "/images/new resize/Peyman Taheri copy.jpg",
     "status": "former"
-  },
-
-    {
-    "id": 14,
-    "name": "Aniseh Azizzadeh",
-    "title": "2023-2025",
-    "image": "/images/new resize/Aniseh.Azizzadeh copy.jpg",
-    "status": "current"
   },
 
       {
@@ -157,6 +158,14 @@
 
   {
     "id": 21,
+    "name": "Khatereh Moravvej",
+    "title": "2023-2024",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
+    "status": "current"
+  },
+
+  {
+    "id": 22,
     "name": "Elham Yousefi",
     "title": "2023-2024",
     "image": "/images/new resize/Elham Yousefi copy.jpg",
