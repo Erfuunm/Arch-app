@@ -313,7 +313,7 @@ const projects = [
     ],
   },
   {
-    id: 15,
+    id: 23,
     name: "PARDIS Villa complex",
     "Page 1": "PARDIS Villa Complex in Ahvaz is a sports and recreation project designed to promote active lifestyles and community engagement.",
     "Page 2": "Type: Sports, Recreation | Status: Completed | Timespan: 2020-2023 | Size: 42,800 m²",
@@ -487,8 +487,8 @@ const projects = [
     ],
   },
   {
-    id: 23,
-    name: "Zahedan Border Complex",
+    id: 15,
+    name: "EHSAN Hottel",
     "Page 1": "Zahedan Border Complex is a government and security project designed to enhance border infrastructure in Zahedan.",
     "Page 2": "Type: Government, Security | Status: Planning | Timespan: 2025-2027 | Size: 31,200 m²",
     "Page 3": "Client: Border Authority | Client Location: Zahedan, IR",

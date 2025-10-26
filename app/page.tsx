@@ -241,13 +241,16 @@ export default function ProjectsPage() {
   }
 
 const isProjectFiltered = (project: any) => {
-  const typeMatch = typeFilter === "ALL TYPE" || project.type === typeFilter
-  const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter
-  const yearMatch = statusFilter === "ALL STATUS" || project.status === statusFilter
+  const typeMatch =
+    typeFilter === "ALL TYPE" ||
+    project.type === typeFilter ||
+    project.type.split(" – ").includes(typeFilter);
+  const locationMatch = locationFilter === "ALL LOCATIONS" || project.location === locationFilter;
+  const yearMatch = statusFilter === "ALL STATUS" || project.status === statusFilter;
   // Hide projects with isHide: true in mobile mode
-  const isVisibleInMobile = !isMobile || !project.isHide
-  return typeMatch && locationMatch && yearMatch && isVisibleInMobile
-}
+  const isVisibleInMobile = !isMobile || !project.isHide;
+  return typeMatch && locationMatch && yearMatch && isVisibleInMobile;
+};
 
 const PROJECTS_PER_PAGE = 16
 const totalPages = Math.ceil(projects.length / PROJECTS_PER_PAGE)
@@ -303,6 +306,7 @@ const handleProjectClick = (projectId: number, isFiltered: boolean) => {
       { value: "MASHHAD", label: lang === "fa" ? "مشهد" : "MASHHAD" },
       { value: "TEHRAN", label: lang === "fa" ? "تهران" : "TEHRAN" },
       { value: "ISFAHAN", label: lang === "fa" ? "اصفهان" : "ISFAHAN" },
+       { value: "QOM", label: lang === "fa" ? "قم" : "QOM" },
     ],
     status: [
       { value: "ALL STATUS", label: translations[lang].allstatus },
