@@ -3,7 +3,7 @@
 
      {
     "id": 1,
-    "name": "ARMAGHAN Residential Complex",
+    "name": "ARMAGHAN RESIDENTIAL COMPLEX",
     "year": "2014",
     "location": "MASHHAD",
     "image": "/images/ARMAGHAN Residential Complex/1.jpg",
@@ -22,7 +22,7 @@
  {
     "id": 2,
     "isHide":true,
-    "name": "Rezvan Pilgrims’ Residence",
+    "name": "REZVAN PILGRIMS COMPLEX",
     "year": "2021",
     "location": "MASHHAD",
     "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg",
@@ -41,7 +41,7 @@
   
   {
     "id": 3,
-    "name": "ZEYTON no.2 Residential Complex",
+    "name": "ZEYTON-2 RESIDENTIAL COMPLEX",
     "year": "2022",
     "location": "QOM",
     "image": "/images/new resize/14-ZEYTON no.2 Residential Complex.jpg",
@@ -58,7 +58,7 @@
   },
     {
     "id": 4,
-    "name": "Binahayat residential Complex",
+    "name": "BINAHAYAT TOWER",
     "year": "2015",
     "location": "MASHHAD",
     "image": "/images/Binahayat residential Complex/main.jpg",
@@ -68,7 +68,7 @@
     "timespan": "2021-2024",
     "client": "Islamic Revolution Housing Foundation, Mashhad County",
     "clientLocation": "Haft-e-Tir blv, vakilabad, mashhad",
-        "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
+        "Team":  ["Khatereh Moravej", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "size": "4900 m²",
     "BArea":"42400 m²",
     "overview": "Located on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use residential and commercial project by the Islamic Revolution Housing Foundation covers 4,900 m² of land with 42,400 m² built-up area. Construction started in 2015 and is ongoing."
@@ -76,7 +76,7 @@
 
     {
     "id": 5,
-    "name": "ASPIRIN Medical Complex",
+    "name": "ASPIRIN MEDICAL COMPLEX",
     "year": "2020",
     "location": "MASHHAD",
     "image": "images/new resize/1-ASPIRIN Medical Complex.jpg",
@@ -96,7 +96,7 @@
 
   {
     "id": 6,
-    "name": "ASAYESH Residential complex",
+    "name": "ASAYESH RESIDENTIAL TOWER",
     "year": "2020",
     "location": "TEHRAN",
     "image": "/images/new resize/3-ASAYESH Residential complex.jpg",
@@ -113,7 +113,7 @@
   },
   {
     "id": 7,
-    "name": "GROWNIDA Pishgaman Exir Sabz Research & Innovation Center",
+    "name": "GROWNIDA CENTER",
     "year": "2020",
     "location": "MASHHAD",
     "image": "/images/Grownida Innovation Center/1.jpg",
@@ -131,7 +131,7 @@
     {
     "id": 8,
     "isHide": true,
-    "name": "SHAMS II Residential Complex",
+    "name": "SHAMS-2 RESIDENTIAL-COMMERCIAL COMPLEX",
     "year": "2019",
     "location": "MASHHAD",
     "image": "/images/new resize/24-SHAMS II Residential Complex.jpg",
@@ -150,7 +150,7 @@
 
     {
     "id": 9,
-    "name": "ALIS OFFICE Headquarter Building",
+    "name": "ALIS BUILDING",
     "year": "2016",
     "location": "MASHHAD",
     "image": "/images/new resize/8(1)-ALIS OFFICE Headquarter Building.jpg",
@@ -158,9 +158,9 @@
     "type": "Office",
     "status": "Completed",
     "timespan": "2024-2026",
-    "client": "Cheshmeh Nooshan Khorasan",
+    "client": "Alis Holding",
     "clientLocation": "Taleghani St, Ahmad Abad, Mashhad",
-    "Team":  ["Fatemeh Mousavinia","Khatereh Morvaj","Mojtaba Pashaei","Peyman Taheri"],
+    "Team":  ["Fatemeh Mousavinia","Khatereh Moravej","Mojtaba Pashaei","Peyman Taheri"],
     "size": "504 m²",
     "BArea":"3400 m²",
     "overview": "Located on Taleghani St, Ahmad Abad, Mashhad, this office building by Cheshmeh Nooshan Khorasan covers 504 m² of land with 3,400 m² built-up area. Completed in 2016, it serves as the company’s main headquarters."
@@ -171,7 +171,7 @@
  
       {
     "id": 10,
-     "name": "JAVAHER PLAZA Residential & Commerical Complex Redesign",
+     "name": "JAVAHER PLAZA",
     "year": "2020",
     "location": "MASHHAD",
     "image": "/images/JAVAHER2/1.jpg",
@@ -209,7 +209,7 @@
    
   {
     "id": 13,
-    "name": "Rezvan Pilgrims’ Residence",
+    "name": "REZVAN PILGRIMS COMPLEX",
     "year": "2021",
     "location": "MASHHAD",
     "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg",
@@ -230,7 +230,7 @@
   {
     "id": 14,
     "isHide":true,
-    "name": "Abuzar Residential",
+    "name": "ABOUZAR RESIDENTIAL BUILDING",
     "year": "2023",
     "location": "MASHHAD",
     "image": "/images/Abuzar Residential/1.jpg",
@@ -249,7 +249,7 @@
   
   {
     "id": 15,
-    "name": "EHSAN Hottel",
+    "name": "EHSAN HOTEL",
     "year": "2016",
     "location": "MASHHAD",
     "image": "/images/new resize/12-EHSAN Hottel.jpg",
@@ -267,7 +267,7 @@
 
   {
     "id": 16,
-    "name": "Fajr 4 Commercial Complex",
+    "name": "FAJR-4 COMERICAL COMPLEX",
     "year": "2012",
     "location": "MASHHAD",
     "image": "/images/new resize/15-Fajr 4 Commercial Complex.jpg",
@@ -285,7 +285,7 @@
   },
   {
     "id": 17,
-    "name": "ZEYTON no.1 Residential Complex",
+    "name": "ZEYTON-1 RESIDENTIAL COMPLEX",
     "year": "2020",
   
     "location": "QOM",
@@ -303,7 +303,7 @@
   },
   {
     "id": 18,
-    "name": "Houshyar Residential",
+    "name": "HOUSHYAR RESIDENTIAL BUILDING",
     "year": "2024",
     "location": "MASHHAD",
     "image": "/images/new resize/10-Houshyar Residential.jpg",
@@ -322,7 +322,7 @@
 
   {
     "id": 19,
-    "name": "SHAMS II Residential Complex",
+    "name": "SHAMS-2 RESIDENTIAL-COMMERCIAL COMPLEX",
     "year": "2019",
     "location": "MASHHAD",
     "image": "/images/new resize/24-SHAMS II Residential Complex.jpg",
@@ -339,7 +339,7 @@
   },
   {
     "id": 20,
-    "name": "OFOGH Residential Complex",
+    "name": "OFOGH RESIDENTAIL TOWER",
     "year": "2016",
     "location": "QOM",
     "type": "Residential",
@@ -357,7 +357,7 @@
 
   {
     "id": 21,
-    "name": "DANESH Residential Complex",
+    "name": "DANESH RESIDENTIAL BUILDING",
     "year": "2024",
     "location": "MASHHAD",
     "image": "/images/DANESH Residential Complex/1.jpg",
@@ -375,7 +375,7 @@
 
          {
     "id": 22,
-    "name": "Aseman Residential Complex ",
+    "name": "ASEMAN RESIDENTIAL BUILDING",
     "year": "2015",
     
     "location": "MASHHAD",
@@ -395,7 +395,7 @@
 
     {
     "id": 23,
-    "name": "PARDIS Villa complex",
+    "name": "PARDIS RESIDENTIAL COMPLEX",
     "year": "2014",
     "location": "TEHRAN",
     "image": "/images/new resize/7-PARDIS Villa complex.jpg",
@@ -405,7 +405,7 @@
     "timespan": "2020-2023",
     "client": "Islamic Revolution Housing Foundation, Tehran Province",
     "clientLocation": "Pardis, Tehran",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei"],
+    "Team":  ["Khatereh Moravej", "Mojtaba Pashaei"],
     "size": "2975 m²",
     "BArea":"2557 m²",
     "overview": "Situated in Pardis, Tehran, this residential project by the Islamic Revolution Housing Foundation, Tehran Province, covers 2,975 m² of land with 2,557 m² built-up area. Completed in 2014."
@@ -414,7 +414,7 @@
 
      {
     "id": 24,
-    "name": "OFOGH Residential Complex Lndscape",
+    "name": "OFOGH RESIDENTAIL TOWER",
     "year": "2025",
     "location": "QOM",
     "image": "/images/OFOGH Residential Complex Lndscape/1.jpg",
@@ -434,7 +434,7 @@
   {
     "id": 25,
     "isHide":true,
-    "name": "Shaghayegh Office Building",
+    "name": "SHAGHAYEGH OFFICE BUILDING",
     "year": "2021",
     "location": "TEHRAN",
     "image": "/images/Shaghayegh Office Building/1.jpg",
@@ -451,7 +451,7 @@
   },
     {
     "id": 26,
-    "name": "Abuzar Residential",
+    "name": "ABOUZAR RESIDENTIAL BUILDING",
     "year": "2023",
     "location": "MASHHAD",
     "image": "/images/Abuzar Residential/1.jpg",
@@ -470,7 +470,7 @@
 
        {
     "id": 27,
-    "name": "CINAMA GHODS",
+    "name": "GHODS CINEMA",
     "year": "2024",
     "location": "MASHHAD",
     "image": "/images/CINAMA GHODS/1.jpg",
@@ -490,7 +490,7 @@
   {
     "id": 28,
     "isHide":true,
-    "name": "Houshyar Residential",
+    "name": "HOUSHYAR RESIDENTIAL BUILDING",
     "year": "2024",
     "location": "MASHHAD",
     "image": "/images/new resize/10-Houshyar Residential.jpg",
@@ -508,7 +508,7 @@
   {
     "id": 29,
     "isHide":true,
-    "name": "EHSAN Hottel",
+    "name": "EHSAN HOTEL",
     "year": "2016",
     "location": "MASHHAD",
     "image": "/images/new resize/12-EHSAN Hottel.jpg",
@@ -525,7 +525,7 @@
   },
   {
     "id": 30,
-    "name": "Shaghayegh Office Building",
+    "name": "SHAGHAYEGH OFFICE BUILDING",
     "year": "2021",
     "location": "TEHRAN",
     "image": "/images/Shaghayegh Office Building/1.jpg",
@@ -544,7 +544,7 @@
   },
   {
     "id": 31,
-    "name": "SHAMS II Residential Complex",
+    "name": "SHAMS-2 RESIDENTIAL-COMMERCIAL COMPLEX",
     "year": "2019",
     "location": "MASHHAD",
     "image": "/images/new resize/24-SHAMS II Residential Complex.jpg",
@@ -562,7 +562,7 @@
   {
     "id": 32,
     "isHide":true,
-    "name": "GROWNIDA Pishgaman Exir Sabz Research & Innovation Center",
+    "name": "GROWNIDA CENTER",
     "year": "2020",
     "location": "MASHHAD",
     "image": "/images/Grownida Innovation Center/1.jpg",
@@ -579,7 +579,7 @@
   },
       {
     "id": 33,
-    "name": "PARDISAN 2 Commercial Building",
+    "name": "PARDISAN-2 COMMERICAL COMLEX",
     "year": "2015",
     "location": "QOM",
     "image": "/images/new resize/5-PARDISAN 2 Commercial Building.jpg",
@@ -589,7 +589,7 @@
     "timespan": "2022-2025",
     "client": "Islamic Revolution Housing Foundation, Qom Province",
     "clientLocation": "Salman Farsi Blvd, Qom",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
+    "Team":  ["Khatereh Moravej", "Mojtaba Pashaei", "Vahid Yousefi", "Peyman Taheri", "Golnaz Sadeghnejad"],
     "size": "4479 m²",
     "BArea":"17209 m²",
     "overview": "Located on Salman Farsi Blvd, Qom, this commercial project by the Islamic Revolution Housing Foundation, Qom Province, spans 4,479 m² of land with 17,209 m² built-up area. Currently in the design stage since 2015."
@@ -597,7 +597,7 @@
 
          {
     "id": 34,
-    "name": "Shaghayegh Office Building",
+    "name": "SHAGHAYEGH OFFICE BUILDING",
     "year": "2021",
     "location": "TEHRAN",
     "image": "/images/Shaghayegh Office Building/1.jpg",
@@ -619,7 +619,7 @@
 
     "isHide":true,
 
-    "name": "JAVAHER PLAZA Residential & Commerical Complex",
+    "name": "JAVAHER PLAZA",
     "year": "2020",
     "location": "MASHHAD",
     "image": "/images/JAVAHER/3.jpg",
@@ -640,7 +640,7 @@
 
   {
     "id": 36,
-    "name": "Fajr 4 Commercial Complex",
+    "name": "FAJR-4 COMERICAL COMPLEX",
     "year": "2012",
     "location": "MASHHAD",
     "image": "/images/new resize/15-Fajr 4 Commercial Complex.jpg",
@@ -663,7 +663,7 @@
 
   {
     "id": 37,
-    "name": "Ebne Sina (Hasht Behesht) Medical & Office Complex",
+    "name": "HASHT BEHESHT MEDICAL COMPLEX",
     "year": "2025",
     "location": "MASHHAD",
     "image": "/images/Ebne Sina/main.jpg",
@@ -682,7 +682,7 @@
 
   {
     "id": 38,
-    "name": "Faregh-al-tahsilan residential",
+    "name": "FAREGH-AL-TAHSILAN RESIDENTIAL BUILDING",
     "year": "2022",
     "location": "MASHHAD",
     "image": "/images/Faregh-al-tahsilan residential/1.jpg",
@@ -702,7 +702,7 @@
 
       {
     "id": 39,
-    "name": "CHESHMANDAZ Residential Complex",
+    "name": "CHESHMANDAZ RESIDENTIAL COMPLEX",
     "year": "2019",
     "location": "ISFAHAN",
     "image": "/images/CHESHMANDAZ Residential Complex/1.jpg",
@@ -720,7 +720,7 @@
 
   {
     "id": 40,
-    "name": "NILOUFAR Cancer Caring Center",
+    "name": "NILOUFAR CANCER CARING CENTER",
     "year": "2024",
     "location": "MASHHAD",
     "image": "/images/new resize/25-NILOUFAR Cancer Caring Center.jpg",
@@ -740,7 +740,7 @@
      {
     "id": 41,
       "isHide":true,
-     "name": "PARDIS Villa complex",
+     "name": "PARDIS RESIDENTIAL COMPLEX",
     "year": "2014",
     "location": "TEHRAN",
     "image": "/images/new resize/7-PARDIS Villa complex.jpg",
@@ -750,7 +750,7 @@
     "timespan": "2020-2023",
     "client": "Islamic Revolution Housing Foundation, Tehran Province",
     "clientLocation": "Pardis, Tehran",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei"],
+    "Team":  ["Khatereh Moravej", "Mojtaba Pashaei"],
     "size": "2975 m²",
     "BArea":"2557 m²",
     "overview": "Situated in Pardis, Tehran, this residential project by the Islamic Revolution Housing Foundation, Tehran Province, covers 2,975 m² of land with 2,557 m² built-up area. Completed in 2014."
@@ -758,7 +758,7 @@
 
    {
     "id": 42,
-    "name": "JAVAHER PLAZA Residential & Commerical Complex",
+    "name": "JAVAHER PLAZA COMPLEX",
     "year": "2020",
     "location": "MASHHAD",
     "image": "/images/JAVAHER/3.jpg",
@@ -781,7 +781,7 @@
   
   {
     "id": 43,
-    "name": "Residential No.101 (Mehrabi)",
+    "name": "RESIDENTAIL NO.101",
     "year": "2023",
     "location": "MASHHAD",
     "image": "/images/Residential No.101 (Mehrabi)/1.jpg",
@@ -801,7 +801,7 @@
     "id": 44,
    
       "isHide":true,
-    "name": "Abuzar Residential",
+    "name": "ABOUZAR RESIDENTIAL BUILDING",
     "year": "2023",
     "location": "TEHRAN",
     "image": "/images/Abuzar Residential/1.jpg",
@@ -819,7 +819,7 @@
     {
     "id": 45,
       "isHide":true,
-    "name": "NILOUFAR Cancer Caring Center",
+    "name": "NILOUFAR CANCER CARING CENTER",
     "year": "2024",
     "location": "MASHHAD",
     "image": "/images/new resize/25-NILOUFAR Cancer Caring Center.jpg",
@@ -848,7 +848,7 @@
     "timespan": "2024-2026",
     "client": "Cheshmeh Nooshan Khorasan",
     "clientLocation": "Taleghani St, Ahmad Abad, Mashhad",
-    "Team":  ["Fatemeh Mousavinia","Khatereh Morvaj","Mojtaba Pashaei","Peyman Taheri"],
+    "Team":  ["Fatemeh Mousavinia","Khatereh Moravej","Mojtaba Pashaei","Peyman Taheri"],
     "size": "504 m²",
     "BArea":"3400 m²",
     "overview": "Located on Taleghani St, Ahmad Abad, Mashhad, this office building by Cheshmeh Nooshan Khorasan covers 504 m² of land with 3,400 m² built-up area. Completed in 2016, it serves as the company’s main headquarters."
@@ -857,7 +857,7 @@
 
       {
     "id": 47,
-    "name": "SHAMS 1 Residential Complex ",
+    "name": "SHAMS-1 RESIDENTIAL-COMMERCIAL COMPLEX",
     "year": "2017",
     "location": "MASHHAD",
     "image": "/images/SHAMS 1 Residential Complex/1.jpg",
@@ -878,7 +878,7 @@
       {
     "id": 48,
       "isHide":true,
-    "name": "PARDIS Villa complex",
+    "name": "PARDIS RESIDENTIAL COMPLEX",
     "year": "2014",
     "location": "TEHRAN",
     "image": "/images/new resize/7-PARDIS Villa complex.jpg",
@@ -888,7 +888,7 @@
     "timespan": "2020-2023",
     "client": "Islamic Revolution Housing Foundation, Tehran Province",
     "clientLocation": "Pardis, Tehran",
-    "Team":  ["Khatereh Morvaj", "Mojtaba Pashaei"],
+    "Team":  ["Khatereh Moravej", "Mojtaba Pashaei"],
     "size": "2975 m²",
     "BArea":"2557 m²",
     "overview": "Situated in Pardis, Tehran, this residential project by the Islamic Revolution Housing Foundation, Tehran Province, covers 2,975 m² of land with 2,557 m² built-up area. Completed in 2014."
@@ -897,7 +897,7 @@
  
   {
     "id": 49,
-    "name": "Rezvan Pilgrims’ Residence",
+    "name": "REZVAN PILGRIMS COMPLEX",
     "year": "2021",
     "location": "MASHHAD",
     "image": "/images/new resize/11-Rezvan Pilgrims’ Residence.jpg",
