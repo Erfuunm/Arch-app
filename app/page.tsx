@@ -226,19 +226,28 @@ export default function ProjectsPage() {
     return () => container.removeEventListener("wheel", handleWheel)
   }, [isMobile])
 
-  const scrollLeft = () => {
-    const container = scrollContainerRef.current
-    if (container) {
-      container.scrollBy({ left: -300, behavior: "smooth" })
-    }
+const scrollLeft = () => {
+  const container = scrollContainerRef.current;
+  if (!container) return;
+  const { scrollLeft, scrollWidth, clientWidth } = container;
+  if (scrollLeft <= 0) {
+    container.scrollTo({ left: scrollWidth - clientWidth, behavior: "smooth" });
+  } else {
+    container.scrollBy({ left: -300, behavior: "smooth" });
   }
+};
 
-  const scrollRight = () => {
-    const container = scrollContainerRef.current
-    if (container) {
-      container.scrollBy({ left: 300, behavior: "smooth" })
-    }
+const scrollRight = () => {
+  const container = scrollContainerRef.current;
+  if (!container) return;
+  const { scrollLeft, scrollWidth, clientWidth } = container;
+  const atEnd = scrollLeft + clientWidth >= scrollWidth - 10;
+  if (atEnd) {
+    container.scrollTo({ left: 0, behavior: "smooth" });
+  } else {
+    container.scrollBy({ left: 300, behavior: "smooth" });
   }
+};
 
 const isProjectFiltered = (project: any) => {
   const typeMatch =
