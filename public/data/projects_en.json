@@ -36,7 +36,7 @@
     "size": "1450",
     "BArea":"8750",
     "overview": "Situated on Khamenei Alley, Andarzgoo St, Mashhad, this hospitality project by the Islamic Revolution Housing Foundation, Mashhad County, spans 1,450 m² of land with 8,750 m² built-up area. Design stage initiated in 2021."
-
+  
   },
   
   {
@@ -190,20 +190,20 @@
   {
     "id": 11,
     "isHide":true,
-    "name": "OFOGH Residential Complex",
-    "year": "2016",
+    "name": "OFOGH RESIDENTAIL TOWER",
+    "year": "2025",
     "location": "QOM",
-    "type": "Residential",
-    "status" : "Under Construction",
-    "image": "/images/OFOGH Residential Complex/1.jpg",
-    "client" : "Islamic Revolution Housing Foundation, Qom Province",
-    "size" : "11000 m²",
-    "BArea" :"72000 m²",
-    "clientLocation": "Karimi Blvd, Qom",
-    "overview" : "Ofogh Residential Complex – Located on Karimi Blvd, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 72,000 m² built-up area. Construction began in 2016 and is ongoing.",
-    "detailImage": "/images/OFOGH Residential Complex/3.jpg",
-    "Team":  ["Fatemeh Mousavinia", "Peyman Taheri", "Milad Ghafarian", "Vahid Mirzaei", "Vahid Yousefi", "Mojtaba Pashaei", "Mohammad Akbari", "Sadra Sahebzadeh"]
-
+    "image": "/images/OFOGH Residential Complex Lndscape/1.jpg",
+    "detailImage": "/images/OFOGH Residential Complex Lndscape/2.jpg",
+    "type": "Landscape",
+    "status": "Under Construction",
+    "timespan": "2021-2023",
+    "client": "Islamic Revolution Housing Foundation, Qom Province",
+    "clientLocation": "Karimi Blvd (Javan Sq), Qom",
+    "Team":  ["Fatemeh Mousavinia", "Faezeh Froudi", "Mohaddeseh Tasbihpour", "Mohammad Akbari", "Foad Bazghandi"],
+    "size": "11000 m²",
+    "BArea": "6000 m²",
+    "overview": "Situated on Karimi Blvd (Javan Sq), Qom, this landscape project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 6,000 m² built-up area. Under construction since 2025."
   },
 
    
@@ -577,6 +577,7 @@
     "BArea":"5000 m²",
     "overview": "Situated in Technology Park, Mashhad, this office and industrial complex by Pishgaman Exir Sabz Arvand spans 2,000 m² of land with 5,000 m² built-up area. Construction started in 2020 and is ongoing."
   },
+  
       {
     "id": 33,
     "name": "PARDISAN-2 COMMERICAL COMLEX",
