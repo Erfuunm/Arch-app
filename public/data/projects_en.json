@@ -186,6 +186,8 @@
     "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Shakilla Sadegian", "Samaneh Iman", "Mohammad Akbari", "Zahra Pashaei"],
     "overview": "Situated on Haft-e-Tir Blvd, Vakilabad, Mashhad, this mixed-use project by Aseman Investment Group occupies 2,000 m² of land with 32,000 m² built-up area. Construction began in 2020 and is ongoing."
   },
+
+
   
   {
     "id": 11,
@@ -204,6 +206,26 @@
     "size": "11000 m²",
     "BArea": "6000 m²",
     "overview": "Situated on Karimi Blvd (Javan Sq), Qom, this landscape project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 6,000 m² built-up area. Under construction since 2025."
+  },
+
+       {
+    "id": 12,
+    "name": "GHODS CINEMA",
+    "year": "2024",
+    "isHide" :true,
+    "location": "MASHHAD",
+    "image": "/images/CINAMA GHODS/1.jpg",
+    "detailImage": "/images/CINAMA GHODS/2.jpg",
+    
+    "type": "Hospitality",
+    "status": "Design Stage",
+    "timespan": "2025-2026",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Pasdaran Blvd (Jannat), Mashhad ",
+    "Team":["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
+    "size": "1450 m²",
+    "BArea": "8750 m²",
+    "overview": "Located on Jomhuri Blvd, Qom, this landscape project by the Islamic Revolution Housing Foundation spans 8,000 m² of land with 5,000 m² built-up area. Currently in the design stage for 2025."
   },
 
    
@@ -475,7 +497,6 @@
     "location": "MASHHAD",
     "image": "/images/CINAMA GHODS/1.jpg",
     "detailImage": "/images/CINAMA GHODS/2.jpg",
-    
     "type": "Hospitality",
     "status": "Design Stage",
     "timespan": "2025-2026",
@@ -596,7 +617,7 @@
     "overview": "Located on Salman Farsi Blvd, Qom, this commercial project by the Islamic Revolution Housing Foundation, Qom Province, spans 4,479 m² of land with 17,209 m² built-up area. Currently in the design stage since 2015."
   },
 
-         {
+  {
     "id": 34,
     "name": "SHAGHAYEGH OFFICE BUILDING",
     "year": "2021",
