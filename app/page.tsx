@@ -123,44 +123,51 @@ export default function ProjectsPage() {
   const [isLoading, setIsLoading] = useState(true)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
-  const [showBlankPage, setShowBlankPage] = useState(false)
+
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [showLogo, setShowLogo] = useState(true)
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        // Fetch property data from the API
-        const propertyResponse = await fetch("https://dev.skyinorental.com/api/properties/1/")
-        if (propertyResponse.ok) {
-          const propertyData = await propertyResponse.json()
-          if (propertyData.max_guests === 25) {
-            setShowBlankPage(true)
-            setIsLoading(false)
-            return
-          }
-        }
 
-        // If max_guests is not 2 or API fails, load projects as usual
-        const projectsResponse = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
-        const projectsData = await projectsResponse.json()
-        const projectsWithoutId12 = projectsData.filter((project: any) => project.id !== 12)
-        setProjects(projectsWithoutId12)
-      } catch (error) {
-        console.error("Error loading data:", error)
-        // Load projects even if API fails
-        try {
-          const projectsResponse = await fetch(lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json")
-          const projectsData = await projectsResponse.json()
-          const projectsWithoutId12 = projectsData.filter((project: any) => project.id !== 12)
-          setProjects(projectsWithoutId12)
-        } catch (projectError) {
-          console.error("Error loading projects:", projectError)
-        }
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowLogo(false)
+  }, 4000) // 2 seconds
+
+  return () => clearTimeout(timer)
+}, []) // Run once on mount
+
+  
+useEffect(() => {
+  const loadData = async () => {
+    try {
+      setIsLoading(true)
+
+      // COMPLETELY REMOVED the skyinorental API check
+      // No more blank page, no more waiting for external API
+
+      const projectsResponse = await fetch(
+        lang === "en" ? "/data/projects_en.json" : "/data/projects_fa.json"
+      )
+      
+      if (!projectsResponse.ok) {
+        throw new Error("Failed to load projects")
       }
+
+      const projectsData = await projectsResponse.json()
+      const projectsWithoutId12 = projectsData.filter((project: any) => project.id !== 12)
+      
+      setProjects(projectsWithoutId12)
+    } catch (error) {
+      console.error("Error loading projects:", error)
+      // Optional: show error state or fallback
+      setProjects([])
+    } finally {
       setIsLoading(false)
     }
-    loadData()
-  }, [lang])
+  }
+
+  loadData()
+}, [lang])
 
   useEffect(() => {
     const handleResize = () => {
@@ -328,7 +335,7 @@ const handleProjectClick = (projectId: number, isFiltered: boolean) => {
 
   return (
     <AnimatePresence mode="wait">
-      {isLoading ? (
+      {showLogo ? (
         <motion.div
           key="loading-screen"
           initial="initial"
@@ -357,16 +364,6 @@ const handleProjectClick = (projectId: number, isFiltered: boolean) => {
             ))}
           </motion.h1>
         </motion.div>
-      ) : showBlankPage ? (
-        <motion.div
-          key="blank-page"
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          variants={pageVariants}
-          transition={{ duration: 0.5 }}
-          className="min-h-screen bg-white"
-        />
       ) : (
         <motion.div
           key="project-grid-view"
