@@ -1005,6 +1005,21 @@ const projects = [
       "/images/OFOGH Residential Complex Lndscape/21.jpg",
     ],
   },
+   {
+    id: 50,
+    name: "Alborz Compelx",
+    "Page 1": "",
+    "Page 2": "",
+    "Page 3": "",
+    overview: "Situated on Hashemieh St, Mashhad, this residential project by Pariz Andish Zharf covers 1,430 m² of land with 10,850 m² built-up area. Design stage initiated in 2015.",
+    galleryImages: [
+      "/images/ALBORZ/01.jpg",
+      "/images/ALBORZ/02.jpg",
+      "/images/ALBORZ/03.jpg",
+      "/images/ALBORZ/04.jpg",
+
+    ],
+  },
 ]
 
 const menuVariants = {

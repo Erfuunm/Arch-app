@@ -67,11 +67,11 @@
   },
     {
     "id": 9,
-    "name": "Zahra Pashaei",
+    "name": "Saba Akhlaghi",
     "title": "Architect",
-    "grade" : "MArch: Khayyam University",
-    "image": "/images/new resize/Zahra Pashaei copy.jpg",
-    "status": "former"
+    "grade" : "BArch: FUM",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
+    "status": "current"
   },
     {
     "id": 10,
@@ -163,13 +163,19 @@
     "image": "/images/new resize/OUR PICTURES copy 2.jpg",
     "status": "current"
   },
-
   {
     "id": 22,
+    "name": "Zahra Pashaei",
+    "title": "Architect",
+    "image": "/images/new resize/Zahra Pashaei copy.jpg",
+    "status": "former"
+  },
+  {
+    "id": 23,
     "name": "Elham Yousefi",
     "title": "2023-2024",
     "image": "/images/new resize/Elham Yousefi copy.jpg",
-    "status": "current"
+    "status": "former"
   }
 
 

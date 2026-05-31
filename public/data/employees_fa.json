@@ -65,10 +65,10 @@
   },
   {
     "id": 9,
-    "name": "زهرا پاشایی",
+    "name": "صبا اخلاقی",
     "title": "معمار",
-    "grade": "MArch: دانشگاه خیام",
-    "image": "/images/new resize/Zahra Pashaei copy.jpg",
+    "grade": "کارشناسی معماری: FUM",
+    "image": "/images/new resize/OUR PICTURES copy 2.jpg",
     "status": "سابق"
   },
   {
@@ -153,13 +153,20 @@
     "name": "خاطره مروج ",
     "title": "2024-2025",
     "image": "/images/new resize/OUR PICTURES copy 2.jpg",
-    "status": "فعلی"
+    "status": "سابق"
+  },
+    {
+    "id": 22,
+    "name": "زهرا پاشایی",
+    "title": "معمار",
+    "image": "/images/new resize/Zahra Pashaei copy.jpg",
+    "status": "سابق"
   },
   {
-    "id": 22,
+    "id": 23,
     "name": "الهام یوسفی",
     "title": "2024-2025",
     "image": "/images/new resize/Elham Yousefi copy.jpg",
-    "status": "فعلی"
+    "status": "سابق"
   }
 ]

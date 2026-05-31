@@ -373,7 +373,7 @@
     "clientLocation": "Karimi Blvd, Qom",
     "overview" : "Ofogh Residential Complex – Located on Karimi Blvd, Qom, this residential project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 72,000 m² built-up area. Construction began in 2016 and is ongoing.",
     "detailImage": "/images/OFOGH Residential Complex/3.jpg",
-    "Team":  ["Fatemeh Mousavinia", "Peyman Taheri", "Milad Ghafarian", "Vahid Mirzaei", "Vahid Yousefi", "Mojtaba Pashaei", "Mohammad Akbari", "Sadra Sahebzadeh"]
+    "Team":  ["Fatemeh Mousavinia", "Faezeh Froudi", "Mohaddeseh Tasbihpour", "Mohammad Akbari", "Foad Bazghandi"]
 
   },
 
@@ -446,7 +446,7 @@
     "timespan": "2021-2023",
     "client": "Islamic Revolution Housing Foundation, Qom Province",
     "clientLocation": "Karimi Blvd (Javan Sq), Qom",
-    "Team":  ["Fatemeh Mousavinia", "Faezeh Froudi", "Mohaddeseh Tasbihpour", "Mohammad Akbari", "Foad Bazghandi"],
+    "Team":  ["Fatemeh Mousavinia", "Peyman Taheri", "Milad Ghafarian", "Vahid Mirzaei", "Vahid Yousefi", "Mojtaba Pashaei", "Mohammad Akbari", "Sadra Sahebzadeh"],
     "size": "11000 m²",
     "BArea": "6000 m²",
     "overview": "Situated on Karimi Blvd (Javan Sq), Qom, this landscape project by the Islamic Revolution Housing Foundation, Qom Province, spans 11,000 m² of land with 6,000 m² built-up area. Under construction since 2025."
@@ -502,7 +502,7 @@
     "timespan": "2025-2026",
     "client": "Islamic Revolution Housing Foundation, Mashhad County",
     "clientLocation": "Pasdaran Blvd (Jannat), Mashhad ",
-    "Team":["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman"],
+    "Team":["Mohammad Akbari", "Shakilla Sadegian", "Samaneh Iman" , "Mohaddeseh Tasbihpour" , "Faezeh Froudi"],
     "size": "1450 m²",
     "BArea": "8750 m²",
     "overview": "Located on Jomhuri Blvd, Qom, this landscape project by the Islamic Revolution Housing Foundation spans 8,000 m² of land with 5,000 m² built-up area. Currently in the design stage for 2025."
@@ -752,7 +752,7 @@
     "timespan": "2021-2023",
     "client": "Asa Gostaran Khorasan",
     "clientLocation": "Niloofar St, Mashhad",
-    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Shakilla Sadegian", "Samaneh Iman"],
+    "Team":  ["Fatemeh Mousavinia", "Mohammad Akbari", "Foad Bazghandi", "Aniseh Azizzadeh", "Shakilla Sadegian", "Samaneh Iman" , "Mohaddeseh Tasbihpour" ],
     "size": "543 m²",
     "BArea":"4554 m²",
     "overview": "Situated on Niloofar St, Mashhad, this office and medical facility by Asa Gostaran Khorasan covers 543 m² of land with 4,554 m² built-up area. Currently in the design stage for 2024."
@@ -933,8 +933,25 @@
     "size": "1450",
     "BArea":"8750",
     "overview": "Situated on Khamenei Alley, Andarzgoo St, Mashhad, this hospitality project by the Islamic Revolution Housing Foundation, Mashhad County, spans 1,450 m² of land with 8,750 m² built-up area. Design stage initiated in 2021."
-  }
+  },
    
+  {
+    "id": 50,
+    "name": "ALBORZ COMPLEX",
+    "year": "2025",
+    "location": "MASHHAD",
+    "image": "/images/new resize/50-Alborz.jpg",
+    "detailImage": "/images/new resize/50-Alborz detail.jpg",
+    "type": "Residential – Commercial",
+    "status": "Design Stage",
+    "timespan": "2025-2026",
+    "client": "Islamic Revolution Housing Foundation, Mashhad County",
+    "clientLocation": "Modarrs Blv, Mashhad",
+    "Team":  ["Fatemeh Mousavinia", "Foad Bazghandi", "Aniseh Azizzadeh", "Samaneh Iman"],
+    "size": "459",
+    "BArea":"3950",
+    "overview": ""
+  }
 
 
 ]
